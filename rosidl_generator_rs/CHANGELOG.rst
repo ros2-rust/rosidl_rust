@@ -2,8 +2,8 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.2 (2025-04-11)
+------------------
 * Update vendored interface packages (`#423 <https://github.com/ros2-rust/rosidl_rust/issues/423>`_)
   * Update rclrs vendor_interfaces.py script
   This updates the vendor_interfaces.py script to also vendor in the
