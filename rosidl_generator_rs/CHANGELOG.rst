@@ -2,6 +2,11 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Disable rosidl_runtime_rs dependency (`#4 <https://github.com/ros2-rust/rosidl_rust/issues/4>`_)
+* Contributors: Esteve Fernandez
+
 0.4.2 (2025-04-11)
 ------------------
 * Update vendored interface packages (`#423 <https://github.com/ros2-rust/rosidl_rust/issues/423>`_)
