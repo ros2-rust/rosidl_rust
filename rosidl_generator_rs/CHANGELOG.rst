@@ -2,8 +2,8 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.6 (2025-05-24)
+------------------
 * fix: added missing dependency
 * Contributors: Esteve Fernandez
 
