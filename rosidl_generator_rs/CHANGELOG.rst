@@ -147,7 +147,13 @@ Changelog for package rosidl_generator_rs
   * Removed the linter tests for auto-generated message source files in `rclrs_example_msgs`. Re-applied some changes removed when root causing.
   ---------
   Co-authored-by: Sam Privett <sam@privett.dev>
+
+0.4.1 (2023-11-28)
+------------------
 * Version 0.4.1 (`#353 <https://github.com/ros2-rust/rosidl_rust/issues/353>`_)
+
+0.4.0 (2023-11-07)
+------------------
 * Version 0.4.0 (`#346 <https://github.com/ros2-rust/rosidl_rust/issues/346>`_)
 * Revert "Version 0.4.0 (`#343 <https://github.com/ros2-rust/rosidl_rust/issues/343>`_)" (`#344 <https://github.com/ros2-rust/rosidl_rust/issues/344>`_)
   This reverts commit a64e397990319db39caf79ef7863b21fb2c828ea.
@@ -165,6 +171,9 @@ Changelog for package rosidl_generator_rs
   ---------
   Co-authored-by: Sam Privett <sam@privett.dev>
 * Remove libc dependencies (`#284 <https://github.com/ros2-rust/rosidl_rust/issues/284>`_)
+
+0.3.1 (2023-08-22)
+------------------
 * Version 0.3.1 (`#285 <https://github.com/ros2-rust/rosidl_rust/issues/285>`_)
 * Add TYPE_NAME constant to messages and make error fields public (`#277 <https://github.com/ros2-rust/rosidl_rust/issues/277>`_)
 * Bump package versions to 0.3 (`#274 <https://github.com/ros2-rust/rosidl_rust/issues/274>`_)
@@ -195,6 +204,9 @@ Changelog for package rosidl_generator_rs
   * Generate Cargo.toml of message crate with an EmPy template, not CMake
   * Add comment
 * Add serde support to messages (`#131 <https://github.com/ros2-rust/rosidl_rust/issues/131>`_)
+
+0.2.0 (2022-04-17)
+------------------
 * Bump every package to version 0.2 (`#100 <https://github.com/ros2-rust/rosidl_rust/issues/100>`_)
 * Enable Clippy in CI (`#83 <https://github.com/ros2-rust/rosidl_rust/issues/83>`_)
 * Message generation refactoring (`#80 <https://github.com/ros2-rust/rosidl_rust/issues/80>`_)
