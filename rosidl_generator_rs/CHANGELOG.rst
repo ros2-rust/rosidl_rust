@@ -2,6 +2,11 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix: added missing dependency
+* Contributors: Esteve Fernandez
+
 0.4.5 (2025-05-24)
 ------------------
 * clean up changelog. Removed rosidl_runtime_rs as a dependency
