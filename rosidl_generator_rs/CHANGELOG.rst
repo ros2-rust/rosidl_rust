@@ -2,6 +2,11 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* clean up changelog. Removed rosidl_runtime_rs as a dependency
+* Contributors: Esteve Fernandez
+
 0.4.4 (2025-05-24)
 ------------------
 * set python executable var to custom cmake commands (`#3 <https://github.com/ros2-rust/rosidl_rust/issues/3>`_)
