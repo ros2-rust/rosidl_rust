@@ -2,8 +2,8 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.7 (2025-05-30)
+------------------
 * fix: clean up dependencies (`#5 <https://github.com/ros2-rust/rosidl_rust/issues/5>`_)
 * Contributors: Esteve Fernandez
 
