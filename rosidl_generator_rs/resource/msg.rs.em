@@ -1,4 +1,6 @@
 pub mod rmw {
+    #[cfg(feature = "serde")]
+    use serde::{Deserialize, Serialize};
 @{
 TEMPLATE(
     'msg_rmw.rs.em',
@@ -10,6 +12,9 @@ TEMPLATE(
     constant_value_to_rs=constant_value_to_rs)
 }@
 }  // mod rmw
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 @{
 TEMPLATE(
