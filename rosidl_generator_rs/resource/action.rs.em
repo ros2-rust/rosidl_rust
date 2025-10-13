@@ -26,6 +26,8 @@ for subfolder, action in action_specs:
 }@
 
 pub mod rmw {
+    #[cfg(feature = "serde")]
+    use serde::{Deserialize, Serialize};
 @{
 TEMPLATE(
     'msg_rmw.rs.em',
@@ -46,6 +48,9 @@ TEMPLATE(
     constant_value_to_rs=constant_value_to_rs)
 }@
 }  // mod rmw
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 @{
 TEMPLATE(
@@ -84,23 +89,22 @@ extern "C" {
 pub struct @(type_name);
 
 impl rosidl_runtime_rs::Action for @(type_name) {
+  // --- Associated types for client library users ---
   type Goal = crate::@(subfolder)::@(type_name)@(ACTION_GOAL_SUFFIX);
   type Result = crate::@(subfolder)::@(type_name)@(ACTION_RESULT_SUFFIX);
   type Feedback = crate::@(subfolder)::@(type_name)@(ACTION_FEEDBACK_SUFFIX);
 
+  // --- Associated types for client library implementation ---
+  type FeedbackMessage = crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX);
+  type SendGoalService = crate::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX);
+  type CancelGoalService = action_msgs::srv::rmw::CancelGoal;
+  type GetResultService = crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX);
+
+  // --- Methods for client library implementation ---
   fn get_type_support() -> *const std::ffi::c_void {
     // SAFETY: No preconditions for this function.
     unsafe { rosidl_typesupport_c__get_action_type_support_handle__@(package_name)__@(subfolder)__@(type_name)() }
   }
-}
-
-impl rosidl_runtime_rs::ActionImpl for @(type_name) {
-  type GoalStatusMessage = action_msgs::msg::rmw::GoalStatusArray;
-  type FeedbackMessage = crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX);
-
-  type SendGoalService = crate::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX);
-  type CancelGoalService = action_msgs::srv::rmw::CancelGoal;
-  type GetResultService = crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX);
 
   fn create_goal_request(
     goal_id: &[u8; 16],
@@ -112,10 +116,13 @@ impl rosidl_runtime_rs::ActionImpl for @(type_name) {
     }
   }
 
-  fn get_goal_request_uuid(
-    request: &crate::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX),
-  ) -> &[u8; 16] {
-    &request.goal_id.uuid
+  fn split_goal_request(
+    request: crate::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX),
+  ) -> (
+    [u8; 16],
+    crate::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SUFFIX),
+  ) {
+    (request.goal_id.uuid, request.goal)
   }
 
   fn create_goal_response(
@@ -153,16 +160,13 @@ impl rosidl_runtime_rs::ActionImpl for @(type_name) {
     message
   }
 
-  fn get_feedback_message_uuid(
-    feedback: &crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX),
-  ) -> &[u8; 16] {
-    &feedback.goal_id.uuid
-  }
-
-  fn get_feedback_message_feedback(
-    feedback: &crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX),
-  ) -> &crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_SUFFIX) {
-    &feedback.feedback
+  fn split_feedback_message(
+    feedback: crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX),
+  ) -> (
+    [u8; 16],
+    crate::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_SUFFIX),
+  ) {
+    (feedback.goal_id.uuid, feedback.feedback)
   }
 
   fn create_result_request(
@@ -189,16 +193,13 @@ impl rosidl_runtime_rs::ActionImpl for @(type_name) {
     }
   }
 
-  fn get_result_response_result(
-    response: &crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX),
-  ) -> &crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SUFFIX) {
-    &response.result
-  }
-
-  fn get_result_response_status(
-    response: &crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX),
-  ) -> i8 {
-    response.status
+  fn split_result_response(
+    response: crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX)
+  ) -> (
+    i8,
+    crate::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SUFFIX),
+  ) {
+    (response.status, response.result)
   }
 }
 

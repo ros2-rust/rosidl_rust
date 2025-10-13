@@ -15,8 +15,6 @@ from rosidl_parser.definition import UnboundedWString
 @# ############ Idiomatic message types ############
 @# #################################################
 @# These types use standard Rust containers where possible.
-#[cfg(feature = "serde")]
-use serde::{Deserialize, Serialize};
 @[for subfolder, msg_spec in msg_specs]@
 @{
 type_name = msg_spec.structure.namespaced_type.name

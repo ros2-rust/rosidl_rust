@@ -10,8 +10,6 @@ from rosidl_parser.definition import UnboundedSequence
 from rosidl_parser.definition import UnboundedString
 from rosidl_parser.definition import UnboundedWString
 }@
-#[cfg(feature = "serde")]
-use serde::{Deserialize, Serialize};
 @[for subfolder, msg_spec in msg_specs]@
 @{
 type_name = msg_spec.structure.namespaced_type.name
