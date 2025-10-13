@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
 @{
 TEMPLATE(
     'srv_idiomatic.rs.em',
@@ -10,6 +13,8 @@ TEMPLATE(
 }
 
 pub mod rmw {
+    #[cfg(feature = "serde")]
+    use serde::{Deserialize, Serialize};
 @{
 TEMPLATE(
     'srv_rmw.rs.em',
