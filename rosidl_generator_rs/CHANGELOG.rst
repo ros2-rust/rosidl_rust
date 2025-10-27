@@ -2,6 +2,22 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix use of serde (`#9 <https://github.com/ros2-rust/rosidl_rust/issues/9>`_)
+  * Fix use of serde
+  * Include serde for services
+  ---------
+* Update to the latest version of Action trait (`#7 <https://github.com/ros2-rust/rosidl_rust/issues/7>`_)
+  * Update to the latest version of Action trait
+  * Fix use of serde
+  ---------
+* fix cmake deprecation (`#6 <https://github.com/ros2-rust/rosidl_rust/issues/6>`_)
+  * fix cmake deprecation
+  cmake version < then 3.10 is deprecated
+  * Update CMakeLists.txt
+* Contributors: Grey, mosfet80
+
 0.4.7 (2025-05-30)
 ------------------
 * fix: clean up dependencies (`#5 <https://github.com/ros2-rust/rosidl_rust/issues/5>`_)
