@@ -2,6 +2,11 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix: update rosidl_runtime_rs dependency version to 0.5 (`#11 <https://github.com/ros2-rust/rosidl_rust/issues/11>`_)
+* Contributors: Esteve Fernandez
+
 0.4.8 (2025-10-27)
 ------------------
 * Fix use of serde (`#9 <https://github.com/ros2-rust/rosidl_rust/issues/9>`_)
