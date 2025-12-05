@@ -44,6 +44,7 @@ from rosidl_parser.definition import UnboundedWString
 
 from rosidl_parser.parser import parse_idl_file
 
+package_name = ""
 
 # Taken from http://stackoverflow.com/a/6425628
 def convert_lower_case_underscore_to_camel_case(word):
@@ -52,6 +53,8 @@ def convert_lower_case_underscore_to_camel_case(word):
 
 def generate_rs(generator_arguments_file, typesupport_impls):
     args = rosidl_pycommon.read_generator_arguments(generator_arguments_file)
+
+    global package_name
     package_name = args['package_name']
 
     # expand init modules for each directory
@@ -84,15 +87,18 @@ def generate_rs(generator_arguments_file, typesupport_impls):
     template_dir = args['template_dir']
 
     mapping_msgs = {
-        os.path.join(template_dir, 'msg.rs.em'): ['rust/src/%s.rs'],
+        os.path.join(template_dir, 'msg.rs.em'): ['rust/src/%s'],
+        os.path.join(template_dir, 'msg/rmw.rs.em'): ['rust/src/msg/%s'],
     }
 
     mapping_srvs = {
-        os.path.join(template_dir, 'srv.rs.em'): ['rust/src/%s.rs'],
+        os.path.join(template_dir, 'srv.rs.em'): ['rust/src/%s'],
+        os.path.join(template_dir, 'srv/rmw.rs.em'): ['rust/src/srv/%s'],
     }
 
     mapping_actions = {
-        os.path.join(template_dir, 'action.rs.em'): ['rust/src/%s.rs'],
+        os.path.join(template_dir, 'action.rs.em'): ['rust/src/%s'],
+        os.path.join(template_dir, 'action/rmw.rs.em'): ['rust/src/action/%s'],
     }
 
     # Ensure the required templates exist
@@ -108,9 +114,8 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     data = {
         'pre_field_serde': pre_field_serde,
-        'get_rmw_rs_type': make_get_rmw_rs_type(args['package_name']),
         'get_rs_name': get_rs_name,
-        'get_idiomatic_rs_type': make_get_idiomatic_rs_type(args['package_name']),
+        'make_get_rs_type': make_get_rs_type,
         'constant_value_to_rs': constant_value_to_rs,
         'value_to_rs': value_to_rs,
         'convert_camel_case_to_lower_case_underscore':
@@ -120,7 +125,7 @@ def generate_rs(generator_arguments_file, typesupport_impls):
         'msg_specs': [],
         'srv_specs': [],
         'action_specs': [],
-        'package_name': args['package_name'],
+        'package_name': package_name,
         'typesupport_impls': typesupport_impls,
         'interface_path': idl_rel_path,
     }
@@ -139,9 +144,11 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['msg_specs']:
         for template_file, generated_filenames in mapping_msgs.items():
+            stem = Path(template_file).stem.removesuffix(".em")
+
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
-                                              generated_filename % 'msg')
+                                              generated_filename % stem)
                 rosidl_pycommon.expand_template(
                     os.path.join(template_dir, template_file),
                     data.copy(),
@@ -150,9 +157,11 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['srv_specs']:
         for template_file, generated_filenames in mapping_srvs.items():
+            stem = Path(template_file).stem.removesuffix(".em")
+
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
-                                              generated_filename % 'srv')
+                                              generated_filename % stem)
                 rosidl_pycommon.expand_template(
                     os.path.join(template_dir, template_file),
                     data.copy(),
@@ -161,9 +170,11 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['action_specs']:
         for template_file, generated_filenames in mapping_actions.items():
+            stem = Path(template_file).stem.removesuffix(".em")
+
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
-                                              generated_filename % 'action')
+                                              generated_filename % stem)
                 rosidl_pycommon.expand_template(
                     os.path.join(template_dir, template_file),
                     data.copy(),
@@ -178,7 +189,7 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     cargo_toml_data = {
         'dependency_packages': dependency_packages,
-        'package_name': args['package_name'],
+        'package_name': package_name,
         'package_version': args['package_version'],
     }
     rosidl_pycommon.expand_template(
@@ -201,6 +212,8 @@ def get_rs_name(name):
         'as', 'break', 'const', 'continue', 'crate', 'else', 'enum', 'extern', 'false', 'fn', 'for', 'if', 'for',
         'impl', 'in', 'let', 'loop', 'match', 'mod', 'move', 'mut', 'pub', 'ref', 'return', 'self', 'Self', 'static',
         'struct', 'super', 'trait', 'true', 'type', 'unsafe', 'use', 'where', 'while',
+        # Edition 2024+
+        'gen',
         # Edition 2018+
         'async', 'await', 'dyn',
         # Reserved
@@ -278,7 +291,7 @@ def constant_value_to_rs(type_, value):
     assert False, "unknown constant type '%s'" % type_
 
 # Type hierarchy:
-# 
+#
 # AbstractType
 # - AbstractNestableType
 #   - AbstractGenericString
@@ -305,28 +318,9 @@ def pre_field_serde(type_):
         return ''
 
 
-def make_get_idiomatic_rs_type(package_name):
-    get_rmw_rs_type = make_get_rmw_rs_type(package_name)
-    def get_idiomatic_rs_type(type_):
-        if isinstance(type_, UnboundedString) or isinstance(type_, UnboundedWString):
-            return 'std::string::String'
-        elif isinstance(type_, UnboundedSequence):
-            return 'Vec<{}>'.format(get_idiomatic_rs_type(type_.value_type))
-        elif isinstance(type_, NamespacedType):
-            return '::'.join(type_.namespaced_name()).replace(package_name, 'crate')
-        elif isinstance(type_, Array):
-            return '[{}; {}]'.format(get_idiomatic_rs_type(type_.value_type), type_.size)
-        else:
-            return get_rmw_rs_type(type_)
-    return get_idiomatic_rs_type
-
-def make_get_rmw_rs_type(package_name):
-    def get_rmw_rs_type(type_):
-        if isinstance(type_, NamespacedType):
-            parts = list(type_.namespaced_name())
-            parts.insert(-1, 'rmw')
-            return '::'.join(parts).replace(package_name, 'crate')
-        elif isinstance(type_, BasicType):
+def make_get_rs_type(idiomatic):
+    def get_rs_type(type_, current_idiomatic, desired_idiomatic):
+        if isinstance(type_, BasicType):
             if type_.typename == 'boolean':
                 return 'bool'
             elif type_.typename in ['byte', 'octet']:
@@ -355,20 +349,48 @@ def make_get_rmw_rs_type(package_name):
                 return 'i64'
             elif type_.typename == 'uint64':
                 return 'u64'
-        elif isinstance(type_, UnboundedString):
-            return 'rosidl_runtime_rs::String'
-        elif isinstance(type_, UnboundedWString):
-            return 'rosidl_runtime_rs::WString'
         elif isinstance(type_, BoundedString):
             return 'rosidl_runtime_rs::BoundedString<{}>'.format(type_.maximum_size)
         elif isinstance(type_, BoundedWString):
             return 'rosidl_runtime_rs::BoundedWString<{}>'.format(type_.maximum_size)
+        elif isinstance(type_, UnboundedString):
+            return 'std::string::String' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::String'
+        elif isinstance(type_, UnboundedWString):
+            return 'std::string::String' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::WString'
         elif isinstance(type_, Array):
-            return '[{}; {}]'.format(get_rmw_rs_type(type_.value_type), type_.size)
+            return f'[{get_rs_type(type_.value_type, current_idiomatic, desired_idiomatic)}; {type_.size}]'
         elif isinstance(type_, UnboundedSequence):
-            return 'rosidl_runtime_rs::Sequence<{}>'.format(get_rmw_rs_type(type_.value_type))
+            container_type = 'Vec' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::Sequence'
+            return f'{container_type}<{get_rs_type(type_.value_type, current_idiomatic, desired_idiomatic)}>'
         elif isinstance(type_, BoundedSequence):
-            return 'rosidl_runtime_rs::BoundedSequence<{}, {}>'.format(get_rmw_rs_type(type_.value_type), type_.maximum_size)
+            # BoundedSequences can be in the idiomatic API, but the containing type cannot be from the
+            # idiomatic API because we do not implement SequenceAlloc for idiomatic types.
+            return f'rosidl_runtime_rs::BoundedSequence<{get_rs_type(type_.value_type, current_idiomatic, False)}, {type_.maximum_size}>'
+        elif isinstance(type_, NamespacedType):
+            # All types should be referencable like this
+            # `super::msg::rmw::Foo` (From idiomatic modules)
+            # `super::super::msg::rmw::Foo` (From non-idiomatic modules)
+            # `<other_package>::msg::rmw::Foo` (From external packages)
+            prefix = 'super::' if current_idiomatic else 'super::super::'
+
+            symbol = f'{prefix}{"::".join(type_.namespaced_name()[1:])}'
+
+            # This symbol is coming from an external crate (or needs a `use` statement).
+            # So it should not be relative (i.e., no `super::`) and should have the top level
+            # package name (i.e., `builtin_interfaces::`)
+            top_level_package = type_.namespaces[0]
+            if top_level_package != package_name:
+                symbol = "::".join(type_.namespaced_name())
+
+            if not desired_idiomatic and "::rmw::" not in symbol:
+                parts = symbol.split("::")
+                parts.insert(-1, "rmw")
+                symbol = "::".join(parts)
+
+            return symbol
 
         assert False, "unknown type '%s'" % type_.typename
-    return get_rmw_rs_type
+
+    # Start out by assuming all calls have matching current and desired idiomatic values.
+    # (i.e. symbols within the `...::rmw` scope want other values in the `...::rmw` scope).
+    return lambda _type: get_rs_type(_type, idiomatic, idiomatic)

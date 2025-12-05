@@ -60,18 +60,21 @@ list(APPEND _generated_common_rs_files
 if(${_has_msg})
   list(APPEND _generated_msg_rs_files
     "${_output_path}/rust/src/msg.rs"
+    "${_output_path}/rust/src/msg/rmw.rs"
   )
 endif()
 
 if(${_has_srv})
   list(APPEND _generated_srv_rs_files
     "${_output_path}/rust/src/srv.rs"
+    "${_output_path}/rust/src/srv/rmw.rs"
   )
 endif()
 
 if(${_has_action})
   list(APPEND _generated_action_rs_files
     "${_output_path}/rust/src/action.rs"
+    "${_output_path}/rust/src/action/rmw.rs"
   )
 endif()
 
@@ -90,12 +93,15 @@ set(target_dependencies
   "${rosidl_generator_rs_BIN}"
   ${rosidl_generator_rs_GENERATOR_FILES}
   "${rosidl_generator_rs_TEMPLATE_DIR}/action.rs.em"
-  "${rosidl_generator_rs_TEMPLATE_DIR}/msg_idiomatic.rs.em"
-  "${rosidl_generator_rs_TEMPLATE_DIR}/msg_rmw.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/action/rmw.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/msg.rs.em"
-  "${rosidl_generator_rs_TEMPLATE_DIR}/srv_idiomatic.rs.em"
-  "${rosidl_generator_rs_TEMPLATE_DIR}/srv_rmw.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/msg/rmw.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/srv.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/srv/rmw.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/templates/msg_idiomatic.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/templates/msg_rmw.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/templates/srv_idiomatic.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/templates/srv_rmw.rs.em"
   ${rosidl_generate_interfaces_ABS_IDL_FILES}
   ${_idl_files}
   ${_dependency_files})

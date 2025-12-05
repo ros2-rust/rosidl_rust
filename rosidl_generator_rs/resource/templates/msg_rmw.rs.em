@@ -36,7 +36,7 @@ extern "C" {
 #[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub struct @(type_name) {
 @[for member in msg_spec.structure.members]@
-    @(pre_field_serde(member.type))pub @(get_rs_name(member.name)): @(get_rmw_rs_type(member.type)),
+    @(pre_field_serde(member.type))pub @(get_rs_name(member.name)): @(get_rs_type(member.type)),
 @[end for]@
 }
 
@@ -54,7 +54,7 @@ comments = getattr(constant, 'get_comment_lines', lambda: [])()
 @[    end if]@
 @[  end for]@
 @[  if isinstance(constant.type, BasicType)]@
-    pub const @(get_rs_name(constant.name)): @(get_rmw_rs_type(constant.type)) = @(constant_value_to_rs(constant.type, constant.value));
+    pub const @(get_rs_name(constant.name)): @(get_rs_type(constant.type)) = @(constant_value_to_rs(constant.type, constant.value));
 @[  elif isinstance(constant.type, AbstractGenericString)]@
     pub const @(get_rs_name(constant.name)): &'static str = @(constant_value_to_rs(constant.type, constant.value));
 @[  else]@
