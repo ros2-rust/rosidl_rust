@@ -31,6 +31,8 @@ extern "C" {
 @# Drop is not needed, since the default drop glue does the same as fini here:
 @# it just calls the drop/fini functions of all fields
 // Corresponds to @(package_name)__@(subfolder)__@(type_name)
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+
 @{comments = msg_spec.structure.get_comment_lines()}@
 @[for line in comments]@
 @[  if line]@
@@ -43,8 +45,12 @@ extern "C" {
 // This struct is not documented.
 #[allow(missing_docs)]
 @[end if]@
+
+@# Leading underscores imply an unused symbol, skip it.
+@[if "_" in type_name[1:]]@
+#[allow(non_camel_case_types)]
+@[end if]@
 #[repr(C)]
-#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub struct @(type_name) {
 @[for member in msg_spec.structure.members]@

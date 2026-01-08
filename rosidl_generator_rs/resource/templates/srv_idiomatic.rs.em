@@ -29,7 +29,7 @@ extern "C" {
 }
 
 // Corresponds to @(package_name)__@(subfolder)__@(type_name)
-#[allow(missing_docs, non_snake_case)]
+#[allow(missing_docs, non_camel_case_types)]
 pub struct @(type_name);
 
 impl rosidl_runtime_rs::Service for @(type_name) {

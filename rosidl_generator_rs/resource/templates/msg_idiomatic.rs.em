@@ -33,6 +33,11 @@ type_name = msg_spec.structure.namespaced_type.name
 // This struct is not documented.
 #[allow(missing_docs)]
 @[end if]@
+
+@# Leading underscores imply an unused symbol, skip it.
+@[if "_" in type_name[1:]]@
+#[allow(non_camel_case_types)]
+@[end if]@
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub struct @(type_name) {
