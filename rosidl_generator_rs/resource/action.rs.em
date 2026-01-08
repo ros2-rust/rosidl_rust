@@ -62,18 +62,31 @@ extern "C" {
 }
 
 // Corresponds to @(package_name)__@(subfolder)__@(type_name)
+#[allow(missing_docs, non_snake_case)]
 pub struct @(type_name);
 
 impl rosidl_runtime_rs::Action for @(type_name) {
   // --- Associated types for client library users ---
+  /// The goal message defined in the action definition.
   type Goal = @(type_name)@(ACTION_GOAL_SUFFIX);
+
+  /// The result message defined in the action definition.
   type Result = @(type_name)@(ACTION_RESULT_SUFFIX);
+
+  /// The feedback message defined in the action definition.
   type Feedback = @(type_name)@(ACTION_FEEDBACK_SUFFIX);
 
   // --- Associated types for client library implementation ---
+  /// The feedback message with generic fields which wraps the feedback message.
   type FeedbackMessage = super::@(subfolder)::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX);
+
+  /// The send_goal service using a wrapped version of the goal message as a request.
   type SendGoalService = super::@(subfolder)::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX);
+
+  /// The generic service to cancel a goal.
   type CancelGoalService = action_msgs::srv::rmw::CancelGoal;
+
+  /// The get_result service using a wrapped version of the result message as a response.
   type GetResultService = super::@(subfolder)::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX);
 
   // --- Methods for client library implementation ---
