@@ -2,8 +2,8 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.10 (2026-01-21)
+-------------------
 * build: update rosidl_runtime_rs dependency version to 0.6 (`#14 <https://github.com/ros2-rust/rosidl_rust/issues/14>`_)
 * Contributors: Esteve Fernandez
 
