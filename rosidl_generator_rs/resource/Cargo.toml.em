@@ -1,7 +1,7 @@
 [package]
 name = "@(package_name)"
 version = "@(package_version)"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 rosidl_runtime_rs = "0.6"

@@ -81,7 +81,7 @@ type_name = action_spec.namespaced_type.name
 }@
 
 #[link(name = "@(package_name)__rosidl_typesupport_c")]
-extern "C" {
+unsafe extern "C" {
     fn rosidl_typesupport_c__get_action_type_support_handle__@(package_name)__@(subfolder)__@(type_name)() -> *const std::ffi::c_void;
 }
 

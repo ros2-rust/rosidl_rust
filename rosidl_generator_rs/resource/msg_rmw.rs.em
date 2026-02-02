@@ -16,12 +16,12 @@ type_name = msg_spec.structure.namespaced_type.name
 }@
 
 #[link(name = "@(package_name)__rosidl_typesupport_c")]
-extern "C" {
+unsafe extern "C" {
     fn rosidl_typesupport_c__get_message_type_support_handle__@(package_name)__@(subfolder)__@(type_name)() -> *const std::ffi::c_void;
 }
 
 #[link(name = "@(package_name)__rosidl_generator_c")]
-extern "C" {
+unsafe extern "C" {
     fn @(package_name)__@(subfolder)__@(type_name)__init(msg: *mut @(type_name)) -> bool;
     fn @(package_name)__@(subfolder)__@(type_name)__Sequence__init(seq: *mut rosidl_runtime_rs::Sequence<@(type_name)>, size: usize) -> bool;
     fn @(package_name)__@(subfolder)__@(type_name)__Sequence__fini(seq: *mut rosidl_runtime_rs::Sequence<@(type_name)>);
