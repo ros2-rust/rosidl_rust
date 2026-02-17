@@ -8,12 +8,12 @@ for subfolder, service in srv_specs:
 
 @{
 TEMPLATE(
-    'msg_idiomatic.rs.em',
+    '../templates/msg_rmw.rs.em',
     package_name=package_name, interface_path=interface_path,
     msg_specs=req_res_specs,
-    get_rs_name=get_rs_name, get_rmw_rs_type=get_rmw_rs_type,
+    get_rs_name=get_rs_name,
+    get_rs_type=get_rs_type,
     pre_field_serde=pre_field_serde,
-    get_idiomatic_rs_type=get_idiomatic_rs_type,
     constant_value_to_rs=constant_value_to_rs)
 }@
 
@@ -29,16 +29,17 @@ extern "C" {
 }
 
 // Corresponds to @(package_name)__@(subfolder)__@(type_name)
+#[allow(missing_docs, non_camel_case_types)]
 pub struct @(type_name);
 
 impl rosidl_runtime_rs::Service for @(type_name) {
-  type Request = crate::@(subfolder)::@(type_name)_Request;
-  type Response = crate::@(subfolder)::@(type_name)_Response;
+    type Request = @(type_name)_Request;
+    type Response = @(type_name)_Response;
 
-  fn get_type_support() -> *const std::ffi::c_void {
-    // SAFETY: No preconditions for this function.
-    unsafe { rosidl_typesupport_c__get_service_type_support_handle__@(package_name)__@(subfolder)__@(type_name)() }
-  }
+    fn get_type_support() -> *const std::ffi::c_void {
+        // SAFETY: No preconditions for this function.
+        unsafe { rosidl_typesupport_c__get_service_type_support_handle__@(package_name)__@(subfolder)__@(type_name)() }
+    }
 }
 
 @[end for]

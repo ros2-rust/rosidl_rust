@@ -7,6 +7,8 @@ edition = "2021"
 rosidl_runtime_rs = "0.6"
 serde = { version = "1", optional = true, features = ["derive"] }
 serde-big-array = { version = "0.5.1", optional = true }
+
+# ROS Dependencies
 @[for dep in dependency_packages]@
 @(dep) = "*"
 @[end for]@
@@ -18,3 +20,6 @@ for dep in dependency_packages:
 	serde_features.append("{}/serde".format(dep))
 }@
 serde = @(serde_features)
+
+[package.metadata.rclrs]
+reexport = true

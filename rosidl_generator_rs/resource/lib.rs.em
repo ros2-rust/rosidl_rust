@@ -3,13 +3,28 @@
 #![allow(clippy::upper_case_acronyms)]
 
 @[if len(msg_specs) > 0]@
-pub mod msg;
+#[path = "msg.rs"]
+mod msg_idiomatic;
+pub mod msg {
+    pub use super::msg_idiomatic::*;
+    pub mod rmw;
+}
 @[end if]@
 
 @[if len(srv_specs) > 0]@
-pub mod srv;
+#[path = "srv.rs"]
+mod srv_idiomatic;
+pub mod srv {
+    pub use super::srv_idiomatic::*;
+    pub mod rmw;
+}
 @[end if]@
 
 @[if len(action_specs) > 0]@
-pub mod action;
+#[path = "action.rs"]
+mod action_idiomatic;
+pub mod action {
+    pub use super::action_idiomatic::*;
+    pub mod rmw;
+}
 @[end if]@

@@ -20,11 +20,44 @@ from rosidl_parser.definition import UnboundedWString
 type_name = msg_spec.structure.namespaced_type.name
 }@
 
+// Corresponds to @(package_name)__@(subfolder)__@(type_name)
+@{comments = msg_spec.structure.get_comment_lines()}@
+@[for line in comments]@
+@[  if line]@
+/// @(line)
+@[  else]@
+///
+@[  end if]@
+@[end for]@
+@[if not comments]
+// This struct is not documented.
+#[allow(missing_docs)]
+@[end if]@
+
+@# Leading underscores imply an unused symbol, skip it.
+@[if "_" in type_name[1:]]@
+#[allow(non_camel_case_types)]
+@[end if]@
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub struct @(type_name) {
 @[for member in msg_spec.structure.members]@
-    @(pre_field_serde(member.type))pub @(get_rs_name(member.name)): @(get_idiomatic_rs_type(member.type)),
+@{
+comments = member.get_comment_lines()
+}@
+@[  for line in comments]@
+@[    if line]@
+    /// @(line)
+@[    else]@
+    ///
+@[    end if]@
+@[  end for]@
+@[  if not comments]
+    // This member is not documented.
+    #[allow(missing_docs)]
+@[  end if]@
+    @(pre_field_serde(member.type))pub @(get_rs_name(member.name)): @(get_rs_type(member.type)),
+
 @[end for]@
 }
 
@@ -41,10 +74,16 @@ comments = getattr(constant, 'get_comment_lines', lambda: [])()
     ///
 @[    end if]@
 @[  end for]@
+@[  if not comments]
+    // This constant is not documented.
+    #[allow(missing_docs)]
+@[  end if]@
 @[  if isinstance(constant.type, BasicType)]@
-    pub const @(get_rs_name(constant.name)): @(get_rmw_rs_type(constant.type)) = @(constant_value_to_rs(constant.type, constant.value));
+    pub const @(get_rs_name(constant.name)): @(get_rs_type(constant.type)) = @(constant_value_to_rs(constant.type, constant.value));
+
 @[  elif isinstance(constant.type, AbstractGenericString)]@
     pub const @(get_rs_name(constant.name)): &'static str = @(constant_value_to_rs(constant.type, constant.value));
+
 @[  else]@
 @{assert False, 'Unhandled constant type: ' + str(constant.type)}@
 @[  end if]@
@@ -55,12 +94,12 @@ comments = getattr(constant, 'get_comment_lines', lambda: [])()
 impl Default for @(type_name) {
   fn default() -> Self {
 @#  This has the benefit of automatically setting the right default values
-    <Self as rosidl_runtime_rs::Message>::from_rmw_message(crate::@(subfolder)::rmw::@(type_name)::default())
+    <Self as rosidl_runtime_rs::Message>::from_rmw_message(super::@(subfolder)::rmw::@(type_name)::default())
   }
 }
 
 impl rosidl_runtime_rs::Message for @(type_name) {
-  type RmwMsg = crate::@(subfolder)::rmw::@(type_name);
+  type RmwMsg = super::@(subfolder)::rmw::@(type_name);
 
   fn into_rmw_message(msg_cow: std::borrow::Cow<'_, Self>) -> std::borrow::Cow<'_, Self::RmwMsg> {
     match msg_cow {
@@ -75,7 +114,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
           .map(|elem| elem.as_str().into()),
 @[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
-          .map(|elem| @(get_idiomatic_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Owned(elem)).into_owned()),
+          .map(|elem| @(get_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Owned(elem)).into_owned()),
 @[        elif isinstance(member.type.value_type, BasicType)]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)),
 @[        else]@
@@ -98,7 +137,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
           .into_iter()
-          .map(|elem| @(get_idiomatic_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Owned(elem)).into_owned())
+          .map(|elem| @(get_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Owned(elem)).into_owned())
           .collect(),
 @[        else]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)).into(),
@@ -107,7 +146,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @#
 @#    == NamedType + NamespacedType ==
 @[    elif isinstance(member.type, NamedType) or isinstance(member.type, NamespacedType)]@
-        @(get_rs_name(member.name)): @(get_idiomatic_rs_type(member.type))::into_rmw_message(std::borrow::Cow::Owned(msg.@(get_rs_name(member.name)))).into_owned(),
+        @(get_rs_name(member.name)): @(get_rs_type(member.type))::into_rmw_message(std::borrow::Cow::Owned(msg.@(get_rs_name(member.name)))).into_owned(),
 @#
 @#
 @#    == Bounded and basic types ==
@@ -132,7 +171,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
           .iter()
-          .map(|elem| @(get_idiomatic_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Borrowed(elem)).into_owned())
+          .map(|elem| @(get_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Borrowed(elem)).into_owned())
           .collect::<Vec<_>>()
           .try_into()
           .unwrap(),
@@ -158,7 +197,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
           .iter()
-          .map(|elem| @(get_idiomatic_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Borrowed(elem)).into_owned())
+          .map(|elem| @(get_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Borrowed(elem)).into_owned())
           .collect(),
 @[        else]@
         @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)).as_slice().into(),
@@ -167,7 +206,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @#
 @#    == NamedType + NamespacedType ==
 @[    elif isinstance(member.type, NamedType) or isinstance(member.type, NamespacedType)]@
-        @(get_rs_name(member.name)): @(get_idiomatic_rs_type(member.type))::into_rmw_message(std::borrow::Cow::Borrowed(&msg.@(get_rs_name(member.name)))).into_owned(),
+        @(get_rs_name(member.name)): @(get_rs_type(member.type))::into_rmw_message(std::borrow::Cow::Borrowed(&msg.@(get_rs_name(member.name)))).into_owned(),
 @#
 @#
 @#    == BasicType ==
@@ -196,7 +235,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
         .map(|elem| elem.to_string()),
 @[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
       @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
-        .map(@(get_idiomatic_rs_type(member.type.value_type))::from_rmw_message),
+        .map(@(get_rs_type(member.type.value_type))::from_rmw_message),
 @[        else]@
       @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)),
 @[        end if]@
@@ -209,7 +248,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @[        if isinstance(member.type.value_type, UnboundedString) or isinstance(member.type.value_type, UnboundedWString)]@
           .map(|elem| elem.to_string())
 @[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
-          .map(@(get_idiomatic_rs_type(member.type.value_type))::from_rmw_message)
+          .map(@(get_rs_type(member.type.value_type))::from_rmw_message)
 @[        end if]@
           .collect(),
 @#
@@ -221,7 +260,7 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @#
 @#    == NamedType + NamespacedType ==
 @[    elif isinstance(member.type, NamedType) or isinstance(member.type, NamespacedType)]@
-      @(get_rs_name(member.name)): @(get_idiomatic_rs_type(member.type))::from_rmw_message(msg.@(get_rs_name(member.name))),
+      @(get_rs_name(member.name)): @(get_rs_type(member.type))::from_rmw_message(msg.@(get_rs_name(member.name))),
 @#
 @#
 @#    == Bounded and basic types ==
