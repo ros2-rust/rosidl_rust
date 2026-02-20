@@ -2,8 +2,8 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.11 (2026-02-20)
+-------------------
 * fix: do not monkey-patch _removesuffix into str (`#18 <https://github.com/ros2-rust/rosidl_rust/issues/18>`_)
 * fix: add str.removesuffix() backport for Python < 3.9 (RHEL 8) (`#17 <https://github.com/ros2-rust/rosidl_rust/issues/17>`_)
 * feat: relative Module Path Resolution (`#12 <https://github.com/ros2-rust/rosidl_rust/issues/12>`_)
