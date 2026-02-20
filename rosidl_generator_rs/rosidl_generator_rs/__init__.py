@@ -44,6 +44,17 @@ from rosidl_parser.definition import UnboundedWString
 
 from rosidl_parser.parser import parse_idl_file
 
+import sys
+
+# Workaround for RHEL 8 which ships Python 3.6 that lacks str.removesuffix()
+# (added in Python 3.9, PEP 616). On Python 3.9+, the native implementation
+# is used.
+# TODO(esteve): Remove this workaround when RHEL 8 is no longer supported.
+if sys.version_info < (3, 9):
+    def _removesuffix(self, suffix):
+        return self[:-len(suffix)] if suffix and self.endswith(suffix) else self
+    str.removesuffix = _removesuffix
+
 package_name = ""
 
 # Taken from http://stackoverflow.com/a/6425628
