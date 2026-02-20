@@ -14,6 +14,7 @@
 
 import os
 import pathlib
+import sys
 
 from pathlib import Path
 
@@ -144,7 +145,12 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['msg_specs']:
         for template_file, generated_filenames in mapping_msgs.items():
-            stem = Path(template_file).stem.removesuffix(".em")
+            if sys.version_info[1] >= 9:
+                stem = Path(template_file).stem.removesuffix(".em")
+            else:
+                stem = Path(template_file).stem
+                if stem.endswith('.em'):
+                    stem = stem[:-3]
 
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
@@ -157,7 +163,12 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['srv_specs']:
         for template_file, generated_filenames in mapping_srvs.items():
-            stem = Path(template_file).stem.removesuffix(".em")
+            if sys.version_info[1] >= 9:
+                stem = Path(template_file).stem.removesuffix(".em")
+            else:
+                stem = Path(template_file).stem
+                if stem.endswith('.em'):
+                    stem = stem[:-3]
 
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
@@ -170,7 +181,12 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['action_specs']:
         for template_file, generated_filenames in mapping_actions.items():
-            stem = Path(template_file).stem.removesuffix(".em")
+            if sys.version_info[1] >= 9:
+                stem = Path(template_file).stem.removesuffix(".em")
+            else:
+                stem = Path(template_file).stem
+                if stem.endswith('.em'):
+                    stem = stem[:-3]
 
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
