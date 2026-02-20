@@ -2,6 +2,18 @@
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix: do not monkey-patch _removesuffix into str (`#18 <https://github.com/ros2-rust/rosidl_rust/issues/18>`_)
+* fix: add str.removesuffix() backport for Python < 3.9 (RHEL 8) (`#17 <https://github.com/ros2-rust/rosidl_rust/issues/17>`_)
+* feat: relative Module Path Resolution (`#12 <https://github.com/ros2-rust/rosidl_rust/issues/12>`_)
+  * Changed all generated code to use relative symbols instead of `crate::` ones.
+  Reworked the rosidl_generator_rs slightly to be a bit simpler.
+  Separate actual templates from the files that reuse them.
+  * WIP For adding documentation to all structs, members, and constants generated from idl's.
+  * Clean up all the surfaced warnings from generated code.
+* Contributors: Esteve Fernandez, Sam Privett
+
 0.4.10 (2026-01-21)
 -------------------
 * build: update rosidl_runtime_rs dependency version to 0.6 (`#14 <https://github.com/ros2-rust/rosidl_rust/issues/14>`_)
