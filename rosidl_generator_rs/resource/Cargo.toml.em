@@ -21,5 +21,5 @@ for dep in dependency_packages:
 }@
 serde = @(serde_features)
 
-[package.metadata.rclrs]
-reexport = true
+[package.metadata.ros-env]
+include = true
