@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'ros2-rust'
+    concurrency:
+      group: release-${{ github.ref }}-${{ matrix.rosdistro }}-${{ matrix.track }}
+      cancel-in-progress: false
+    strategy:
+      matrix:
+        include:
+          - rosdistro: rolling
+            track: rolling
+          - rosdistro: kilted
+            track: kilted
+          - rosdistro: jazzy
+            track: jazzy
+          - rosdistro: humble
+            track: humble
+    permissions:
+      contents: write
+    env:
+      BLOOM_OAUTH_TOKEN: ${{ secrets.BLOOM_OAUTH_TOKEN }}
+      BLOOM_GITHUB_USER: ${{ secrets.BLOOM_GITHUB_USER }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run bloom-release (${{ matrix.rosdistro }})
+        uses: esteve/bloom-release-action@71365036c57b828150cf121df6ae4d9fc481fa5a
+        with:
+          mode: release
+          repository: rosidl_rust
+          rosdistro: ${{ matrix.rosdistro }}
+          track: ${{ matrix.track }}
+          release-repository: https://github.com/ros2-gbp/rosidl_rust-release.git
+
+  release-pr:
+    name: Release PR
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'ros2-rust'
+    permissions:
+      contents: write
+      pull-requests: write
+    concurrency:
+      group: release-pr-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Update release PR
+        uses: esteve/bloom-release-action@71365036c57b828150cf121df6ae4d9fc481fa5a
+        with:
+          mode: prepare
+          base-branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
