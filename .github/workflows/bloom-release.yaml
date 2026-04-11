@@ -37,7 +37,7 @@ jobs:
           persist-credentials: false
 
       - name: Run bloom-release (${{ matrix.rosdistro }})
-        uses: esteve/bloom-release-action@71365036c57b828150cf121df6ae4d9fc481fa5a
+        uses: esteve/bloom-release-action@425ef0748e71bf49edec553ace42d0f04e7740be
         with:
           mode: release
           repository: rosidl_rust
@@ -63,7 +63,7 @@ jobs:
           persist-credentials: false
 
       - name: Update release PR
-        uses: esteve/bloom-release-action@71365036c57b828150cf121df6ae4d9fc481fa5a
+        uses: esteve/bloom-release-action@425ef0748e71bf49edec553ace42d0f04e7740be
         with:
           mode: prepare
           base-branch: main
