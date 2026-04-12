@@ -14,6 +14,7 @@ jobs:
       group: release-${{ github.ref }}-${{ matrix.rosdistro }}-${{ matrix.track }}
       cancel-in-progress: false
     strategy:
+      max-parallel: 1
       matrix:
         include:
           - rosdistro: rolling
@@ -37,7 +38,7 @@ jobs:
           persist-credentials: false
 
       - name: Run bloom-release (${{ matrix.rosdistro }})
-        uses: esteve/bloom-release-action@2020d3d48f78ad0084fa0abb42165ba66ace2b61
+        uses: esteve/bloom-release-action@main
         with:
           mode: release
           repository: rosidl_rust
@@ -63,7 +64,7 @@ jobs:
           persist-credentials: false
 
       - name: Update release PR
-        uses: esteve/bloom-release-action@2020d3d48f78ad0084fa0abb42165ba66ace2b61
+        uses: esteve/bloom-release-action@main
         with:
           mode: prepare
           base-branch: main

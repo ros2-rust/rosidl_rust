@@ -1,3 +1,11 @@
+0.4.12 (2026-04-12)
+-------------------
+* fix(rosidl_generator_rs_generate_interfaces): Remove poisoning of global CMAKE_SHARED_LINKER_FLAGS variable (#22)
+* Change the package metadata to point to the new ros-env crate (#21)
+* Fix TransientParseError on Ubuntu Resolute (#20)
+* Contributors: Sam Privett, Shane Loretz, Silvio Traversaro
+
+
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package rosidl_generator_rs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
