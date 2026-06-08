@@ -139,8 +139,12 @@ impl rosidl_runtime_rs::Message for @(type_name) {
           .into_iter()
           .map(|elem| @(get_rs_type(member.type.value_type))::into_rmw_message(std::borrow::Cow::Owned(elem)).into_owned())
           .collect(),
+@# Owned BasicType sequences: borrow the slice and route through
+@# From<&[T]> for Sequence<T> so the copy compiles to a memcpy via
+@# clone_from_slice's Copy specialization, instead of From<Vec<T>>'s
+@# per-element extend path. See ros2-rust/ros2_rust#628.
 @[        else]@
-        @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)).into(),
+        @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)).as_slice().into(),
 @[        end if]@
 @#
 @#
@@ -243,14 +247,26 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 @#
 @#    == UnboundedSequence ==
 @[    elif isinstance(member.type, UnboundedSequence)]@
+@# Primitive sequences use the From<Sequence<T>> for Vec<T> impl (memcpy via
+@# as_slice().to_vec()), avoiding O(n) per-element read/zero-write that the
+@# SequenceIterator path performs. See ros2-rust/ros2_rust#628.
+@[        if isinstance(member.type.value_type, BasicType)]@
+      @(get_rs_name(member.name)): msg.@(get_rs_name(member.name)).into(),
+@[        elif isinstance(member.type.value_type, UnboundedString) or isinstance(member.type.value_type, UnboundedWString)]@
       @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
           .into_iter()
-@[        if isinstance(member.type.value_type, UnboundedString) or isinstance(member.type.value_type, UnboundedWString)]@
           .map(|elem| elem.to_string())
-@[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
-          .map(@(get_rs_type(member.type.value_type))::from_rmw_message)
-@[        end if]@
           .collect(),
+@[        elif isinstance(member.type.value_type, NamedType) or isinstance(member.type.value_type, NamespacedType)]@
+      @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
+          .into_iter()
+          .map(@(get_rs_type(member.type.value_type))::from_rmw_message)
+          .collect(),
+@[        else]@
+      @(get_rs_name(member.name)): msg.@(get_rs_name(member.name))
+          .into_iter()
+          .collect(),
+@[        end if]@
 @#
 @#
 @#    == UnboundedString + UnboundedWString ==
