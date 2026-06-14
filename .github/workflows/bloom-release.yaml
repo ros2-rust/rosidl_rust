@@ -19,6 +19,8 @@ jobs:
         include:
           - rosdistro: rolling
             track: rolling
+          - rosdistro: lyrical
+            track: lyrical
           - rosdistro: kilted
             track: kilted
           - rosdistro: jazzy
