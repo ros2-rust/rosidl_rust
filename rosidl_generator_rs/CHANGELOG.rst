@@ -1,3 +1,10 @@
+0.4.13 (2026-06-14)
+-------------------
+* fix(generator): make Cargo.toml dependencies deterministic (#28)
+* perf(generator): use memcpy paths for primitive sequence conversion (#26)
+* Contributors: Esteve Fernandez, Mathieu David
+
+
 0.4.12 (2026-04-12)
 -------------------
 * fix(rosidl_generator_rs_generate_interfaces): Remove poisoning of global CMAKE_SHARED_LINKER_FLAGS variable (#22)
