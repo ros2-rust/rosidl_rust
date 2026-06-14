@@ -22,14 +22,19 @@ jobs:
         include:
           - rosdistro: lyrical
             debdistro: resolute
+            ros_testing: false
           - rosdistro: rolling
             debdistro: resolute
+            ros_testing: true
           - rosdistro: kilted
             debdistro: noble
+            ros_testing: false
           - rosdistro: jazzy
             debdistro: noble
+            ros_testing: false
           - rosdistro: humble
             debdistro: jammy
+            ros_testing: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -60,3 +65,4 @@ jobs:
           PACKAGES_BRANCH: ${{ matrix.debdistro }}-${{ matrix.rosdistro }}
           DEBIAN_REVISION_PREFIX: 0~
           SQUASH_HISTORY: true
+          ROS_TESTING: ${{ matrix.ros_testing }}
