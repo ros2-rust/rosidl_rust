@@ -1,0 +1,62 @@
+name: Build Debian packages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-deb:
+    name: Build Debian packages (${{ matrix.rosdistro }} / ${{ matrix.debdistro }})
+    runs-on: ubuntu-24.04
+    if: github.repository_owner == 'ros2-rust'
+    concurrency:
+      group: build-deb-${{ github.ref }}-${{ matrix.rosdistro }}-${{ matrix.debdistro }}
+      cancel-in-progress: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - rosdistro: lyrical
+            debdistro: resolute
+          - rosdistro: rolling
+            debdistro: resolute
+          - rosdistro: kilted
+            debdistro: noble
+          - rosdistro: jazzy
+            debdistro: noble
+          - rosdistro: humble
+            debdistro: jammy
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Create repos file for this commit
+        working-directory: repo
+        run: |
+          cat > sources.repos <<EOF
+          repositories:
+            rosidl_rust:
+              type: git
+              url: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
+              version: ${GITHUB_SHA}
+          EOF
+
+      - name: Build Debian packages
+        uses: esteve/ros-deb-builder-action@tier4/main
+        with:
+          ROS_DISTRO: ${{ matrix.rosdistro }}
+          DEB_DISTRO: ${{ matrix.debdistro }}
+          REPOS_FILE: sources.repos
+          SKIP_CHECKOUT: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGES_BRANCH: ${{ matrix.debdistro }}-${{ matrix.rosdistro }}
+          DEBIAN_REVISION_PREFIX: 0~
+          SQUASH_HISTORY: true
