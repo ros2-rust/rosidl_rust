@@ -201,7 +201,7 @@ def generate_rs(generator_arguments_file, typesupport_impls):
         minimum_timestamp=latest_target_timestamp)
 
     cargo_toml_data = {
-        'dependency_packages': dependency_packages,
+        'dependency_packages': sorted(dependency_packages),
         'package_name': package_name,
         'package_version': args['package_version'],
     }
