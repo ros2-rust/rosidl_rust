@@ -99,7 +99,7 @@ jobs:
         run: |
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           colcon build \
-            --allow-overriding action_msgs builtin_interfaces unique_identifier_msgs \
+            --allow-overriding rosidl_generator_rs action_msgs builtin_interfaces unique_identifier_msgs \
             --packages-up-to rosidl_generator_rs_tests \
             --event-handlers console_direct+
 
@@ -122,4 +122,7 @@ jobs:
           builtin_interfaces = { path = "$PWD/build/builtin_interfaces/rosidl_generator_rs/builtin_interfaces/rust" }
           unique_identifier_msgs = { path = "$PWD/build/unique_identifier_msgs/rosidl_generator_rs/unique_identifier_msgs/rust" }
           EOF
-          cargo check --manifest-path "$tests_crate/Cargo.toml"
+          (
+            cd "$tests_crate"
+            cargo check
+          )
