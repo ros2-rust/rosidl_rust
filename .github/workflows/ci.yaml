@@ -53,8 +53,7 @@ jobs:
             ros_image: kilted-ros-base-noble
           - ros_distro: lyrical
             ros_image: lyrical-ros-base-resolute
-          - ros_distro: rolling
-            ros_image: rolling-ros-base
+          # TODO: Re-enable Rolling once the ros:rolling image is based on Resolute.
     steps:
       - name: Install checkout dependencies
         run: |
