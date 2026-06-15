@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Copyright 2018-2026 Esteve Fernandez <esteve@apache.org>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,19 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-macro(rosidl_generator_rs_extras BIN GENERATOR_FILES TEMPLATE_DIR)
-  find_package(ament_cmake_core QUIET REQUIRED)
-  ament_register_extension(
-    "rosidl_generate_idl_interfaces"
-    "rosidl_generator_rs"
-    "rosidl_generator_rs_generate_interfaces.cmake")
+"""Tests for Rust keyword escaping."""
 
-  normalize_path(BIN "${BIN}")
-  set(rosidl_generator_rs_BIN "${BIN}")
+from rosidl_generator_rs import get_rs_name
 
-  normalize_path(GENERATOR_FILES "${GENERATOR_FILES}")
-  set(rosidl_generator_rs_GENERATOR_FILES "${GENERATOR_FILES}")
 
-  normalize_path(TEMPLATE_DIR "${TEMPLATE_DIR}")
-  set(rosidl_generator_rs_TEMPLATE_DIR "${TEMPLATE_DIR}")
-endmacro()
+def test_rust_keywords_are_escaped():
+    """Check that Rust keywords get a trailing underscore."""
+    for keyword in ('try', 'type', 'const', 'async', 'match'):
+        assert get_rs_name(keyword) == f'{keyword}_'
+
+
+def test_non_keyword_names_are_unchanged():
+    """Check that non-keyword names are unchanged."""
+    assert get_rs_name('plain_field') == 'plain_field'

@@ -1,4 +1,4 @@
-# Copyright 2017 Esteve Fernandez <esteve@apache.org>
+# Copyright 2018-2026 Esteve Fernandez <esteve@apache.org>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,27 +17,29 @@ set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
 
 add_custom_command(
   OUTPUT
-  ${_generated_common_rs_files}
-  ${_generated_msg_rs_files}
-  ${_generated_srv_rs_files}
-  ${_generated_action_rs_files}
+    ${_generated_common_rs_files}
+    ${_generated_msg_rs_files}
+    ${_generated_srv_rs_files}
+    ${_generated_action_rs_files}
   COMMAND ${PYTHON_EXECUTABLE} ${rosidl_generator_rs_BIN}
-  --generator-arguments-file "${generator_arguments_file}"
-  --typesupport-impls "${_typesupport_impls}"
+    --generator-arguments-file "${generator_arguments_file}"
+    --typesupport-impls "${_typesupport_impls}"
   DEPENDS ${target_dependencies}
   COMMENT "Generating Rust code for ROS interfaces"
   VERBATIM
 )
 
 if(TARGET ${rosidl_generate_interfaces_TARGET}${_target_suffix})
-  message(WARNING "Custom target ${rosidl_generate_interfaces_TARGET}${_target_suffix} already exists")
+  message(
+    WARNING
+    "Custom target ${rosidl_generate_interfaces_TARGET}${_target_suffix} already exists")
 else()
   add_custom_target(
     ${rosidl_generate_interfaces_TARGET}${_target_suffix} ALL
     DEPENDS
-    ${_generated_common_rs_files}
-    ${_generated_msg_rs_files}
-    ${_generated_srv_rs_files}
-    ${_generated_action_rs_files}
+      ${_generated_common_rs_files}
+      ${_generated_msg_rs_files}
+      ${_generated_srv_rs_files}
+      ${_generated_action_rs_files}
   )
 endif()

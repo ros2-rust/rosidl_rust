@@ -1,0 +1,155 @@
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python lint and syntax
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - name: Install Python tooling
+        run: python -m pip install ruff==0.15.17
+
+      - name: Check Python syntax
+        run: |
+          python -m compileall -q rosidl_generator_rs/rosidl_generator_rs rosidl_generator_rs/test
+          python -m py_compile rosidl_generator_rs/bin/rosidl_generator_rs
+
+      - name: Lint Python sources
+        run: python -m ruff check rosidl_generator_rs/rosidl_generator_rs rosidl_generator_rs/bin/rosidl_generator_rs rosidl_generator_rs/test
+
+  ros:
+    name: ROS build and test (${{ matrix.ros_distro }})
+    runs-on: ubuntu-latest
+    container:
+      image: ros:${{ matrix.ros_image }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ros_distro: humble
+            ros_image: humble-ros-base-jammy
+          - ros_distro: jazzy
+            ros_image: jazzy-ros-base-noble
+          - ros_distro: kilted
+            ros_image: kilted-ros-base-noble
+          - ros_distro: lyrical
+            ros_image: lyrical-ros-base-resolute
+          # TODO: Re-enable Rolling once the ros:rolling image is based on Resolute.
+    steps:
+      - name: Install checkout dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            ca-certificates \
+            curl \
+            git \
+            python3-colcon-common-extensions \
+            python3-colcon-override-check \
+            python3-rosdep \
+            python3-vcs2l
+
+      - name: Install Rust toolchain
+        shell: bash
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+            sh -s -- -y --profile minimal --default-toolchain 1.85.1
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          source "$HOME/.cargo/env"
+          rustc --version
+          cargo --version
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Import action dependency sources
+        run: |
+          cat > action-dependency-sources.repos <<EOF
+          repositories:
+            rcl_interfaces:
+              type: git
+              url: https://github.com/ros2/rcl_interfaces.git
+              version: ${{ matrix.ros_distro }}
+            unique_identifier_msgs:
+              type: git
+              url: https://github.com/ros2/unique_identifier_msgs.git
+              version: ${{ matrix.ros_distro }}
+          EOF
+          vcs import --shallow . < action-dependency-sources.repos
+
+      - name: Install package dependencies
+        shell: bash
+        run: |
+          if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
+            rosdep init
+          fi
+          rosdep update
+          rosdep install \
+            --from-paths \
+              rosidl_generator_rs \
+              rosidl_generator_rs_tests \
+              rcl_interfaces/action_msgs \
+              rcl_interfaces/builtin_interfaces \
+              unique_identifier_msgs \
+            --ignore-src \
+            --rosdistro ${{ matrix.ros_distro }} \
+            -y
+
+      - name: Build package
+        shell: bash
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          colcon build \
+            --allow-overriding rosidl_generator_rs action_msgs builtin_interfaces service_msgs unique_identifier_msgs \
+            --packages-up-to rosidl_generator_rs_tests \
+            --event-handlers console_direct+
+
+      - name: Test package
+        shell: bash
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          source install/setup.bash
+          colcon test --packages-select rosidl_generator_rs --event-handlers console_direct+
+          colcon test-result --verbose
+
+      - name: Check generated Rust package
+        shell: bash
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          source install/setup.bash
+          tests_crate="$PWD/build/rosidl_generator_rs_tests/rosidl_generator_rs/rosidl_generator_rs_tests/rust"
+          service_msgs_crate="$PWD/build/service_msgs/rosidl_generator_rs/service_msgs/rust"
+          mkdir -p "$tests_crate/.cargo"
+          cat > "$tests_crate/.cargo/config.toml" <<EOF
+          [patch.crates-io]
+          action_msgs = { path = "$PWD/build/action_msgs/rosidl_generator_rs/action_msgs/rust" }
+          builtin_interfaces = { path = "$PWD/build/builtin_interfaces/rosidl_generator_rs/builtin_interfaces/rust" }
+          unique_identifier_msgs = { path = "$PWD/build/unique_identifier_msgs/rosidl_generator_rs/unique_identifier_msgs/rust" }
+          EOF
+          if [ -d "$service_msgs_crate" ]; then
+            cat >> "$tests_crate/.cargo/config.toml" <<EOF
+          service_msgs = { path = "$service_msgs_crate" }
+          EOF
+          fi
+          (
+            cd "$tests_crate"
+            cargo check
+          )

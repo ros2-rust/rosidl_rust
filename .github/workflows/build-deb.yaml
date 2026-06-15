@@ -64,5 +64,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PACKAGES_BRANCH: ${{ matrix.debdistro }}-${{ matrix.rosdistro }}
           DEBIAN_REVISION_PREFIX: 0~
+          SKIP_PACKAGES: rosidl_generator_rs_tests
           SQUASH_HISTORY: true
           ROS_TESTING: ${{ matrix.ros_testing }}

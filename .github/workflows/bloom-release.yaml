@@ -47,6 +47,8 @@ jobs:
           rosdistro: ${{ matrix.rosdistro }}
           track: ${{ matrix.track }}
           release-repository: https://github.com/ros2-gbp/rosidl_rust-release.git
+          exclude-paths: |
+            rosidl_generator_rs_tests/**
 
   release-pr:
     name: Release PR
@@ -70,5 +72,7 @@ jobs:
         with:
           mode: prepare
           base-branch: main
+          exclude-paths: |
+            rosidl_generator_rs_tests/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
