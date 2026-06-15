@@ -1,7 +1,7 @@
-# Request exercises local message fields and Rust keyword escaping.
+# Request exercises local message fields.
 Complex input
-uint32 async
+uint32 async_value
 ---
-# Response exercises local message fields and Rust keyword escaping.
+# Response exercises local message fields.
 Complex output
-bool match
+bool match_value

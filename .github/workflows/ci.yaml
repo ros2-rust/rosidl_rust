@@ -36,26 +36,44 @@ jobs:
 
   ros:
     name: ROS build and test (${{ matrix.ros_distro }})
-    runs-on: ${{ matrix.runner }}
+    runs-on: ubuntu-latest
+    container:
+      image: ros:${{ matrix.ros_image }}
+    env:
+      DEBIAN_FRONTEND: noninteractive
     strategy:
       fail-fast: false
       matrix:
         include:
           - ros_distro: humble
-            runner: ubuntu-22.04
+            ros_image: humble-ros-base-jammy
           - ros_distro: jazzy
-            runner: ubuntu-24.04
+            ros_image: jazzy-ros-base-noble
+          - ros_distro: kilted
+            ros_image: kilted-ros-base-noble
+          - ros_distro: lyrical
+            ros_image: lyrical-ros-base-resolute
+          - ros_distro: rolling
+            ros_image: rolling-ros-base
     steps:
+      - name: Install checkout dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            ca-certificates \
+            cargo \
+            git \
+            python3-colcon-common-extensions \
+            python3-rosdep
+
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up ROS
-        uses: ros-tooling/setup-ros@v0.7
-        with:
-          required-ros-distributions: ${{ matrix.ros_distro }}
-
       - name: Install package dependencies
         run: |
+          if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
+            rosdep init
+          fi
           rosdep update
           rosdep install --from-paths . --ignore-src --rosdistro ${{ matrix.ros_distro }} -y
 
@@ -64,6 +82,20 @@ jobs:
         run: |
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           colcon build --packages-up-to rosidl_generator_rs_tests --event-handlers console_direct+
+
+      - name: Check Rust keyword escaping
+        shell: bash
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          source install/setup.bash
+          python3 - <<'PY'
+          from rosidl_generator_rs import get_rs_name
+
+          for keyword in ('try', 'type', 'const', 'async', 'match'):
+              assert get_rs_name(keyword) == f'{keyword}_'
+
+          assert get_rs_name('plain_field') == 'plain_field'
+          PY
 
       - name: Test package
         shell: bash
