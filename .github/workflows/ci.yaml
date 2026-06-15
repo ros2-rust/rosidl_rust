@@ -97,10 +97,7 @@ jobs:
           if [ "${{ matrix.ros_distro }}" = "rolling" ]; then
             skip_keys=(
               --skip-keys
-              ament_lint_common
-              rosidl_core_runtime
-              rosidl_default_runtime
-              rosidl_typesupport_interface
+              "ament_lint_common rosidl_core_runtime rosidl_default_runtime rosidl_typesupport_interface"
             )
           fi
           rosdep install \
