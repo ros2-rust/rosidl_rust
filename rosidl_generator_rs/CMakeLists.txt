@@ -24,11 +24,6 @@ if(BUILD_TESTING)
     APPEND_ENV PYTHONPATH=${CMAKE_CURRENT_SOURCE_DIR}
   )
 
-  # The Python sources are checked by Ruff in CI. Copyright and docstring
-  # linters are noisy for template files in this generator package.
-  set(ament_cmake_copyright_FOUND TRUE)
-  set(ament_cmake_flake8_FOUND TRUE)
-  set(ament_cmake_pep257_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
 

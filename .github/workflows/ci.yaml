@@ -64,6 +64,7 @@ jobs:
             cargo \
             git \
             python3-colcon-common-extensions \
+            python3-colcon-override-check \
             python3-rosdep \
             python3-vcs2l
 
@@ -98,8 +99,8 @@ jobs:
         run: |
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           colcon build \
-            --packages-up-to rosidl_generator_rs_tests \
             --allow-overriding action_msgs builtin_interfaces unique_identifier_msgs \
+            --packages-up-to rosidl_generator_rs_tests \
             --event-handlers console_direct+
 
       - name: Test package

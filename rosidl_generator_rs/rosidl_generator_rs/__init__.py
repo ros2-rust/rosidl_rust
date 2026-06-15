@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Esteve Fernandez <esteve@apache.org>
+# Copyright 2018-2026 Esteve Fernandez <esteve@apache.org>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+"""Generate Rust code for ROS interfaces."""
 
 import os
 import pathlib
@@ -55,12 +57,15 @@ else:
 
 package_name = ""
 
+
 # Taken from http://stackoverflow.com/a/6425628
 def convert_lower_case_underscore_to_camel_case(word):
+    """Convert a lower-case underscore name to CamelCase."""
     return ''.join(x.capitalize() or '_' for x in word.split('_'))
 
 
 def generate_rs(generator_arguments_file, typesupport_impls):
+    """Generate Rust code from rosidl generator arguments."""
     args = rosidl_pycommon.read_generator_arguments(generator_arguments_file)
 
     global package_name
@@ -215,30 +220,38 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     return 0
 
+
 def get_rs_name(name):
+    """Return the Rust-safe spelling of a ROS field name."""
     keywords = [
         # strict keywords
-        'as', 'break', 'const', 'continue', 'crate', 'else', 'enum', 'extern', 'false', 'fn', 'for', 'if', 'for',
-        'impl', 'in', 'let', 'loop', 'match', 'mod', 'move', 'mut', 'pub', 'ref', 'return', 'self', 'Self', 'static',
-        'struct', 'super', 'trait', 'true', 'type', 'unsafe', 'use', 'where', 'while',
+        'as', 'break', 'const', 'continue', 'crate', 'else', 'enum',
+        'extern', 'false', 'fn', 'for', 'if', 'for', 'impl', 'in', 'let',
+        'loop', 'match', 'mod', 'move', 'mut', 'pub', 'ref', 'return',
+        'self', 'Self', 'static', 'struct', 'super', 'trait', 'true',
+        'type', 'unsafe', 'use', 'where', 'while',
         # Edition 2024+
         'gen',
         # Edition 2018+
         'async', 'await', 'dyn',
         # Reserved
-        'abstract', 'become', 'box', 'do', 'final', 'macro', 'override', 'priv', 'typeof', 'unsized', 'virtual',
+        'abstract', 'become', 'box', 'do', 'final', 'macro', 'override',
+        'priv', 'typeof', 'unsized', 'virtual',
         'yield', 'try'
     ]
     # If the field name is a reserved keyword in Rust append an underscore
     return name if name not in keywords else name + '_'
 
+
 def escape_string(s):
+    """Escape a string literal for generated Rust code."""
     s = s.replace('\\', '\\\\')
     s = s.replace("'", "\\'")
     return s
 
 
 def value_to_rs(type_, value):
+    """Convert a rosidl default value to a Rust expression."""
     assert type_.is_primitive_type()
     assert value is not None
 
@@ -253,6 +266,7 @@ def value_to_rs(type_, value):
 
 
 def primitive_value_to_rs(type_, value):
+    """Convert a primitive rosidl value to a Rust expression."""
     assert type_.is_primitive_type()
     assert value is not None
 
@@ -285,6 +299,7 @@ def primitive_value_to_rs(type_, value):
 
 
 def constant_value_to_rs(type_, value):
+    """Convert a rosidl constant value to a Rust expression."""
     assert value is not None
 
     if isinstance(type_, BasicType):
@@ -321,14 +336,20 @@ def constant_value_to_rs(type_, value):
 
 
 def pre_field_serde(type_):
+    """Return serde attributes needed before a generated Rust field."""
     if isinstance(type_, Array) and type_.size > 32:
-        return '#[cfg_attr(feature = "serde", serde(with = "serde_big_array::BigArray"))]\n    '
+        return (
+            '#[cfg_attr(feature = "serde", '
+            'serde(with = "serde_big_array::BigArray"))]\n    '
+        )
     else:
         return ''
 
 
 def make_get_rs_type(idiomatic):
+    """Create a function that converts rosidl types to Rust type names."""
     def get_rs_type(type_, current_idiomatic, desired_idiomatic):
+        """Convert a rosidl type to a Rust type name."""
         if isinstance(type_, BasicType):
             if type_.typename == 'boolean':
                 return 'bool'
@@ -359,22 +380,41 @@ def make_get_rs_type(idiomatic):
             elif type_.typename == 'uint64':
                 return 'u64'
         elif isinstance(type_, BoundedString):
-            return 'rosidl_runtime_rs::BoundedString<{}>'.format(type_.maximum_size)
+            return 'rosidl_runtime_rs::BoundedString<{}>'.format(
+                type_.maximum_size)
         elif isinstance(type_, BoundedWString):
-            return 'rosidl_runtime_rs::BoundedWString<{}>'.format(type_.maximum_size)
+            return 'rosidl_runtime_rs::BoundedWString<{}>'.format(
+                type_.maximum_size)
         elif isinstance(type_, UnboundedString):
-            return 'std::string::String' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::String'
+            if current_idiomatic and desired_idiomatic:
+                return 'std::string::String'
+            return 'rosidl_runtime_rs::String'
         elif isinstance(type_, UnboundedWString):
-            return 'std::string::String' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::WString'
+            if current_idiomatic and desired_idiomatic:
+                return 'std::string::String'
+            return 'rosidl_runtime_rs::WString'
         elif isinstance(type_, Array):
-            return f'[{get_rs_type(type_.value_type, current_idiomatic, desired_idiomatic)}; {type_.size}]'
+            nested_type = get_rs_type(
+                type_.value_type, current_idiomatic, desired_idiomatic)
+            return f'[{nested_type}; {type_.size}]'
         elif isinstance(type_, UnboundedSequence):
-            container_type = 'Vec' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::Sequence'
-            return f'{container_type}<{get_rs_type(type_.value_type, current_idiomatic, desired_idiomatic)}>'
+            if current_idiomatic and desired_idiomatic:
+                container_type = 'Vec'
+            else:
+                container_type = 'rosidl_runtime_rs::Sequence'
+            nested_type = get_rs_type(
+                type_.value_type, current_idiomatic, desired_idiomatic)
+            return f'{container_type}<{nested_type}>'
         elif isinstance(type_, BoundedSequence):
-            # BoundedSequences can be in the idiomatic API, but the containing type cannot be from the
-            # idiomatic API because we do not implement SequenceAlloc for idiomatic types.
-            return f'rosidl_runtime_rs::BoundedSequence<{get_rs_type(type_.value_type, current_idiomatic, False)}, {type_.maximum_size}>'
+            # BoundedSequences can be in the idiomatic API, but the
+            # containing type cannot be from the idiomatic API because we do
+            # not implement SequenceAlloc for idiomatic types.
+            nested_type = get_rs_type(
+                type_.value_type, current_idiomatic, False)
+            return (
+                'rosidl_runtime_rs::BoundedSequence<'
+                f'{nested_type}, {type_.maximum_size}>'
+            )
         elif isinstance(type_, NamespacedType):
             # All types should be referencable like this
             # `super::msg::rmw::Foo` (From idiomatic modules)
@@ -384,8 +424,9 @@ def make_get_rs_type(idiomatic):
 
             symbol = f'{prefix}{"::".join(type_.namespaced_name()[1:])}'
 
-            # This symbol is coming from an external crate (or needs a `use` statement).
-            # So it should not be relative (i.e., no `super::`) and should have the top level
+            # This symbol is coming from an external crate (or needs a `use`
+            # statement). So it should not be relative (i.e., no `super::`)
+            # and should have the top level
             # package name (i.e., `builtin_interfaces::`)
             top_level_package = type_.namespaces[0]
             if top_level_package != package_name:
@@ -400,6 +441,7 @@ def make_get_rs_type(idiomatic):
 
         assert False, "unknown type '%s'" % type_.typename
 
-    # Start out by assuming all calls have matching current and desired idiomatic values.
-    # (i.e. symbols within the `...::rmw` scope want other values in the `...::rmw` scope).
+    # Start out by assuming all calls have matching current and desired
+    # idiomatic values. Symbols within the `...::rmw` scope want other values
+    # in the `...::rmw` scope.
     return lambda _type: get_rs_type(_type, idiomatic, idiomatic)
