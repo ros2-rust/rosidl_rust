@@ -114,6 +114,8 @@ jobs:
       - name: Check generated Rust package
         shell: bash
         run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          source install/setup.bash
           tests_crate="$PWD/build/rosidl_generator_rs_tests/rosidl_generator_rs/rosidl_generator_rs_tests/rust"
           mkdir -p "$tests_crate/.cargo"
           cat > "$tests_crate/.cargo/config.toml" <<EOF
