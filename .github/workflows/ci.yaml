@@ -98,7 +98,6 @@ jobs:
               rosidl_generator_rs_tests \
               rcl_interfaces/action_msgs \
               rcl_interfaces/builtin_interfaces \
-              rcl_interfaces/service_msgs \
               unique_identifier_msgs \
             --ignore-src \
             --rosdistro ${{ matrix.ros_distro }} \
@@ -110,7 +109,7 @@ jobs:
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           colcon build \
             --allow-overriding rosidl_generator_rs action_msgs builtin_interfaces service_msgs unique_identifier_msgs \
-            --packages-up-to rosidl_generator_rs_tests service_msgs \
+            --packages-up-to rosidl_generator_rs_tests \
             --event-handlers console_direct+
 
       - name: Test package
@@ -127,14 +126,19 @@ jobs:
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           source install/setup.bash
           tests_crate="$PWD/build/rosidl_generator_rs_tests/rosidl_generator_rs/rosidl_generator_rs_tests/rust"
+          service_msgs_crate="$PWD/build/service_msgs/rosidl_generator_rs/service_msgs/rust"
           mkdir -p "$tests_crate/.cargo"
           cat > "$tests_crate/.cargo/config.toml" <<EOF
           [patch.crates-io]
           action_msgs = { path = "$PWD/build/action_msgs/rosidl_generator_rs/action_msgs/rust" }
           builtin_interfaces = { path = "$PWD/build/builtin_interfaces/rosidl_generator_rs/builtin_interfaces/rust" }
-          service_msgs = { path = "$PWD/build/service_msgs/rosidl_generator_rs/service_msgs/rust" }
           unique_identifier_msgs = { path = "$PWD/build/unique_identifier_msgs/rosidl_generator_rs/unique_identifier_msgs/rust" }
           EOF
+          if [ -d "$service_msgs_crate" ]; then
+            cat >> "$tests_crate/.cargo/config.toml" <<EOF
+          service_msgs = { path = "$service_msgs_crate" }
+          EOF
+          fi
           (
             cd "$tests_crate"
             cargo check
