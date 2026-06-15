@@ -60,12 +60,22 @@ jobs:
           apt-get update
           apt-get install -y --no-install-recommends \
             ca-certificates \
-            cargo \
+            curl \
             git \
             python3-colcon-common-extensions \
             python3-colcon-override-check \
             python3-rosdep \
             python3-vcs2l
+
+      - name: Install Rust toolchain
+        shell: bash
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+            sh -s -- -y --profile minimal --default-toolchain 1.85.1
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          source "$HOME/.cargo/env"
+          rustc --version
+          cargo --version
 
       - name: Checkout repository
         uses: actions/checkout@v6
