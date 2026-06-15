@@ -92,13 +92,6 @@ jobs:
             rosdep init
           fi
           rosdep update
-          skip_keys=()
-          if [ "${{ matrix.ros_distro }}" = "rolling" ]; then
-            skip_keys=(
-              --skip-keys
-              "ament_lint_common rosidl_core_runtime rosidl_default_runtime rosidl_typesupport_interface"
-            )
-          fi
           rosdep install \
             --from-paths \
               rosidl_generator_rs \
@@ -109,7 +102,6 @@ jobs:
               unique_identifier_msgs \
             --ignore-src \
             --rosdistro ${{ matrix.ros_distro }} \
-            "${skip_keys[@]}" \
             -y
 
       - name: Build package
