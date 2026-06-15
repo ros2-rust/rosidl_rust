@@ -16,9 +16,8 @@
 
 import os
 import pathlib
-import sys
-
 from pathlib import Path
+import sys
 
 if os.environ['ROS_DISTRO'] <= 'humble':
     import rosidl_cmake as rosidl_pycommon
