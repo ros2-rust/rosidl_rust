@@ -87,20 +87,42 @@ jobs:
           vcs import --shallow . < action-dependency-sources.repos
 
       - name: Install package dependencies
+        shell: bash
         run: |
           if [ ! -e /etc/ros/rosdep/sources.list.d/20-default.list ]; then
             rosdep init
           fi
           rosdep update
-          rosdep install --from-paths . --ignore-src --rosdistro ${{ matrix.ros_distro }} -y
+          skip_keys=()
+          if [ "${{ matrix.ros_distro }}" = "rolling" ]; then
+            skip_keys=(
+              --skip-keys
+              ament_lint_common
+              rosidl_core_runtime
+              rosidl_default_runtime
+              rosidl_typesupport_interface
+            )
+          fi
+          rosdep install \
+            --from-paths \
+              rosidl_generator_rs \
+              rosidl_generator_rs_tests \
+              rcl_interfaces/action_msgs \
+              rcl_interfaces/builtin_interfaces \
+              rcl_interfaces/service_msgs \
+              unique_identifier_msgs \
+            --ignore-src \
+            --rosdistro ${{ matrix.ros_distro }} \
+            "${skip_keys[@]}" \
+            -y
 
       - name: Build package
         shell: bash
         run: |
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           colcon build \
-            --allow-overriding rosidl_generator_rs action_msgs builtin_interfaces unique_identifier_msgs \
-            --packages-up-to rosidl_generator_rs_tests \
+            --allow-overriding rosidl_generator_rs action_msgs builtin_interfaces service_msgs unique_identifier_msgs \
+            --packages-up-to rosidl_generator_rs_tests service_msgs \
             --event-handlers console_direct+
 
       - name: Test package
@@ -122,6 +144,7 @@ jobs:
           [patch.crates-io]
           action_msgs = { path = "$PWD/build/action_msgs/rosidl_generator_rs/action_msgs/rust" }
           builtin_interfaces = { path = "$PWD/build/builtin_interfaces/rosidl_generator_rs/builtin_interfaces/rust" }
+          service_msgs = { path = "$PWD/build/service_msgs/rosidl_generator_rs/service_msgs/rust" }
           unique_identifier_msgs = { path = "$PWD/build/unique_identifier_msgs/rosidl_generator_rs/unique_identifier_msgs/rust" }
           EOF
           (
