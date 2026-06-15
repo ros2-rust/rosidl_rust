@@ -64,10 +64,26 @@ jobs:
             cargo \
             git \
             python3-colcon-common-extensions \
-            python3-rosdep
+            python3-rosdep \
+            python3-vcs2l
 
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Import action dependency sources
+        run: |
+          cat > action-dependency-sources.repos <<EOF
+          repositories:
+            rcl_interfaces:
+              type: git
+              url: https://github.com/ros2/rcl_interfaces.git
+              version: ${{ matrix.ros_distro }}
+            unique_identifier_msgs:
+              type: git
+              url: https://github.com/ros2/unique_identifier_msgs.git
+              version: ${{ matrix.ros_distro }}
+          EOF
+          vcs import --shallow . < action-dependency-sources.repos
 
       - name: Install package dependencies
         run: |
@@ -81,7 +97,10 @@ jobs:
         shell: bash
         run: |
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
-          colcon build --packages-up-to rosidl_generator_rs_tests --event-handlers console_direct+
+          colcon build \
+            --packages-up-to rosidl_generator_rs_tests \
+            --allow-overriding action_msgs builtin_interfaces unique_identifier_msgs \
+            --event-handlers console_direct+
 
       - name: Test package
         shell: bash
@@ -95,4 +114,11 @@ jobs:
         shell: bash
         run: |
           tests_crate="$PWD/build/rosidl_generator_rs_tests/rosidl_generator_rs/rosidl_generator_rs_tests/rust"
+          mkdir -p "$tests_crate/.cargo"
+          cat > "$tests_crate/.cargo/config.toml" <<EOF
+          [patch.crates-io]
+          action_msgs = { path = "$PWD/build/action_msgs/rosidl_generator_rs/action_msgs/rust" }
+          builtin_interfaces = { path = "$PWD/build/builtin_interfaces/rosidl_generator_rs/builtin_interfaces/rust" }
+          unique_identifier_msgs = { path = "$PWD/build/unique_identifier_msgs/rosidl_generator_rs/unique_identifier_msgs/rust" }
+          EOF
           cargo check --manifest-path "$tests_crate/Cargo.toml"
