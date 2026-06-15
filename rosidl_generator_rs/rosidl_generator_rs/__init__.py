@@ -23,10 +23,6 @@ else:
     import rosidl_pycommon
 
 from rosidl_parser.definition import AbstractGenericString
-from rosidl_parser.definition import AbstractNestedType
-from rosidl_parser.definition import AbstractSequence
-from rosidl_parser.definition import AbstractString
-from rosidl_parser.definition import AbstractWString
 from rosidl_parser.definition import Action
 from rosidl_parser.definition import Array
 from rosidl_parser.definition import BasicType
@@ -234,7 +230,7 @@ def get_rs_name(name):
         'yield', 'try'
     ]
     # If the field name is a reserved keyword in Rust append an underscore
-    return name if not name in keywords else name + '_'
+    return name if name not in keywords else name + '_'
 
 def escape_string(s):
     s = s.replace('\\', '\\\\')

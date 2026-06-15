@@ -1,0 +1,7 @@
+# Request exercises local message fields and Rust keyword escaping.
+Complex input
+uint32 async
+---
+# Response exercises local message fields and Rust keyword escaping.
+Complex output
+bool match
