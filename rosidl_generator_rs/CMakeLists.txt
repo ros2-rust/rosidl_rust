@@ -17,7 +17,13 @@ ament_index_register_resource("rosidl_generator_packages")
 ament_python_install_package(${PROJECT_NAME})
 
 if(BUILD_TESTING)
+  find_package(ament_cmake_pytest REQUIRED)
   find_package(ament_lint_auto REQUIRED)
+
+  ament_add_pytest_test(test_keyword_escaping test/test_keyword_escaping.py
+    APPEND_ENV PYTHONPATH=${CMAKE_CURRENT_SOURCE_DIR}
+  )
+
   # The Python sources are checked by Ruff in CI. Copyright and docstring
   # linters are noisy for template files in this generator package.
   set(ament_cmake_copyright_FOUND TRUE)

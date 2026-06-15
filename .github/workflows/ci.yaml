@@ -28,11 +28,11 @@ jobs:
 
       - name: Check Python syntax
         run: |
-          python -m compileall -q rosidl_generator_rs/rosidl_generator_rs
+          python -m compileall -q rosidl_generator_rs/rosidl_generator_rs rosidl_generator_rs/test
           python -m py_compile rosidl_generator_rs/bin/rosidl_generator_rs
 
       - name: Lint Python sources
-        run: python -m ruff check rosidl_generator_rs/rosidl_generator_rs rosidl_generator_rs/bin/rosidl_generator_rs
+        run: python -m ruff check rosidl_generator_rs/rosidl_generator_rs rosidl_generator_rs/bin/rosidl_generator_rs rosidl_generator_rs/test
 
   ros:
     name: ROS build and test (${{ matrix.ros_distro }})
@@ -82,20 +82,6 @@ jobs:
         run: |
           source /opt/ros/${{ matrix.ros_distro }}/setup.bash
           colcon build --packages-up-to rosidl_generator_rs_tests --event-handlers console_direct+
-
-      - name: Check Rust keyword escaping
-        shell: bash
-        run: |
-          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
-          source install/setup.bash
-          python3 - <<'PY'
-          from rosidl_generator_rs import get_rs_name
-
-          for keyword in ('try', 'type', 'const', 'async', 'match'):
-              assert get_rs_name(keyword) == f'{keyword}_'
-
-          assert get_rs_name('plain_field') == 'plain_field'
-          PY
 
       - name: Test package
         shell: bash
