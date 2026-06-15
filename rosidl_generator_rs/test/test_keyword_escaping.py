@@ -20,10 +20,10 @@ from rosidl_generator_rs import get_rs_name
 
 def test_rust_keywords_are_escaped():
     """Check that Rust keywords get a trailing underscore."""
-    for keyword in ("try", "type", "const", "async", "match"):
-        assert get_rs_name(keyword) == f"{keyword}_"
+    for keyword in ('try', 'type', 'const', 'async', 'match'):
+        assert get_rs_name(keyword) == f'{keyword}_'
 
 
 def test_non_keyword_names_are_unchanged():
     """Check that non-keyword names are unchanged."""
-    assert get_rs_name("plain_field") == "plain_field"
+    assert get_rs_name('plain_field') == 'plain_field'

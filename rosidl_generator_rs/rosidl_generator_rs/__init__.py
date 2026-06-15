@@ -16,6 +16,7 @@
 
 import os
 import pathlib
+import sys
 
 from pathlib import Path
 
@@ -42,8 +43,6 @@ from rosidl_parser.definition import UnboundedWString
 
 from rosidl_parser.parser import parse_idl_file
 
-import sys
-
 # Workaround for RHEL 8 which ships Python 3.6 that lacks str.removesuffix()
 # (added in Python 3.9, PEP 616). On Python 3.9+, the native implementation
 # is used.
@@ -55,7 +54,7 @@ else:
     def _removesuffix(s, suffix):
         return s[:-len(suffix)] if suffix and s.endswith(suffix) else s
 
-package_name = ""
+package_name = ''
 
 
 # Taken from http://stackoverflow.com/a/6425628
@@ -158,7 +157,7 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['msg_specs']:
         for template_file, generated_filenames in mapping_msgs.items():
-            stem = _removesuffix(Path(template_file).stem, ".em")
+            stem = _removesuffix(Path(template_file).stem, '.em')
 
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
@@ -171,7 +170,7 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['srv_specs']:
         for template_file, generated_filenames in mapping_srvs.items():
-            stem = _removesuffix(Path(template_file).stem, ".em")
+            stem = _removesuffix(Path(template_file).stem, '.em')
 
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
@@ -184,7 +183,7 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     if data['action_specs']:
         for template_file, generated_filenames in mapping_actions.items():
-            stem = _removesuffix(Path(template_file).stem, ".em")
+            stem = _removesuffix(Path(template_file).stem, '.em')
 
             for generated_filename in generated_filenames:
                 generated_file = os.path.join(args['output_dir'],
@@ -422,7 +421,7 @@ def make_get_rs_type(idiomatic):
             # `<other_package>::msg::rmw::Foo` (From external packages)
             prefix = 'super::' if current_idiomatic else 'super::super::'
 
-            symbol = f'{prefix}{"::".join(type_.namespaced_name()[1:])}'
+            symbol = prefix + '::'.join(type_.namespaced_name()[1:])
 
             # This symbol is coming from an external crate (or needs a `use`
             # statement). So it should not be relative (i.e., no `super::`)
@@ -430,12 +429,12 @@ def make_get_rs_type(idiomatic):
             # package name (i.e., `builtin_interfaces::`)
             top_level_package = type_.namespaces[0]
             if top_level_package != package_name:
-                symbol = "::".join(type_.namespaced_name())
+                symbol = '::'.join(type_.namespaced_name())
 
-            if not desired_idiomatic and "::rmw::" not in symbol:
-                parts = symbol.split("::")
-                parts.insert(-1, "rmw")
-                symbol = "::".join(parts)
+            if not desired_idiomatic and '::rmw::' not in symbol:
+                parts = symbol.split('::')
+                parts.insert(-1, 'rmw')
+                symbol = '::'.join(parts)
 
             return symbol
 
