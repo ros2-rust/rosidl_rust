@@ -16,31 +16,8 @@ set(_output_path
   "${CMAKE_CURRENT_BINARY_DIR}/rosidl_generator_rs/${PROJECT_NAME}")
 set(_generated_common_rs_files "")
 
-set(_generated_msg_rs_files "")
-set(_generated_srv_rs_files "")
-set(_generated_action_rs_files "")
-
-set(_has_msg FALSE)
-set(_has_srv FALSE)
-set(_has_action FALSE)
-
 foreach(_idl_file ${rosidl_generate_interfaces_ABS_IDL_FILES})
-  get_filename_component(_parent_folder "${_idl_file}" DIRECTORY)
-  get_filename_component(_parent_folder "${_parent_folder}" NAME)
-  get_filename_component(_module_name "${_idl_file}" NAME_WE)
-
-  if(_parent_folder STREQUAL "msg")
-    set(_has_msg TRUE)
-    set(_idl_files ${_idl_files} ${_idl_file})
-  elseif(_parent_folder STREQUAL "srv")
-    set(_has_srv TRUE)
-    set(_idl_files ${_idl_files} ${_idl_file})
-  elseif(_parent_folder STREQUAL "action")
-    set(_has_action TRUE)
-    set(_idl_files ${_idl_files} ${_idl_file})
-  else()
-    message(FATAL_ERROR "Interface file with unknown parent folder: ${_idl_file}")
-  endif()
+  list(APPEND _idl_files ${_idl_file})
 endforeach()
 
 list(APPEND _generated_common_rs_files
@@ -48,27 +25,6 @@ list(APPEND _generated_common_rs_files
   "${_output_path}/rust/build.rs"
   "${_output_path}/rust/Cargo.toml"
 )
-
-if(${_has_msg})
-  list(APPEND _generated_msg_rs_files
-    "${_output_path}/rust/src/msg.rs"
-    "${_output_path}/rust/src/msg/rmw.rs"
-  )
-endif()
-
-if(${_has_srv})
-  list(APPEND _generated_srv_rs_files
-    "${_output_path}/rust/src/srv.rs"
-    "${_output_path}/rust/src/srv/rmw.rs"
-  )
-endif()
-
-if(${_has_action})
-  list(APPEND _generated_action_rs_files
-    "${_output_path}/rust/src/action.rs"
-    "${_output_path}/rust/src/action/rmw.rs"
-  )
-endif()
 
 set(_dependency_files "")
 set(_dependencies "")
@@ -86,6 +42,9 @@ set(target_dependencies
   ${rosidl_generator_rs_GENERATOR_FILES}
   "${rosidl_generator_rs_TEMPLATE_DIR}/action.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/action/rmw.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/build.rs.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/Cargo.toml.em"
+  "${rosidl_generator_rs_TEMPLATE_DIR}/lib.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/msg.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/msg/rmw.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/srv.rs.em"
@@ -94,7 +53,6 @@ set(target_dependencies
   "${rosidl_generator_rs_TEMPLATE_DIR}/templates/msg_rmw.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/templates/srv_idiomatic.rs.em"
   "${rosidl_generator_rs_TEMPLATE_DIR}/templates/srv_rmw.rs.em"
-  ${rosidl_generate_interfaces_ABS_IDL_FILES}
   ${_idl_files}
   ${_dependency_files})
 foreach(dep ${target_dependencies})
@@ -137,9 +95,6 @@ add_dependencies(${rosidl_generate_interfaces_TARGET} ${rosidl_generate_interfac
 set_property(
   SOURCE
   ${_generated_common_rs_files}
-  ${_generated_msg_rs_files}
-  ${_generated_srv_rs_files}
-  ${_generated_action_rs_files}
   PROPERTY GENERATED 1)
 
 set(_rsext_suffix "__rsext")
@@ -152,11 +107,7 @@ if(NOT rosidl_generate_interfaces_SKIP_INSTALL)
 endif()
 
 if(BUILD_TESTING AND rosidl_generate_interfaces_ADD_LINTER_TESTS)
-  if(
-    NOT _generated_msg_rs_files STREQUAL "" OR
-    NOT _generated_srv_rs_files STREQUAL "" OR
-    NOT _generated_action_rs_files STREQUAL ""
-  )
+  if(NOT _idl_files STREQUAL "")
   # TODO(esteve): add linters for Rust files
   endif()
 endif()

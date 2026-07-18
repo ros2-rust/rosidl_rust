@@ -64,6 +64,88 @@ def convert_lower_case_underscore_to_camel_case(word):
     return ''.join(x.capitalize() or '_' for x in word.split('_'))
 
 
+def _namespace_from_namespaced_type(namespaced_type):
+    namespaces = list(namespaced_type.namespaces)
+    if not namespaces or namespaces[0] != package_name:
+        raise ValueError(
+            f"Expected namespace to start with package '{package_name}', got {namespaces}")
+    if len(namespaces) != 2:
+        raise ValueError(
+            f"Expected exactly one namespace component after package '{package_name}', got {namespaces}")
+    namespace = namespaces[1]
+    if not namespace.isidentifier() or get_rs_name(namespace) != namespace:
+        raise ValueError(
+            f"Namespace '{namespace}' cannot be emitted as a Rust module name")
+    return namespace
+
+
+def _namespace_from_message(message):
+    return _namespace_from_namespaced_type(message.structure.namespaced_type)
+
+
+def _namespace_from_service(service):
+    return _namespace_from_namespaced_type(service.namespaced_type)
+
+
+def _namespace_from_action(action):
+    return _namespace_from_namespaced_type(action.namespaced_type)
+
+
+def _group_specs_by_namespace(specs, namespace_getter):
+    grouped = {}
+    for spec in specs:
+        namespace = namespace_getter(spec)
+        grouped.setdefault(namespace, []).append(spec)
+    return grouped
+
+
+def _validate_single_kind_per_namespace(namespace_to_kinds):
+    for namespace, kinds in namespace_to_kinds.items():
+        direct_kinds = {kind for kind, _ in kinds}
+        if len(direct_kinds) > 1:
+            raise ValueError(
+                f"Namespace '{namespace}' contains multiple top-level kinds: {sorted(direct_kinds)}")
+
+
+def _expand_namespace_templates(template_dir, output_dir, namespace, spec_kind, specs,
+                                latest_target_timestamp, data):
+    if not specs:
+        return
+
+    if spec_kind == 'msg':
+        mappings = {
+            os.path.join(template_dir, 'msg.rs.em'): [f'rust/src/{namespace}.rs'],
+            os.path.join(template_dir, 'msg/rmw.rs.em'): [f'rust/src/{namespace}/rmw.rs'],
+        }
+        template_specs = 'msg_specs'
+    elif spec_kind == 'srv':
+        mappings = {
+            os.path.join(template_dir, 'srv.rs.em'): [f'rust/src/{namespace}.rs'],
+            os.path.join(template_dir, 'srv/rmw.rs.em'): [f'rust/src/{namespace}/rmw.rs'],
+        }
+        template_specs = 'srv_specs'
+    elif spec_kind == 'action':
+        mappings = {
+            os.path.join(template_dir, 'action.rs.em'): [f'rust/src/{namespace}.rs'],
+            os.path.join(template_dir, 'action/rmw.rs.em'): [f'rust/src/{namespace}/rmw.rs'],
+        }
+        template_specs = 'action_specs'
+    else:
+        raise ValueError(f'Unknown spec kind {spec_kind}')
+
+    namespace_data = data.copy()
+    namespace_data[template_specs] = [(namespace, spec) for spec in specs]
+
+    for template_file, generated_filenames in mappings.items():
+        for generated_filename in generated_filenames:
+            generated_file = os.path.join(output_dir, generated_filename)
+            rosidl_pycommon.expand_template(
+                os.path.join(template_dir, template_file),
+                namespace_data.copy(),
+                generated_file,
+                minimum_timestamp=latest_target_timestamp)
+
+
 def generate_rs(generator_arguments_file, typesupport_impls):
     args = rosidl_pycommon.read_generator_arguments(generator_arguments_file)
 
@@ -99,31 +181,17 @@ def generate_rs(generator_arguments_file, typesupport_impls):
 
     template_dir = args['template_dir']
 
-    mapping_msgs = {
-        os.path.join(template_dir, 'msg.rs.em'): ['rust/src/%s'],
-        os.path.join(template_dir, 'msg/rmw.rs.em'): ['rust/src/msg/%s'],
-    }
-
-    mapping_srvs = {
-        os.path.join(template_dir, 'srv.rs.em'): ['rust/src/%s'],
-        os.path.join(template_dir, 'srv/rmw.rs.em'): ['rust/src/srv/%s'],
-    }
-
-    mapping_actions = {
-        os.path.join(template_dir, 'action.rs.em'): ['rust/src/%s'],
-        os.path.join(template_dir, 'action/rmw.rs.em'): ['rust/src/action/%s'],
-    }
-
     # Ensure the required templates exist
-    for template_file in mapping_msgs.keys():
+    for template_file in [
+        os.path.join(template_dir, 'msg.rs.em'),
+        os.path.join(template_dir, 'msg/rmw.rs.em'),
+        os.path.join(template_dir, 'srv.rs.em'),
+        os.path.join(template_dir, 'srv/rmw.rs.em'),
+        os.path.join(template_dir, 'action.rs.em'),
+        os.path.join(template_dir, 'action/rmw.rs.em'),
+    ]:
         assert os.path.exists(template_file), \
-            'Messages template file %s not found' % template_file
-    for template_file in mapping_srvs.keys():
-        assert os.path.exists(template_file), \
-            'Services template file %s not found' % template_file
-    for template_file in mapping_actions.keys():
-        assert os.path.exists(template_file), \
-            'Actions template file %s not found' % template_file
+            'Template file %s not found' % template_file
 
     data = {
         'pre_field_serde': pre_field_serde,
@@ -146,53 +214,44 @@ def generate_rs(generator_arguments_file, typesupport_impls):
     latest_target_timestamp = rosidl_pycommon.get_newest_modification_time(
         args['target_dependencies'])
 
-    for message in idl_content.get_elements_of_type(Message):
-        data['msg_specs'].append(('msg', message))
+    message_specs = list(idl_content.get_elements_of_type(Message))
+    service_specs = list(idl_content.get_elements_of_type(Service))
+    action_specs = list(idl_content.get_elements_of_type(Action))
 
-    for service in idl_content.get_elements_of_type(Service):
-        data['srv_specs'].append(('srv', service))
+    messages_by_namespace = _group_specs_by_namespace(
+        message_specs, _namespace_from_message)
+    services_by_namespace = _group_specs_by_namespace(
+        service_specs, _namespace_from_service)
+    actions_by_namespace = _group_specs_by_namespace(
+        action_specs, _namespace_from_action)
 
-    for action in idl_content.get_elements_of_type(Action):
-        data['action_specs'].append(('action', action))
+    namespace_to_kinds = {}
+    for namespace, specs in messages_by_namespace.items():
+        namespace_to_kinds.setdefault(namespace, []).append(('msg', specs))
+    for namespace, specs in services_by_namespace.items():
+        namespace_to_kinds.setdefault(namespace, []).append(('srv', specs))
+    for namespace, specs in actions_by_namespace.items():
+        namespace_to_kinds.setdefault(namespace, []).append(('action', specs))
 
-    if data['msg_specs']:
-        for template_file, generated_filenames in mapping_msgs.items():
-            stem = _removesuffix(Path(template_file).stem, ".em")
+    _validate_single_kind_per_namespace(namespace_to_kinds)
 
-            for generated_filename in generated_filenames:
-                generated_file = os.path.join(args['output_dir'],
-                                              generated_filename % stem)
-                rosidl_pycommon.expand_template(
-                    os.path.join(template_dir, template_file),
-                    data.copy(),
-                    generated_file,
-                    minimum_timestamp=latest_target_timestamp)
+    for namespace in sorted(namespace_to_kinds):
+        kinds = namespace_to_kinds[namespace]
+        kind, specs = kinds[0]
+        _expand_namespace_templates(
+            template_dir, args['output_dir'], namespace, kind, specs,
+            latest_target_timestamp, data)
 
-    if data['srv_specs']:
-        for template_file, generated_filenames in mapping_srvs.items():
-            stem = _removesuffix(Path(template_file).stem, ".em")
-
-            for generated_filename in generated_filenames:
-                generated_file = os.path.join(args['output_dir'],
-                                              generated_filename % stem)
-                rosidl_pycommon.expand_template(
-                    os.path.join(template_dir, template_file),
-                    data.copy(),
-                    generated_file,
-                    minimum_timestamp=latest_target_timestamp)
-
-    if data['action_specs']:
-        for template_file, generated_filenames in mapping_actions.items():
-            stem = _removesuffix(Path(template_file).stem, ".em")
-
-            for generated_filename in generated_filenames:
-                generated_file = os.path.join(args['output_dir'],
-                                              generated_filename % stem)
-                rosidl_pycommon.expand_template(
-                    os.path.join(template_dir, template_file),
-                    data.copy(),
-                    generated_file,
-                    minimum_timestamp=latest_target_timestamp)
+    data['generated_namespaces'] = sorted(namespace_to_kinds)
+    data['msg_specs'] = [
+        (_namespace_from_message(message), message)
+        for message in message_specs]
+    data['srv_specs'] = [
+        (_namespace_from_service(service), service)
+        for service in service_specs]
+    data['action_specs'] = [
+        (_namespace_from_action(action), action)
+        for action in action_specs]
 
     rosidl_pycommon.expand_template(
         os.path.join(template_dir, 'lib.rs.em'),
