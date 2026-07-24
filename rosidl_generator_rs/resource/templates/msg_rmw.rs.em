@@ -117,6 +117,11 @@ impl Default for @(type_name) {
   }
 }
 
+impl rosidl_runtime_rs::SequenceLayout for @(type_name) {
+  // Message sequences keep the plain 3-field C layout.
+  type LayoutTail = ();
+}
+
 impl rosidl_runtime_rs::SequenceAlloc for @(type_name) {
   fn sequence_init(seq: &mut rosidl_runtime_rs::Sequence<Self>, size: usize) -> bool {
     // SAFETY: This is safe since the pointer is guaranteed to be valid/initialized.
