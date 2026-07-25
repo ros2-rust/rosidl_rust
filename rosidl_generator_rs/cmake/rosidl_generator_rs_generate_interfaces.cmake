@@ -99,7 +99,6 @@ set_property(
 
 set(_rsext_suffix "__rsext")
 if(NOT rosidl_generate_interfaces_SKIP_INSTALL)
-  ament_index_register_resource("rust_packages")
   install(
     DIRECTORY "${_output_path}/rust"
     DESTINATION "share/${PROJECT_NAME}"
