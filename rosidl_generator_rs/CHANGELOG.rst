@@ -1,3 +1,12 @@
+0.5.0 (2026-08-10)
+------------------
+* fix(generator): do not register generated crates in the rust_packages index
+* fix(generator): make Cargo.toml dependencies deterministic (#28)
+* fix(generator): allow IDL files outside standard folders
+* perf(generator): use memcpy paths for primitive sequence conversion (#26)
+* Contributors: Esteve Fernandez, Mathieu David
+
+
 0.4.12 (2026-04-12)
 -------------------
 * fix(rosidl_generator_rs_generate_interfaces): Remove poisoning of global CMAKE_SHARED_LINKER_FLAGS variable (#22)
