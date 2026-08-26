@@ -432,12 +432,19 @@ def make_get_rs_type(idiomatic):
         elif isinstance(type_, Array):
             return f'[{get_rs_type(type_.value_type, current_idiomatic, desired_idiomatic)}; {type_.size}]'
         elif isinstance(type_, UnboundedSequence):
-            container_type = 'Vec' if current_idiomatic and desired_idiomatic else 'rosidl_runtime_rs::Sequence'
+            if current_idiomatic and desired_idiomatic:
+                container_type = 'Vec'
+            elif isinstance(type_.value_type, BasicType):
+                container_type = 'rosidl_runtime_rs::PrimitiveSequence'
+            else:
+                container_type = 'rosidl_runtime_rs::Sequence'
             return f'{container_type}<{get_rs_type(type_.value_type, current_idiomatic, desired_idiomatic)}>'
         elif isinstance(type_, BoundedSequence):
-            # BoundedSequences can be in the idiomatic API, but the containing type cannot be from the
-            # idiomatic API because we do not implement SequenceAlloc for idiomatic types.
-            return f'rosidl_runtime_rs::BoundedSequence<{get_rs_type(type_.value_type, current_idiomatic, False)}, {type_.maximum_size}>'
+            if isinstance(type_.value_type, BasicType):
+                container_type = 'rosidl_runtime_rs::BoundedPrimitiveSequence'
+            else:
+                container_type = 'rosidl_runtime_rs::BoundedSequence'
+            return f'{container_type}<{get_rs_type(type_.value_type, current_idiomatic, False)}, {type_.maximum_size}>'
         elif isinstance(type_, NamespacedType):
             # All types should be referencable like this
             # `super::msg::rmw::Foo` (From idiomatic modules)
