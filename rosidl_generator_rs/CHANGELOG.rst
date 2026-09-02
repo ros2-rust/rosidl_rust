@@ -1,3 +1,7 @@
+0.5.1 (2026-09-02)
+------------------
+
+
 0.5.0 (2026-08-10)
 ------------------
 * fix(generator): do not register generated crates in the rust_packages index
