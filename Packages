@@ -1,0 +1,16 @@
+Package: ros-humble-rosidl-generator-rs
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Priority: optional
+Section: misc
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Installed-Size: 142
+Depends: ros-humble-ament-cmake, ros-humble-ros-environment, ros-humble-rosidl-cmake, ros-humble-rosidl-generator-c, ros-humble-rosidl-parser, ros-humble-rosidl-typesupport-c, ros-humble-rosidl-typesupport-interface
+Filename: ./ros-humble-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Size: 25132
+MD5sum: 0e1487657bf54fd4d49e3f9909245dc1
+SHA1: 6948846a8e8edbe3e23415b20deba4d940f00353
+SHA256: ecf795c2a8761593299cffc9dac55434192d231938859da19cb0ff447fbb6b35
+SHA512: 13621efc3ef56606fbb39d2ce1a12595becdf57f9c106fcda6164153b2682234e34bfaddbcadca988672e65225d8dfd6d8808e965929f573878262d7d048ba81
+Description: Generate the ROS interfaces in Rust.
+
