@@ -1,0 +1,30 @@
+Format: 1.8
+Date: Mon, 10 Aug 2026 00:00:00 -0000
+Source: ros-jazzy-rosidl-generator-rs
+Binary: ros-jazzy-rosidl-generator-rs
+Built-For-Profiles: noudeb
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Distribution: noble
+Urgency: high
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Changed-By: Esteve Fernandez <esteve@apache.org>
+Description:
+ ros-jazzy-rosidl-generator-rs - Generate the ROS interfaces in Rust.
+Changes:
+ ros-jazzy-rosidl-generator-rs (0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3) noble; urgency=high
+ .
+   * fix(generator): do not register generated crates in the rust_packages index
+   * fix(generator): make Cargo.toml dependencies deterministic (#28)
+   * fix(generator): allow IDL files outside standard folders
+   * perf(generator): use memcpy paths for primitive sequence conversion (#26)
+   * Contributors: Esteve Fernandez, Mathieu David
+Checksums-Sha1:
+ 888bccb12ee4c78450a5a8af0c5e4a959ae92a0a 12918 ros-jazzy-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 654064412985c0333da1f22ff0fc19aa9d15130d 24784 ros-jazzy-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Checksums-Sha256:
+ 79ad2f7f1efa39c918086066800b7131e370b8cc96b23e55d84eafcb91dd30a2 12918 ros-jazzy-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ a1f38033fea7a2328d3268c399946ca02a4a94ce9e37fe4bde76485b29a6678e 24784 ros-jazzy-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Files:
+ ed79933f0f95db69b4ee7df869ebc311 12918 misc optional ros-jazzy-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ df47ca576cdaa1bead26c6008f607a4a 24784 misc optional ros-jazzy-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
