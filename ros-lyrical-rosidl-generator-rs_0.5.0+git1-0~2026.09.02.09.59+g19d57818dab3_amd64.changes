@@ -1,0 +1,30 @@
+Format: 1.8
+Date: Mon, 10 Aug 2026 00:00:00 -0000
+Source: ros-lyrical-rosidl-generator-rs
+Binary: ros-lyrical-rosidl-generator-rs
+Built-For-Profiles: derivative.ubuntu noudeb
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Distribution: resolute
+Urgency: high
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Changed-By: Esteve Fernandez <esteve@apache.org>
+Description:
+ ros-lyrical-rosidl-generator-rs - Generate the ROS interfaces in Rust.
+Changes:
+ ros-lyrical-rosidl-generator-rs (0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3) resolute; urgency=high
+ .
+   * fix(generator): do not register generated crates in the rust_packages index
+   * fix(generator): make Cargo.toml dependencies deterministic (#28)
+   * fix(generator): allow IDL files outside standard folders
+   * perf(generator): use memcpy paths for primitive sequence conversion (#26)
+   * Contributors: Esteve Fernandez, Mathieu David
+Checksums-Sha1:
+ e508019663eb4ad09c762a5627163019256983be 12927 ros-lyrical-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 013a80999fda171ef225879c1e13be9d9c365c44 23246 ros-lyrical-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Checksums-Sha256:
+ 7f04444d15c445d76e6f050e46c894d4431f3dde02a01a7cfc1c2f09cf9bba3c 12927 ros-lyrical-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ cb002e6e975e734c54b0f21e57fd2abcaca580f1ec1af257b73fb2d2ceda7b0a 23246 ros-lyrical-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Files:
+ fbeacafcd6dc46a41f35f866f9c1a1d4 12927 misc optional ros-lyrical-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 57ea85a167ce5526695e9d651753dedb 23246 misc optional ros-lyrical-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
