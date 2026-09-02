@@ -1,0 +1,2032 @@
+sbuild (Debian sbuild) 0.85.10ubuntu0.2 (02 May 2025) on runnervmgx7h7.vxuhprrtohmedkiu1mqdkxy4db.xx.internal.cloudapp.net
+
++=====================================================================================================================+
+| ros-rolling-rosidl-generator-rs 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3 (amd64) Wed, 02 Sep 2026 10:00:55 +0000 |
++=====================================================================================================================+
+
+Package: ros-rolling-rosidl-generator-rs
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Source Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Distribution: resolute
+Machine Architecture: amd64
+Host Architecture: amd64
+Build Architecture: amd64
+Build Type: binary
+
+Unpacking /home/runner/.cache/sbuild/resolute-amd64.tar to /tmp/tmp.sbuild.p37TYDqf5n...
+I: NOTICE: Log filtering will replace 'sbuild-unshare-dummy-location' with '<<CHROOT>>'
+I: NOTICE: Log filtering will replace 'build/package/resolver-97EE24' with '<<RESOLVERDIR>>'
+
++------------------------------------------------------------------------------+
+| Update chroot                                Wed, 02 Sep 2026 10:01:00 +0000 |
++------------------------------------------------------------------------------+
+
+Ign:1 file:/build/package/resolver-PNm5AB/apt_archive ./ InRelease
+Get:2 file:/build/package/resolver-PNm5AB/apt_archive ./ Release [597 B]
+Get:2 file:/build/package/resolver-PNm5AB/apt_archive ./ Release [597 B]
+Ign:3 file:/build/package/resolver-PNm5AB/apt_archive ./ Release.gpg
+Get:4 http://archive.ubuntu.com/ubuntu resolute InRelease [136 kB]
+Get:5 http://archive.ubuntu.com/ubuntu resolute-updates InRelease [137 kB]
+Get:6 http://packages.ros.org/ros2-testing/ubuntu resolute InRelease [4688 B]
+Get:7 http://security.ubuntu.com/ubuntu resolute-security InRelease [137 kB]
+Get:8 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 Packages [1175 kB]
+Get:9 http://archive.ubuntu.com/ubuntu resolute/main amd64 Packages [1480 kB]
+Get:10 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages [16.0 MB]
+Get:11 http://security.ubuntu.com/ubuntu resolute-security/universe amd64 Packages [169 kB]
+Get:12 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Packages [440 kB]
+Get:13 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 Packages [569 kB]
+Get:14 http://archive.ubuntu.com/ubuntu resolute-updates/universe amd64 Packages [265 kB]
+Fetched 20.5 MB in 2s (11.7 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
++------------------------------------------------------------------------------+
+| Fetch source files                           Wed, 02 Sep 2026 10:01:03 +0000 |
++------------------------------------------------------------------------------+
+
+
+Local sources
+-------------
+
+/home/runner/work/rosidl_rust/rosidl_rust/src/rosidl_rust/ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.dsc exists in /home/runner/work/rosidl_rust/rosidl_rust/src/rosidl_rust; copying to chroot
+I: NOTICE: Log filtering will replace 'build/package//package' with '<<PKGBUILDDIR>>'
+I: NOTICE: Log filtering will replace 'build/package/' with '<<BUILDDIR>>'
+
++------------------------------------------------------------------------------+
+| Install package build dependencies           Wed, 02 Sep 2026 10:01:04 +0000 |
++------------------------------------------------------------------------------+
+
+
+Setup apt archive
+-----------------
+
+Merged Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake, ros-rolling-ament-cmake-gtest, ros-rolling-ament-lint-auto, ros-rolling-ament-lint-common, ros-rolling-ros-environment, ros-rolling-rosidl-generator-c, ros-rolling-rosidl-pycommon, build-essential, fakeroot, dumb-init
+Filtered Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake, ros-rolling-ament-cmake-gtest, ros-rolling-ament-lint-auto, ros-rolling-ament-lint-common, ros-rolling-ros-environment, ros-rolling-rosidl-generator-c, ros-rolling-rosidl-pycommon, build-essential, fakeroot, dumb-init
+dpkg-deb: warning: root directory /<<RESOLVERDIR>>/sbuild-build-depends-main-dummy has unusual owner or group 998:999
+dpkg-deb: hint: you might need to pass --root-owner-group, see <https://wiki.debian.org/Teams/Dpkg/RootlessBuilds> for further details
+dpkg-deb: warning: ignoring 1 warning about the control file(s)
+dpkg-deb: building package 'sbuild-build-depends-main-dummy' in '/<<RESOLVERDIR>>/apt_archive/sbuild-build-depends-main-dummy.deb'.
+Ign:1 copy:/<<RESOLVERDIR>>/apt_archive ./ InRelease
+Get:2 copy:/<<RESOLVERDIR>>/apt_archive ./ Release [609 B]
+Ign:3 copy:/<<RESOLVERDIR>>/apt_archive ./ Release.gpg
+Get:4 copy:/<<RESOLVERDIR>>/apt_archive ./ Sources [886 B]
+Get:5 copy:/<<RESOLVERDIR>>/apt_archive ./ Packages [863 B]
+Fetched 2358 B in 0s (0 B/s)
+Reading package lists...
+Ign:1 file:/<<BUILDDIR>>resolver-PNm5AB/apt_archive ./ InRelease
+Get:2 file:/<<BUILDDIR>>resolver-PNm5AB/apt_archive ./ Release [597 B]
+Get:2 file:/<<BUILDDIR>>resolver-PNm5AB/apt_archive ./ Release [597 B]
+Ign:3 file:/<<BUILDDIR>>resolver-PNm5AB/apt_archive ./ Release.gpg
+Reading package lists...
+Hit:1 http://packages.ros.org/ros2-testing/ubuntu resolute InRelease
+Reading package lists...
+Reading package lists...
+
+Install main build dependencies (apt-based resolver)
+----------------------------------------------------
+
+Installing build dependencies
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Solving dependencies...
+The following additional packages will be installed:
+  autoconf automake autopoint autotools-dev bsdextrautils cmake cmake-data
+  cppcheck debhelper debugedit dh-autoreconf dh-strip-nondeterminism
+  docutils-common dumb-init dwz fakeroot file gettext gettext-base googletest
+  groff-base intltool-debian libarchive-zip-perl libarchive13t64 libbrotli1
+  libcom-err2 libcurl4t64 libdebhelper-perl libdw1t64 libelf1t64 libexpat1
+  libexpat1-dev libfakeroot libffi8 libfile-stripnondeterminism-perl
+  libgnutls30t64 libgssapi-krb5-2 libgtest-dev libhogweed6t64 libidn2-0
+  libjs-sphinxdoc libjsoncpp26 libk5crypto3 libkeyutils1 libkrb5-3
+  libkrb5support0 libldap-common libldap2 libmagic-mgc libmagic1t64
+  libncursesw6 libnettle8t64 libnghttp2-14 libp11-kit0 libpipeline1 libproc2-0
+  libpsl5t64 libpython3-dev libpython3-stdlib libpython3.14 libpython3.14-dev
+  libpython3.14-minimal libpython3.14-stdlib libreadline8t64 librhash1
+  librtmp1 libsasl2-2 libsasl2-modules-db libsqlite3-0 libssh2-1t64 libtasn1-6
+  libtinyxml2-11 libtool libuchardet0 libunistring5 libuv1t64 libxml2-16
+  libxml2-utils m4 man-db media-types netbase po-debconf procps pydocstyle
+  python3 python3-argcomplete python3-autocommand python3-catkin-pkg-modules
+  python3-dateutil python3-dev python3-docutils python3-empy python3-flake8
+  python3-flake8-blind-except python3-flake8-builtins
+  python3-flake8-class-newline python3-flake8-comprehensions
+  python3-flake8-deprecated python3-flake8-import-order python3-flake8-quotes
+  python3-inflect python3-jaraco.context python3-jaraco.functools
+  python3-jaraco.text python3-lark python3-mccabe python3-minimal
+  python3-more-itertools python3-packaging python3-pkg-resources
+  python3-pycodestyle python3-pydocstyle python3-pyflakes python3-pygments
+  python3-pyparsing python3-roman-numerals python3-setuptools
+  python3-snowballstemmer python3-typeguard python3-typing-extensions
+  python3-zipp python3.14 python3.14-dev python3.14-minimal readline-common
+  ros-rolling-ament-cmake ros-rolling-ament-cmake-copyright
+  ros-rolling-ament-cmake-core ros-rolling-ament-cmake-cppcheck
+  ros-rolling-ament-cmake-cpplint ros-rolling-ament-cmake-export-definitions
+  ros-rolling-ament-cmake-export-dependencies
+  ros-rolling-ament-cmake-export-include-directories
+  ros-rolling-ament-cmake-export-libraries
+  ros-rolling-ament-cmake-export-link-flags
+  ros-rolling-ament-cmake-export-targets ros-rolling-ament-cmake-flake8
+  ros-rolling-ament-cmake-gen-version-h ros-rolling-ament-cmake-gtest
+  ros-rolling-ament-cmake-include-directories
+  ros-rolling-ament-cmake-libraries ros-rolling-ament-cmake-lint-cmake
+  ros-rolling-ament-cmake-pep257 ros-rolling-ament-cmake-python
+  ros-rolling-ament-cmake-ros-core ros-rolling-ament-cmake-target-dependencies
+  ros-rolling-ament-cmake-test ros-rolling-ament-cmake-uncrustify
+  ros-rolling-ament-cmake-version ros-rolling-ament-cmake-xmllint
+  ros-rolling-ament-copyright ros-rolling-ament-cppcheck
+  ros-rolling-ament-cpplint ros-rolling-ament-flake8
+  ros-rolling-ament-index-python ros-rolling-ament-lint
+  ros-rolling-ament-lint-auto ros-rolling-ament-lint-cmake
+  ros-rolling-ament-lint-common ros-rolling-ament-package
+  ros-rolling-ament-pep257 ros-rolling-ament-uncrustify
+  ros-rolling-ament-xmllint ros-rolling-rcutils ros-rolling-ros-environment
+  ros-rolling-ros-workspace ros-rolling-rosidl-adapter ros-rolling-rosidl-cli
+  ros-rolling-rosidl-cmake ros-rolling-rosidl-generator-c
+  ros-rolling-rosidl-generator-type-description ros-rolling-rosidl-parser
+  ros-rolling-rosidl-pycommon ros-rolling-rosidl-typesupport-interface
+  ros-rolling-uncrustify-vendor sensible-utils sgml-base tzdata uncrustify
+  xml-core zlib1g-dev
+Suggested packages:
+  autoconf-archive gnu-standards autoconf-doc cmake-doc cmake-format
+  elpa-cmake-mode ninja-build cppcheck-gui clang clang-tidy dh-make
+  gettext-doc libasprintf-dev libgettextpo-dev gnulib-l10n groff lrzip
+  gnutls-bin krb5-doc krb5-user libtool-doc gfortran | fortran95-compiler
+  m4-doc apparmor less www-browser libmail-box-perl python3-doc python3-tk
+  python3-venv docutils-doc fonts-linuxlibertine | ttf-linux-libertine
+  texlive-lang-french texlive-latex-base texlive-latex-recommended
+  python-lark-doc python3-atomicwrites python3-regex python-pygments-doc
+  ttf-bitstream-vera python-pyparsing-doc python-setuptools-doc
+  python3-stemmer python3.14-venv python3.14-doc binfmt-support readline-doc
+  sgml-base-doc
+Recommended packages:
+  curl | wget | lynx libarchive-cpio-perl krb5-locales libgpm2 publicsuffix
+  libsasl2-modules libltdl-dev libmail-sendmail-perl psmisc
+  linux-sysctl-defaults libpaper-utils python3-pil pyflakes3
+The following NEW packages will be installed:
+  autoconf automake autopoint autotools-dev bsdextrautils cmake cmake-data
+  cppcheck debhelper debugedit dh-autoreconf dh-strip-nondeterminism
+  docutils-common dumb-init dwz fakeroot file gettext gettext-base googletest
+  groff-base intltool-debian libarchive-zip-perl libarchive13t64 libbrotli1
+  libcom-err2 libcurl4t64 libdebhelper-perl libdw1t64 libelf1t64 libexpat1
+  libexpat1-dev libfakeroot libffi8 libfile-stripnondeterminism-perl
+  libgnutls30t64 libgssapi-krb5-2 libgtest-dev libhogweed6t64 libidn2-0
+  libjs-sphinxdoc libjsoncpp26 libk5crypto3 libkeyutils1 libkrb5-3
+  libkrb5support0 libldap-common libldap2 libmagic-mgc libmagic1t64
+  libncursesw6 libnettle8t64 libnghttp2-14 libp11-kit0 libpipeline1 libproc2-0
+  libpsl5t64 libpython3-dev libpython3-stdlib libpython3.14 libpython3.14-dev
+  libpython3.14-minimal libpython3.14-stdlib libreadline8t64 librhash1
+  librtmp1 libsasl2-2 libsasl2-modules-db libsqlite3-0 libssh2-1t64 libtasn1-6
+  libtinyxml2-11 libtool libuchardet0 libunistring5 libuv1t64 libxml2-16
+  libxml2-utils m4 man-db media-types netbase po-debconf procps pydocstyle
+  python3 python3-argcomplete python3-autocommand python3-catkin-pkg-modules
+  python3-dateutil python3-dev python3-docutils python3-empy python3-flake8
+  python3-flake8-blind-except python3-flake8-builtins
+  python3-flake8-class-newline python3-flake8-comprehensions
+  python3-flake8-deprecated python3-flake8-import-order python3-flake8-quotes
+  python3-inflect python3-jaraco.context python3-jaraco.functools
+  python3-jaraco.text python3-lark python3-mccabe python3-minimal
+  python3-more-itertools python3-packaging python3-pkg-resources
+  python3-pycodestyle python3-pydocstyle python3-pyflakes python3-pygments
+  python3-pyparsing python3-roman-numerals python3-setuptools
+  python3-snowballstemmer python3-typeguard python3-typing-extensions
+  python3-zipp python3.14 python3.14-dev python3.14-minimal readline-common
+  ros-rolling-ament-cmake ros-rolling-ament-cmake-copyright
+  ros-rolling-ament-cmake-core ros-rolling-ament-cmake-cppcheck
+  ros-rolling-ament-cmake-cpplint ros-rolling-ament-cmake-export-definitions
+  ros-rolling-ament-cmake-export-dependencies
+  ros-rolling-ament-cmake-export-include-directories
+  ros-rolling-ament-cmake-export-libraries
+  ros-rolling-ament-cmake-export-link-flags
+  ros-rolling-ament-cmake-export-targets ros-rolling-ament-cmake-flake8
+  ros-rolling-ament-cmake-gen-version-h ros-rolling-ament-cmake-gtest
+  ros-rolling-ament-cmake-include-directories
+  ros-rolling-ament-cmake-libraries ros-rolling-ament-cmake-lint-cmake
+  ros-rolling-ament-cmake-pep257 ros-rolling-ament-cmake-python
+  ros-rolling-ament-cmake-ros-core ros-rolling-ament-cmake-target-dependencies
+  ros-rolling-ament-cmake-test ros-rolling-ament-cmake-uncrustify
+  ros-rolling-ament-cmake-version ros-rolling-ament-cmake-xmllint
+  ros-rolling-ament-copyright ros-rolling-ament-cppcheck
+  ros-rolling-ament-cpplint ros-rolling-ament-flake8
+  ros-rolling-ament-index-python ros-rolling-ament-lint
+  ros-rolling-ament-lint-auto ros-rolling-ament-lint-cmake
+  ros-rolling-ament-lint-common ros-rolling-ament-package
+  ros-rolling-ament-pep257 ros-rolling-ament-uncrustify
+  ros-rolling-ament-xmllint ros-rolling-rcutils ros-rolling-ros-environment
+  ros-rolling-ros-workspace ros-rolling-rosidl-adapter ros-rolling-rosidl-cli
+  ros-rolling-rosidl-cmake ros-rolling-rosidl-generator-c
+  ros-rolling-rosidl-generator-type-description ros-rolling-rosidl-parser
+  ros-rolling-rosidl-pycommon ros-rolling-rosidl-typesupport-interface
+  ros-rolling-uncrustify-vendor sbuild-build-depends-main-dummy sensible-utils
+  sgml-base tzdata uncrustify xml-core zlib1g-dev
+0 upgraded, 183 newly installed, 0 to remove and 0 not upgraded.
+Need to get 57.8 MB of archives.
+After this operation, 222 MB of additional disk space will be used.
+Get:1 copy:/<<RESOLVERDIR>>/apt_archive ./ sbuild-build-depends-main-dummy 0.invalid.0 [734 B]
+Get:2 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 python3-catkin-pkg-modules all 1.1.0-2 [43.3 kB]
+Get:3 http://archive.ubuntu.com/ubuntu resolute/main amd64 libexpat1 amd64 2.7.4-1 [94.0 kB]
+Get:4 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-package amd64 0.19.1-1resolute.20260714.151915 [28.1 kB]
+Get:5 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-core amd64 2.9.1-1resolute.20260714.152200 [25.3 kB]
+Get:6 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ros-workspace amd64 1.0.3-8resolute.20260714.165745 [16.7 kB]
+Get:7 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-export-definitions amd64 2.9.1-1resolute.20260714.173933 [7176 B]
+Get:8 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-libraries amd64 2.9.1-1resolute.20260714.174033 [6896 B]
+Get:9 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-export-dependencies amd64 2.9.1-1resolute.20260714.174417 [8018 B]
+Get:10 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-export-include-directories amd64 2.9.1-1resolute.20260714.174004 [7508 B]
+Get:11 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-export-libraries amd64 2.9.1-1resolute.20260714.174014 [9080 B]
+Get:12 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libpython3.14-minimal amd64 3.14.4-1ubuntu0.1 [916 kB]
+Get:13 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-export-link-flags amd64 2.9.1-1resolute.20260714.174012 [7098 B]
+Get:14 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-export-targets amd64 2.9.1-1resolute.20260714.174248 [7906 B]
+Get:15 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-gen-version-h amd64 2.9.1-1resolute.20260714.174014 [8732 B]
+Get:16 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-python amd64 2.9.1-1resolute.20260714.174056 [10.2 kB]
+Get:17 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-include-directories amd64 2.9.1-1resolute.20260714.174020 [7062 B]
+Get:18 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-target-dependencies amd64 2.9.1-1resolute.20260714.174421 [7378 B]
+Get:19 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-test amd64 2.9.1-1resolute.20260714.181353 [12.9 kB]
+Get:20 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-version amd64 2.9.1-1resolute.20260714.174126 [6906 B]
+Get:21 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake amd64 2.9.1-1resolute.20260714.182819 [7108 B]
+Get:22 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-lint amd64 0.21.1-1resolute.20260714.174215 [4318 B]
+Get:23 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-copyright amd64 0.21.1-1resolute.20260714.181354 [50.0 kB]
+Get:24 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-copyright amd64 0.21.1-1resolute.20260714.182046 [7260 B]
+Get:25 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cppcheck amd64 0.21.1-1resolute.20260714.174146 [15.2 kB]
+Get:26 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-cppcheck amd64 0.21.1-1resolute.20260714.181646 [8266 B]
+Get:27 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cpplint amd64 0.21.1-1resolute.20260714.174156 [151 kB]
+Get:28 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-cpplint amd64 0.21.1-1resolute.20260714.181728 [7894 B]
+Get:29 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-flake8 amd64 0.21.1-1resolute.20260714.174445 [16.6 kB]
+Get:30 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-flake8 amd64 0.21.1-1resolute.20260714.181743 [7572 B]
+Get:31 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-gtest amd64 2.9.1-1resolute.20260714.181807 [8558 B]
+Get:32 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-lint-cmake amd64 0.21.1-1resolute.20260714.174221 [24.8 kB]
+Get:33 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-lint-cmake amd64 0.21.1-1resolute.20260714.181806 [7214 B]
+Get:34 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-pep257 amd64 0.21.1-1resolute.20260714.174524 [14.0 kB]
+Get:35 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-pep257 amd64 0.21.1-1resolute.20260714.181920 [7200 B]
+Get:36 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-ros-core amd64 0.16.0-1resolute.20260714.174707 [9108 B]
+Get:37 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-uncrustify-vendor amd64 3.3.0-1resolute.20260714.185441 [6058 B]
+Get:38 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-uncrustify amd64 0.21.1-1resolute.20260714.185840 [50.4 kB]
+Get:39 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-uncrustify amd64 0.21.1-1resolute.20260714.190017 [8060 B]
+Get:40 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-xmllint amd64 0.21.1-1resolute.20260714.174552 [14.8 kB]
+Get:41 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-cmake-xmllint amd64 0.21.1-1resolute.20260714.181936 [7272 B]
+Get:42 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-index-python amd64 1.14.2-1resolute.20260717.153224 [14.8 kB]
+Get:43 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-lint-auto amd64 0.21.1-1resolute.20260714.182025 [7084 B]
+Get:44 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ament-lint-common amd64 0.21.1-1resolute.20260714.190216 [7132 B]
+Get:45 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rcutils amd64 7.2.1-1resolute.20260714.184736 [90.1 kB]
+Get:46 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 python3.14-minimal amd64 3.14.4-1ubuntu0.1 [2580 kB]
+Get:47 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-ros-environment amd64 5.0.0-1resolute.20260714.174124 [6296 B]
+Get:48 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-cli amd64 5.3.1-2resolute.20260714.175512 [31.5 kB]
+Get:49 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-adapter amd64 5.3.1-2resolute.20260714.190704 [20.2 kB]
+Get:50 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-parser amd64 5.3.1-2resolute.20260714.190853 [21.0 kB]
+Get:51 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-pycommon amd64 5.3.1-2resolute.20260714.191118 [14.9 kB]
+Get:52 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-cmake amd64 5.3.1-2resolute.20260714.192020 [15.5 kB]
+Get:53 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-generator-type-description amd64 5.3.1-2resolute.20260717.153625 [15.5 kB]
+Get:54 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-typesupport-interface amd64 5.3.1-2resolute.20260714.184856 [8722 B]
+Get:55 http://packages.ros.org/ros2-testing/ubuntu resolute/main amd64 ros-rolling-rosidl-generator-c amd64 5.3.1-2resolute.20260717.154036 [24.4 kB]
+Get:56 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-minimal amd64 3.14.3-0ubuntu2 [25.8 kB]
+Get:57 http://archive.ubuntu.com/ubuntu resolute/main amd64 media-types all 14.0.0build1 [31.4 kB]
+Get:58 http://archive.ubuntu.com/ubuntu resolute/main amd64 netbase all 6.5build1 [13.0 kB]
+Get:59 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 tzdata all 2026c-0ubuntu0.26.04.1 [193 kB]
+Get:60 http://archive.ubuntu.com/ubuntu resolute/main amd64 libffi8 amd64 3.5.2-4 [26.3 kB]
+Get:61 http://archive.ubuntu.com/ubuntu resolute/main amd64 libncursesw6 amd64 6.6+20251231-1 [150 kB]
+Get:62 http://archive.ubuntu.com/ubuntu resolute/main amd64 readline-common all 8.3-4 [61.5 kB]
+Get:63 http://archive.ubuntu.com/ubuntu resolute/main amd64 libreadline8t64 amd64 8.3-4 [164 kB]
+Get:64 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libsqlite3-0 amd64 3.46.1-9ubuntu0.2 [719 kB]
+Get:65 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libpython3.14-stdlib amd64 3.14.4-1ubuntu0.1 [2414 kB]
+Get:66 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 python3.14 amd64 3.14.4-1ubuntu0.1 [830 kB]
+Get:67 http://archive.ubuntu.com/ubuntu resolute/main amd64 libpython3-stdlib amd64 3.14.3-0ubuntu2 [8476 B]
+Get:68 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3 amd64 3.14.3-0ubuntu2 [22.9 kB]
+Get:69 http://archive.ubuntu.com/ubuntu resolute/main amd64 libcom-err2 amd64 1.47.2-3ubuntu4 [27.8 kB]
+Get:70 http://archive.ubuntu.com/ubuntu resolute/main amd64 libproc2-0 amd64 2:4.0.4-9ubuntu1 [59.4 kB]
+Get:71 http://archive.ubuntu.com/ubuntu resolute/main amd64 procps amd64 2:4.0.4-9ubuntu1 [710 kB]
+Get:72 http://archive.ubuntu.com/ubuntu resolute/main amd64 sensible-utils all 0.0.26build1 [27.1 kB]
+Get:73 http://archive.ubuntu.com/ubuntu resolute/main amd64 libelf1t64 amd64 0.194-4 [57.1 kB]
+Get:74 http://archive.ubuntu.com/ubuntu resolute/main amd64 libnettle8t64 amd64 3.10.2-1 [185 kB]
+Get:75 http://archive.ubuntu.com/ubuntu resolute/main amd64 libhogweed6t64 amd64 3.10.2-1 [201 kB]
+Get:76 http://archive.ubuntu.com/ubuntu resolute/main amd64 libunistring5 amd64 1.3-2build1 [610 kB]
+Get:77 http://archive.ubuntu.com/ubuntu resolute/main amd64 libidn2-0 amd64 2.3.8-4build1 [67.6 kB]
+Get:78 http://archive.ubuntu.com/ubuntu resolute/main amd64 libp11-kit0 amd64 0.26.2-2 [313 kB]
+Get:79 http://archive.ubuntu.com/ubuntu resolute/main amd64 libtasn1-6 amd64 4.21.0-2 [45.3 kB]
+Get:80 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libgnutls30t64 amd64 3.8.12-2ubuntu1.1 [1029 kB]
+Get:81 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libkrb5support0 amd64 1.22.1-2ubuntu4.1 [33.5 kB]
+Get:82 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libk5crypto3 amd64 1.22.1-2ubuntu4.1 [82.0 kB]
+Get:83 http://archive.ubuntu.com/ubuntu resolute/main amd64 libkeyutils1 amd64 1.6.3-6ubuntu3 [10.6 kB]
+Get:84 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libkrb5-3 amd64 1.22.1-2ubuntu4.1 [361 kB]
+Get:85 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libgssapi-krb5-2 amd64 1.22.1-2ubuntu4.1 [147 kB]
+Get:86 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libxml2-16 amd64 2.15.2+dfsg-0.1ubuntu0.1 [606 kB]
+Get:87 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-pygments all 2.19.2+dfsg-1 [843 kB]
+Get:88 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 bsdextrautils amd64 2.41.3-3ubuntu2.2 [86.7 kB]
+Get:89 http://archive.ubuntu.com/ubuntu resolute/main amd64 libmagic-mgc amd64 1:5.46-5build2 [337 kB]
+Get:90 http://archive.ubuntu.com/ubuntu resolute/main amd64 libmagic1t64 amd64 1:5.46-5build2 [90.8 kB]
+Get:91 http://archive.ubuntu.com/ubuntu resolute/main amd64 file amd64 1:5.46-5build2 [22.0 kB]
+Get:92 http://archive.ubuntu.com/ubuntu resolute/main amd64 gettext-base amd64 0.23.2-1 [42.3 kB]
+Get:93 http://archive.ubuntu.com/ubuntu resolute/main amd64 libuchardet0 amd64 0.0.8-2 [75.8 kB]
+Get:94 http://archive.ubuntu.com/ubuntu resolute/main amd64 groff-base amd64 1.23.0-10 [1023 kB]
+Get:95 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libnghttp2-14 amd64 1.68.0-2ubuntu0.2 [71.0 kB]
+Get:96 http://archive.ubuntu.com/ubuntu resolute/main amd64 libpipeline1 amd64 1.5.8-2 [31.4 kB]
+Get:97 http://archive.ubuntu.com/ubuntu resolute/main amd64 libpsl5t64 amd64 0.21.2-1.1build2 [59.5 kB]
+Get:98 http://archive.ubuntu.com/ubuntu resolute/main amd64 libuv1t64 amd64 1.51.0-2ubuntu1 [103 kB]
+Get:99 http://archive.ubuntu.com/ubuntu resolute/main amd64 man-db amd64 2.13.1-1build1 [1392 kB]
+Get:100 http://archive.ubuntu.com/ubuntu resolute/main amd64 m4 amd64 1.4.21-1 [219 kB]
+Get:101 http://archive.ubuntu.com/ubuntu resolute/main amd64 autoconf all 2.72-3.1ubuntu2 [384 kB]
+Get:102 http://archive.ubuntu.com/ubuntu resolute/main amd64 autotools-dev all 20240727.1build1 [43.4 kB]
+Get:103 http://archive.ubuntu.com/ubuntu resolute/main amd64 automake all 1:1.18.1-3build1 [582 kB]
+Get:104 http://archive.ubuntu.com/ubuntu resolute/main amd64 autopoint all 0.23.2-1 [620 kB]
+Get:105 http://archive.ubuntu.com/ubuntu resolute/main amd64 cmake-data all 4.2.3-2ubuntu2 [2581 kB]
+Get:106 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libarchive13t64 amd64 3.8.5-1ubuntu2.2 [397 kB]
+Get:107 http://archive.ubuntu.com/ubuntu resolute/main amd64 libbrotli1 amd64 1.2.0-3build1 [343 kB]
+Get:108 http://archive.ubuntu.com/ubuntu resolute/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-9ubuntu3 [21.1 kB]
+Get:109 http://archive.ubuntu.com/ubuntu resolute/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-9ubuntu3 [54.0 kB]
+Get:110 http://archive.ubuntu.com/ubuntu resolute/main amd64 libldap-common all 2.6.10+dfsg-1ubuntu5 [36.0 kB]
+Get:111 http://archive.ubuntu.com/ubuntu resolute/main amd64 libldap2 amd64 2.6.10+dfsg-1ubuntu5 [204 kB]
+Get:112 http://archive.ubuntu.com/ubuntu resolute/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-3 [59.0 kB]
+Get:113 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libssh2-1t64 amd64 1.11.1-1ubuntu0.26.04.3 [138 kB]
+Get:114 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libcurl4t64 amd64 8.18.0-1ubuntu2.4 [427 kB]
+Get:115 http://archive.ubuntu.com/ubuntu resolute/main amd64 libjsoncpp26 amd64 1.9.6-5 [84.0 kB]
+Get:116 http://archive.ubuntu.com/ubuntu resolute/main amd64 librhash1 amd64 1.4.6-1.1 [133 kB]
+Get:117 http://archive.ubuntu.com/ubuntu resolute/main amd64 cmake amd64 4.2.3-2ubuntu2 [13.7 MB]
+Get:118 http://archive.ubuntu.com/ubuntu resolute/universe amd64 libtinyxml2-11 amd64 11.0.0+dfsg-1build1 [33.5 kB]
+Get:119 http://archive.ubuntu.com/ubuntu resolute/universe amd64 cppcheck amd64 2.19.0-3 [2353 kB]
+Get:120 http://archive.ubuntu.com/ubuntu resolute/main amd64 libdebhelper-perl all 13.31ubuntu1 [78.8 kB]
+Get:121 http://archive.ubuntu.com/ubuntu resolute/main amd64 libtool all 2.5.4-9 [169 kB]
+Get:122 http://archive.ubuntu.com/ubuntu resolute/main amd64 dh-autoreconf all 21+nmu1 [11.9 kB]
+Get:123 http://archive.ubuntu.com/ubuntu resolute/main amd64 libarchive-zip-perl all 1.68-1 [90.2 kB]
+Get:124 http://archive.ubuntu.com/ubuntu resolute/main amd64 libfile-stripnondeterminism-perl all 1.15.0-1build1 [20.6 kB]
+Get:125 http://archive.ubuntu.com/ubuntu resolute/main amd64 dh-strip-nondeterminism all 1.15.0-1build1 [5110 B]
+Get:126 http://archive.ubuntu.com/ubuntu resolute/main amd64 libdw1t64 amd64 0.194-4 [285 kB]
+Get:127 http://archive.ubuntu.com/ubuntu resolute/main amd64 debugedit amd64 1:5.3-4 [52.9 kB]
+Get:128 http://archive.ubuntu.com/ubuntu resolute/main amd64 dwz amd64 0.16-4 [112 kB]
+Get:129 http://archive.ubuntu.com/ubuntu resolute/main amd64 gettext amd64 0.23.2-1 [1019 kB]
+Get:130 http://archive.ubuntu.com/ubuntu resolute/main amd64 intltool-debian all 0.35.0+20060710.6build1 [24.1 kB]
+Get:131 http://archive.ubuntu.com/ubuntu resolute/main amd64 po-debconf all 1.0.22 [215 kB]
+Get:132 http://archive.ubuntu.com/ubuntu resolute/main amd64 debhelper all 13.31ubuntu1 [925 kB]
+Get:133 http://archive.ubuntu.com/ubuntu resolute/main amd64 sgml-base all 1.31+nmu1build1 [11.2 kB]
+Get:134 http://archive.ubuntu.com/ubuntu resolute/main amd64 xml-core all 0.19build1 [20.3 kB]
+Get:135 http://archive.ubuntu.com/ubuntu resolute/main amd64 docutils-common all 0.22.4+dfsg-1 [130 kB]
+Get:136 http://archive.ubuntu.com/ubuntu resolute/main amd64 libfakeroot amd64 1.37.2-1 [34.0 kB]
+Get:137 http://archive.ubuntu.com/ubuntu resolute/main amd64 fakeroot amd64 1.37.2-1 [68.3 kB]
+Get:138 http://archive.ubuntu.com/ubuntu resolute/universe amd64 googletest all 1.17.0-1build1 [532 kB]
+Get:139 http://archive.ubuntu.com/ubuntu resolute/main amd64 libexpat1-dev amd64 2.7.4-1 [145 kB]
+Get:140 http://archive.ubuntu.com/ubuntu resolute/universe amd64 libgtest-dev amd64 1.17.0-1build1 [279 kB]
+Get:141 http://archive.ubuntu.com/ubuntu resolute/main amd64 libjs-sphinxdoc all 8.2.3-12 [28.4 kB]
+Get:142 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libpython3.14 amd64 3.14.4-1ubuntu0.1 [2579 kB]
+Get:143 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 zlib1g-dev amd64 1:1.3.dfsg+really1.3.1-1ubuntu3.1 [895 kB]
+Get:144 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libpython3.14-dev amd64 3.14.4-1ubuntu0.1 [5987 kB]
+Get:145 http://archive.ubuntu.com/ubuntu resolute/main amd64 libpython3-dev amd64 3.14.3-0ubuntu2 [8736 B]
+Get:146 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 libxml2-utils amd64 2.15.2+dfsg-0.1ubuntu0.1 [43.0 kB]
+Get:147 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-snowballstemmer all 3.0.1-1 [65.9 kB]
+Get:148 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-pydocstyle all 6.3.0-3 [35.3 kB]
+Get:149 http://archive.ubuntu.com/ubuntu resolute/universe amd64 pydocstyle all 6.3.0-3 [8692 B]
+Get:150 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-argcomplete all 3.6.3-1 [36.1 kB]
+Get:151 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-autocommand all 2.2.2-4 [13.9 kB]
+Get:152 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-dateutil all 2.9.0-4build1 [80.4 kB]
+Get:153 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-roman-numerals all 4.1.0-1 [8660 B]
+Get:154 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-docutils all 0.22.4+dfsg-1 [439 kB]
+Get:155 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-pyparsing all 3.3.2-2 [98.6 kB]
+Get:156 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-packaging all 26.0-1 [58.7 kB]
+Get:157 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 python3.14-dev amd64 3.14.4-1ubuntu0.1 [510 kB]
+Get:158 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-dev amd64 3.14.3-0ubuntu2 [26.6 kB]
+Get:159 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-empy all 4.2.1-1 [166 kB]
+Get:160 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-mccabe all 0.7.0-1build1 [8926 B]
+Get:161 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-pycodestyle all 2.14.0-1 [30.6 kB]
+Get:162 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-pyflakes all 3.4.0-1 [53.8 kB]
+Get:163 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8 all 7.3.0-1 [44.4 kB]
+Get:164 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-blind-except all 0.2.1-1build1 [5174 B]
+Get:165 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-builtins all 3.1.0-1 [13.3 kB]
+Get:166 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-class-newline all 1.6.0-6build1 [5310 B]
+Get:167 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-comprehensions all 3.17.0-1 [8908 B]
+Get:168 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-deprecated all 2.3.0-1 [11.6 kB]
+Get:169 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-more-itertools all 10.8.0-1build1 [63.7 kB]
+Get:170 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-typing-extensions all 4.15.0-2 [84.2 kB]
+Get:171 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-typeguard all 4.4.4-2 [28.9 kB]
+Get:172 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-inflect all 7.5.0-1build1 [34.0 kB]
+Get:173 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-jaraco.context all 6.0.1-2 [8198 B]
+Get:174 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-jaraco.functools all 4.1.0-1build1 [11.8 kB]
+Get:175 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-pkg-resources all 78.1.1-0.1build1 [144 kB]
+Get:176 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-jaraco.text all 4.0.0-1build1 [11.6 kB]
+Get:177 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-zipp all 3.23.0-1build1 [10.4 kB]
+Get:178 http://archive.ubuntu.com/ubuntu resolute/main amd64 python3-setuptools all 78.1.1-0.1build1 [661 kB]
+Get:179 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-import-order all 0.19.2-1 [16.2 kB]
+Get:180 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-flake8-quotes all 3.4.0-4build1 [10.0 kB]
+Get:181 http://archive.ubuntu.com/ubuntu resolute/universe amd64 python3-lark all 1.3.1-1 [134 kB]
+Get:182 http://archive.ubuntu.com/ubuntu resolute/universe amd64 uncrustify amd64 0.78.1+dfsg1-1build1 [655 kB]
+Get:183 http://archive.ubuntu.com/ubuntu resolute/universe amd64 dumb-init amd64 1.2.5-3build1 [13.7 kB]
+Preconfiguring packages ...
+Fetched 57.8 MB in 26s (2215 kB/s)
+Selecting previously unselected package libexpat1:amd64.
+(Reading database ... 13615 files and directories currently installed.)
+Preparing to unpack .../libexpat1_2.7.4-1_amd64.deb ...
+Unpacking libexpat1:amd64 (2.7.4-1) ...
+Selecting previously unselected package libpython3.14-minimal:amd64.
+Preparing to unpack .../libpython3.14-minimal_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking libpython3.14-minimal:amd64 (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package python3.14-minimal.
+Preparing to unpack .../python3.14-minimal_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking python3.14-minimal (3.14.4-1ubuntu0.1) ...
+Setting up libpython3.14-minimal:amd64 (3.14.4-1ubuntu0.1) ...
+Setting up libexpat1:amd64 (2.7.4-1) ...
+Setting up python3.14-minimal (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package python3-minimal.
+(Reading database ... 13969 files and directories currently installed.)
+Preparing to unpack .../00-python3-minimal_3.14.3-0ubuntu2_amd64.deb ...
+Unpacking python3-minimal (3.14.3-0ubuntu2) ...
+Selecting previously unselected package media-types.
+Preparing to unpack .../01-media-types_14.0.0build1_all.deb ...
+Unpacking media-types (14.0.0build1) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../02-netbase_6.5build1_all.deb ...
+Unpacking netbase (6.5build1) ...
+Selecting previously unselected package tzdata.
+Preparing to unpack .../03-tzdata_2026c-0ubuntu0.26.04.1_all.deb ...
+Unpacking tzdata (2026c-0ubuntu0.26.04.1) ...
+Selecting previously unselected package libffi8:amd64.
+Preparing to unpack .../04-libffi8_3.5.2-4_amd64.deb ...
+Unpacking libffi8:amd64 (3.5.2-4) ...
+Selecting previously unselected package libncursesw6:amd64.
+Preparing to unpack .../05-libncursesw6_6.6+20251231-1_amd64.deb ...
+Unpacking libncursesw6:amd64 (6.6+20251231-1) ...
+Selecting previously unselected package readline-common.
+Preparing to unpack .../06-readline-common_8.3-4_all.deb ...
+Unpacking readline-common (8.3-4) ...
+Selecting previously unselected package libreadline8t64:amd64.
+Preparing to unpack .../07-libreadline8t64_8.3-4_amd64.deb ...
+Adding 'diversion of /lib/x86_64-linux-gnu/libhistory.so.8 to /lib/x86_64-linux-gnu/libhistory.so.8.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/x86_64-linux-gnu/libhistory.so.8.2 to /lib/x86_64-linux-gnu/libhistory.so.8.2.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/x86_64-linux-gnu/libreadline.so.8 to /lib/x86_64-linux-gnu/libreadline.so.8.usr-is-merged by libreadline8t64'
+Adding 'diversion of /lib/x86_64-linux-gnu/libreadline.so.8.2 to /lib/x86_64-linux-gnu/libreadline.so.8.2.usr-is-merged by libreadline8t64'
+Unpacking libreadline8t64:amd64 (8.3-4) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../08-libsqlite3-0_3.46.1-9ubuntu0.2_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.46.1-9ubuntu0.2) ...
+Selecting previously unselected package libpython3.14-stdlib:amd64.
+Preparing to unpack .../09-libpython3.14-stdlib_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking libpython3.14-stdlib:amd64 (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package python3.14.
+Preparing to unpack .../10-python3.14_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking python3.14 (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package libpython3-stdlib:amd64.
+Preparing to unpack .../11-libpython3-stdlib_3.14.3-0ubuntu2_amd64.deb ...
+Unpacking libpython3-stdlib:amd64 (3.14.3-0ubuntu2) ...
+Setting up python3-minimal (3.14.3-0ubuntu2) ...
+Selecting previously unselected package python3.
+(Reading database ... 15009 files and directories currently installed.)
+Preparing to unpack .../000-python3_3.14.3-0ubuntu2_amd64.deb ...
+Unpacking python3 (3.14.3-0ubuntu2) ...
+Selecting previously unselected package libcom-err2:amd64.
+Preparing to unpack .../001-libcom-err2_1.47.2-3ubuntu4_amd64.deb ...
+Unpacking libcom-err2:amd64 (1.47.2-3ubuntu4) ...
+Selecting previously unselected package libproc2-0:amd64.
+Preparing to unpack .../002-libproc2-0_2%3a4.0.4-9ubuntu1_amd64.deb ...
+Unpacking libproc2-0:amd64 (2:4.0.4-9ubuntu1) ...
+Selecting previously unselected package procps.
+Preparing to unpack .../003-procps_2%3a4.0.4-9ubuntu1_amd64.deb ...
+Unpacking procps (2:4.0.4-9ubuntu1) ...
+Selecting previously unselected package sensible-utils.
+Preparing to unpack .../004-sensible-utils_0.0.26build1_all.deb ...
+Unpacking sensible-utils (0.0.26build1) ...
+Selecting previously unselected package libelf1t64:amd64.
+Preparing to unpack .../005-libelf1t64_0.194-4_amd64.deb ...
+Unpacking libelf1t64:amd64 (0.194-4) ...
+Selecting previously unselected package libnettle8t64:amd64.
+Preparing to unpack .../006-libnettle8t64_3.10.2-1_amd64.deb ...
+Unpacking libnettle8t64:amd64 (3.10.2-1) ...
+Selecting previously unselected package libhogweed6t64:amd64.
+Preparing to unpack .../007-libhogweed6t64_3.10.2-1_amd64.deb ...
+Unpacking libhogweed6t64:amd64 (3.10.2-1) ...
+Selecting previously unselected package libunistring5:amd64.
+Preparing to unpack .../008-libunistring5_1.3-2build1_amd64.deb ...
+Unpacking libunistring5:amd64 (1.3-2build1) ...
+Selecting previously unselected package libidn2-0:amd64.
+Preparing to unpack .../009-libidn2-0_2.3.8-4build1_amd64.deb ...
+Unpacking libidn2-0:amd64 (2.3.8-4build1) ...
+Selecting previously unselected package libp11-kit0:amd64.
+Preparing to unpack .../010-libp11-kit0_0.26.2-2_amd64.deb ...
+Unpacking libp11-kit0:amd64 (0.26.2-2) ...
+Selecting previously unselected package libtasn1-6:amd64.
+Preparing to unpack .../011-libtasn1-6_4.21.0-2_amd64.deb ...
+Unpacking libtasn1-6:amd64 (4.21.0-2) ...
+Selecting previously unselected package libgnutls30t64:amd64.
+Preparing to unpack .../012-libgnutls30t64_3.8.12-2ubuntu1.1_amd64.deb ...
+Unpacking libgnutls30t64:amd64 (3.8.12-2ubuntu1.1) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../013-libkrb5support0_1.22.1-2ubuntu4.1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.22.1-2ubuntu4.1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../014-libk5crypto3_1.22.1-2ubuntu4.1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.22.1-2ubuntu4.1) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../015-libkeyutils1_1.6.3-6ubuntu3_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.6.3-6ubuntu3) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../016-libkrb5-3_1.22.1-2ubuntu4.1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.22.1-2ubuntu4.1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../017-libgssapi-krb5-2_1.22.1-2ubuntu4.1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.22.1-2ubuntu4.1) ...
+Selecting previously unselected package libxml2-16:amd64.
+Preparing to unpack .../018-libxml2-16_2.15.2+dfsg-0.1ubuntu0.1_amd64.deb ...
+Unpacking libxml2-16:amd64 (2.15.2+dfsg-0.1ubuntu0.1) ...
+Selecting previously unselected package python3-pygments.
+Preparing to unpack .../019-python3-pygments_2.19.2+dfsg-1_all.deb ...
+Unpacking python3-pygments (2.19.2+dfsg-1) ...
+Selecting previously unselected package bsdextrautils.
+Preparing to unpack .../020-bsdextrautils_2.41.3-3ubuntu2.2_amd64.deb ...
+Unpacking bsdextrautils (2.41.3-3ubuntu2.2) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../021-libmagic-mgc_1%3a5.46-5build2_amd64.deb ...
+Unpacking libmagic-mgc (1:5.46-5build2) ...
+Selecting previously unselected package libmagic1t64:amd64.
+Preparing to unpack .../022-libmagic1t64_1%3a5.46-5build2_amd64.deb ...
+Unpacking libmagic1t64:amd64 (1:5.46-5build2) ...
+Selecting previously unselected package file.
+Preparing to unpack .../023-file_1%3a5.46-5build2_amd64.deb ...
+Unpacking file (1:5.46-5build2) ...
+Selecting previously unselected package gettext-base.
+Preparing to unpack .../024-gettext-base_0.23.2-1_amd64.deb ...
+Unpacking gettext-base (0.23.2-1) ...
+Selecting previously unselected package libuchardet0:amd64.
+Preparing to unpack .../025-libuchardet0_0.0.8-2_amd64.deb ...
+Unpacking libuchardet0:amd64 (0.0.8-2) ...
+Selecting previously unselected package groff-base.
+Preparing to unpack .../026-groff-base_1.23.0-10_amd64.deb ...
+Unpacking groff-base (1.23.0-10) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../027-libnghttp2-14_1.68.0-2ubuntu0.2_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.68.0-2ubuntu0.2) ...
+Selecting previously unselected package libpipeline1:amd64.
+Preparing to unpack .../028-libpipeline1_1.5.8-2_amd64.deb ...
+Unpacking libpipeline1:amd64 (1.5.8-2) ...
+Selecting previously unselected package libpsl5t64:amd64.
+Preparing to unpack .../029-libpsl5t64_0.21.2-1.1build2_amd64.deb ...
+Unpacking libpsl5t64:amd64 (0.21.2-1.1build2) ...
+Selecting previously unselected package libuv1t64:amd64.
+Preparing to unpack .../030-libuv1t64_1.51.0-2ubuntu1_amd64.deb ...
+Unpacking libuv1t64:amd64 (1.51.0-2ubuntu1) ...
+Selecting previously unselected package man-db.
+Preparing to unpack .../031-man-db_2.13.1-1build1_amd64.deb ...
+Unpacking man-db (2.13.1-1build1) ...
+Selecting previously unselected package m4.
+Preparing to unpack .../032-m4_1.4.21-1_amd64.deb ...
+Unpacking m4 (1.4.21-1) ...
+Selecting previously unselected package autoconf.
+Preparing to unpack .../033-autoconf_2.72-3.1ubuntu2_all.deb ...
+Unpacking autoconf (2.72-3.1ubuntu2) ...
+Selecting previously unselected package autotools-dev.
+Preparing to unpack .../034-autotools-dev_20240727.1build1_all.deb ...
+Unpacking autotools-dev (20240727.1build1) ...
+Selecting previously unselected package automake.
+Preparing to unpack .../035-automake_1%3a1.18.1-3build1_all.deb ...
+Unpacking automake (1:1.18.1-3build1) ...
+Selecting previously unselected package autopoint.
+Preparing to unpack .../036-autopoint_0.23.2-1_all.deb ...
+Unpacking autopoint (0.23.2-1) ...
+Selecting previously unselected package cmake-data.
+Preparing to unpack .../037-cmake-data_4.2.3-2ubuntu2_all.deb ...
+Unpacking cmake-data (4.2.3-2ubuntu2) ...
+Selecting previously unselected package libarchive13t64:amd64.
+Preparing to unpack .../038-libarchive13t64_3.8.5-1ubuntu2.2_amd64.deb ...
+Unpacking libarchive13t64:amd64 (3.8.5-1ubuntu2.2) ...
+Selecting previously unselected package libbrotli1:amd64.
+Preparing to unpack .../039-libbrotli1_1.2.0-3build1_amd64.deb ...
+Unpacking libbrotli1:amd64 (1.2.0-3build1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../040-libsasl2-modules-db_2.1.28+dfsg1-9ubuntu3_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-9ubuntu3) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../041-libsasl2-2_2.1.28+dfsg1-9ubuntu3_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-9ubuntu3) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../042-libldap-common_2.6.10+dfsg-1ubuntu5_all.deb ...
+Unpacking libldap-common (2.6.10+dfsg-1ubuntu5) ...
+Selecting previously unselected package libldap2:amd64.
+Preparing to unpack .../043-libldap2_2.6.10+dfsg-1ubuntu5_amd64.deb ...
+Unpacking libldap2:amd64 (2.6.10+dfsg-1ubuntu5) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../044-librtmp1_2.4+20151223.gitfa8646d.1-3_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-3) ...
+Selecting previously unselected package libssh2-1t64:amd64.
+Preparing to unpack .../045-libssh2-1t64_1.11.1-1ubuntu0.26.04.3_amd64.deb ...
+Unpacking libssh2-1t64:amd64 (1.11.1-1ubuntu0.26.04.3) ...
+Selecting previously unselected package libcurl4t64:amd64.
+Preparing to unpack .../046-libcurl4t64_8.18.0-1ubuntu2.4_amd64.deb ...
+Unpacking libcurl4t64:amd64 (8.18.0-1ubuntu2.4) ...
+Selecting previously unselected package libjsoncpp26:amd64.
+Preparing to unpack .../047-libjsoncpp26_1.9.6-5_amd64.deb ...
+Unpacking libjsoncpp26:amd64 (1.9.6-5) ...
+Selecting previously unselected package librhash1:amd64.
+Preparing to unpack .../048-librhash1_1.4.6-1.1_amd64.deb ...
+Unpacking librhash1:amd64 (1.4.6-1.1) ...
+Selecting previously unselected package cmake.
+Preparing to unpack .../049-cmake_4.2.3-2ubuntu2_amd64.deb ...
+Unpacking cmake (4.2.3-2ubuntu2) ...
+Selecting previously unselected package libtinyxml2-11:amd64.
+Preparing to unpack .../050-libtinyxml2-11_11.0.0+dfsg-1build1_amd64.deb ...
+Unpacking libtinyxml2-11:amd64 (11.0.0+dfsg-1build1) ...
+Selecting previously unselected package cppcheck.
+Preparing to unpack .../051-cppcheck_2.19.0-3_amd64.deb ...
+Unpacking cppcheck (2.19.0-3) ...
+Selecting previously unselected package libdebhelper-perl.
+Preparing to unpack .../052-libdebhelper-perl_13.31ubuntu1_all.deb ...
+Unpacking libdebhelper-perl (13.31ubuntu1) ...
+Selecting previously unselected package libtool.
+Preparing to unpack .../053-libtool_2.5.4-9_all.deb ...
+Unpacking libtool (2.5.4-9) ...
+Selecting previously unselected package dh-autoreconf.
+Preparing to unpack .../054-dh-autoreconf_21+nmu1_all.deb ...
+Unpacking dh-autoreconf (21+nmu1) ...
+Selecting previously unselected package libarchive-zip-perl.
+Preparing to unpack .../055-libarchive-zip-perl_1.68-1_all.deb ...
+Unpacking libarchive-zip-perl (1.68-1) ...
+Selecting previously unselected package libfile-stripnondeterminism-perl.
+Preparing to unpack .../056-libfile-stripnondeterminism-perl_1.15.0-1build1_all.deb ...
+Unpacking libfile-stripnondeterminism-perl (1.15.0-1build1) ...
+Selecting previously unselected package dh-strip-nondeterminism.
+Preparing to unpack .../057-dh-strip-nondeterminism_1.15.0-1build1_all.deb ...
+Unpacking dh-strip-nondeterminism (1.15.0-1build1) ...
+Selecting previously unselected package libdw1t64:amd64.
+Preparing to unpack .../058-libdw1t64_0.194-4_amd64.deb ...
+Unpacking libdw1t64:amd64 (0.194-4) ...
+Selecting previously unselected package debugedit.
+Preparing to unpack .../059-debugedit_1%3a5.3-4_amd64.deb ...
+Unpacking debugedit (1:5.3-4) ...
+Selecting previously unselected package dwz.
+Preparing to unpack .../060-dwz_0.16-4_amd64.deb ...
+Unpacking dwz (0.16-4) ...
+Selecting previously unselected package gettext.
+Preparing to unpack .../061-gettext_0.23.2-1_amd64.deb ...
+Unpacking gettext (0.23.2-1) ...
+Selecting previously unselected package intltool-debian.
+Preparing to unpack .../062-intltool-debian_0.35.0+20060710.6build1_all.deb ...
+Unpacking intltool-debian (0.35.0+20060710.6build1) ...
+Selecting previously unselected package po-debconf.
+Preparing to unpack .../063-po-debconf_1.0.22_all.deb ...
+Unpacking po-debconf (1.0.22) ...
+Selecting previously unselected package debhelper.
+Preparing to unpack .../064-debhelper_13.31ubuntu1_all.deb ...
+Unpacking debhelper (13.31ubuntu1) ...
+Selecting previously unselected package sgml-base.
+Preparing to unpack .../065-sgml-base_1.31+nmu1build1_all.deb ...
+Unpacking sgml-base (1.31+nmu1build1) ...
+Selecting previously unselected package xml-core.
+Preparing to unpack .../066-xml-core_0.19build1_all.deb ...
+Unpacking xml-core (0.19build1) ...
+Selecting previously unselected package docutils-common.
+Preparing to unpack .../067-docutils-common_0.22.4+dfsg-1_all.deb ...
+Unpacking docutils-common (0.22.4+dfsg-1) ...
+Selecting previously unselected package libfakeroot:amd64.
+Preparing to unpack .../068-libfakeroot_1.37.2-1_amd64.deb ...
+Unpacking libfakeroot:amd64 (1.37.2-1) ...
+Selecting previously unselected package fakeroot.
+Preparing to unpack .../069-fakeroot_1.37.2-1_amd64.deb ...
+Unpacking fakeroot (1.37.2-1) ...
+Selecting previously unselected package googletest.
+Preparing to unpack .../070-googletest_1.17.0-1build1_all.deb ...
+Unpacking googletest (1.17.0-1build1) ...
+Selecting previously unselected package libexpat1-dev:amd64.
+Preparing to unpack .../071-libexpat1-dev_2.7.4-1_amd64.deb ...
+Unpacking libexpat1-dev:amd64 (2.7.4-1) ...
+Selecting previously unselected package libgtest-dev:amd64.
+Preparing to unpack .../072-libgtest-dev_1.17.0-1build1_amd64.deb ...
+Unpacking libgtest-dev:amd64 (1.17.0-1build1) ...
+Selecting previously unselected package libjs-sphinxdoc.
+Preparing to unpack .../073-libjs-sphinxdoc_8.2.3-12_all.deb ...
+Unpacking libjs-sphinxdoc (8.2.3-12) ...
+Selecting previously unselected package libpython3.14:amd64.
+Preparing to unpack .../074-libpython3.14_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking libpython3.14:amd64 (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package zlib1g-dev:amd64.
+Preparing to unpack .../075-zlib1g-dev_1%3a1.3.dfsg+really1.3.1-1ubuntu3.1_amd64.deb ...
+Unpacking zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.1) ...
+Selecting previously unselected package libpython3.14-dev:amd64.
+Preparing to unpack .../076-libpython3.14-dev_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking libpython3.14-dev:amd64 (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package libpython3-dev:amd64.
+Preparing to unpack .../077-libpython3-dev_3.14.3-0ubuntu2_amd64.deb ...
+Unpacking libpython3-dev:amd64 (3.14.3-0ubuntu2) ...
+Selecting previously unselected package libxml2-utils.
+Preparing to unpack .../078-libxml2-utils_2.15.2+dfsg-0.1ubuntu0.1_amd64.deb ...
+Unpacking libxml2-utils (2.15.2+dfsg-0.1ubuntu0.1) ...
+Selecting previously unselected package python3-snowballstemmer.
+Preparing to unpack .../079-python3-snowballstemmer_3.0.1-1_all.deb ...
+Unpacking python3-snowballstemmer (3.0.1-1) ...
+Selecting previously unselected package python3-pydocstyle.
+Preparing to unpack .../080-python3-pydocstyle_6.3.0-3_all.deb ...
+Unpacking python3-pydocstyle (6.3.0-3) ...
+Selecting previously unselected package pydocstyle.
+Preparing to unpack .../081-pydocstyle_6.3.0-3_all.deb ...
+Unpacking pydocstyle (6.3.0-3) ...
+Selecting previously unselected package python3-argcomplete.
+Preparing to unpack .../082-python3-argcomplete_3.6.3-1_all.deb ...
+Unpacking python3-argcomplete (3.6.3-1) ...
+Selecting previously unselected package python3-autocommand.
+Preparing to unpack .../083-python3-autocommand_2.2.2-4_all.deb ...
+Unpacking python3-autocommand (2.2.2-4) ...
+Selecting previously unselected package python3-dateutil.
+Preparing to unpack .../084-python3-dateutil_2.9.0-4build1_all.deb ...
+Unpacking python3-dateutil (2.9.0-4build1) ...
+Selecting previously unselected package python3-roman-numerals.
+Preparing to unpack .../085-python3-roman-numerals_4.1.0-1_all.deb ...
+Unpacking python3-roman-numerals (4.1.0-1) ...
+Selecting previously unselected package python3-docutils.
+Preparing to unpack .../086-python3-docutils_0.22.4+dfsg-1_all.deb ...
+Unpacking python3-docutils (0.22.4+dfsg-1) ...
+Selecting previously unselected package python3-pyparsing.
+Preparing to unpack .../087-python3-pyparsing_3.3.2-2_all.deb ...
+Unpacking python3-pyparsing (3.3.2-2) ...
+Selecting previously unselected package python3-packaging.
+Preparing to unpack .../088-python3-packaging_26.0-1_all.deb ...
+Unpacking python3-packaging (26.0-1) ...
+Selecting previously unselected package python3-catkin-pkg-modules.
+Preparing to unpack .../089-python3-catkin-pkg-modules_1.1.0-2_all.deb ...
+Unpacking python3-catkin-pkg-modules (1.1.0-2) ...
+Selecting previously unselected package python3.14-dev.
+Preparing to unpack .../090-python3.14-dev_3.14.4-1ubuntu0.1_amd64.deb ...
+Unpacking python3.14-dev (3.14.4-1ubuntu0.1) ...
+Selecting previously unselected package python3-dev.
+Preparing to unpack .../091-python3-dev_3.14.3-0ubuntu2_amd64.deb ...
+Unpacking python3-dev (3.14.3-0ubuntu2) ...
+Selecting previously unselected package python3-empy.
+Preparing to unpack .../092-python3-empy_4.2.1-1_all.deb ...
+Unpacking python3-empy (4.2.1-1) ...
+Selecting previously unselected package python3-mccabe.
+Preparing to unpack .../093-python3-mccabe_0.7.0-1build1_all.deb ...
+Unpacking python3-mccabe (0.7.0-1build1) ...
+Selecting previously unselected package python3-pycodestyle.
+Preparing to unpack .../094-python3-pycodestyle_2.14.0-1_all.deb ...
+Unpacking python3-pycodestyle (2.14.0-1) ...
+Selecting previously unselected package python3-pyflakes.
+Preparing to unpack .../095-python3-pyflakes_3.4.0-1_all.deb ...
+Unpacking python3-pyflakes (3.4.0-1) ...
+Selecting previously unselected package python3-flake8.
+Preparing to unpack .../096-python3-flake8_7.3.0-1_all.deb ...
+Unpacking python3-flake8 (7.3.0-1) ...
+Selecting previously unselected package python3-flake8-blind-except.
+Preparing to unpack .../097-python3-flake8-blind-except_0.2.1-1build1_all.deb ...
+Unpacking python3-flake8-blind-except (0.2.1-1build1) ...
+Selecting previously unselected package python3-flake8-builtins.
+Preparing to unpack .../098-python3-flake8-builtins_3.1.0-1_all.deb ...
+Unpacking python3-flake8-builtins (3.1.0-1) ...
+Selecting previously unselected package python3-flake8-class-newline.
+Preparing to unpack .../099-python3-flake8-class-newline_1.6.0-6build1_all.deb ...
+Unpacking python3-flake8-class-newline (1.6.0-6build1) ...
+Selecting previously unselected package python3-flake8-comprehensions.
+Preparing to unpack .../100-python3-flake8-comprehensions_3.17.0-1_all.deb ...
+Unpacking python3-flake8-comprehensions (3.17.0-1) ...
+Selecting previously unselected package python3-flake8-deprecated.
+Preparing to unpack .../101-python3-flake8-deprecated_2.3.0-1_all.deb ...
+Unpacking python3-flake8-deprecated (2.3.0-1) ...
+Selecting previously unselected package python3-more-itertools.
+Preparing to unpack .../102-python3-more-itertools_10.8.0-1build1_all.deb ...
+Unpacking python3-more-itertools (10.8.0-1build1) ...
+Selecting previously unselected package python3-typing-extensions.
+Preparing to unpack .../103-python3-typing-extensions_4.15.0-2_all.deb ...
+Unpacking python3-typing-extensions (4.15.0-2) ...
+Selecting previously unselected package python3-typeguard.
+Preparing to unpack .../104-python3-typeguard_4.4.4-2_all.deb ...
+Unpacking python3-typeguard (4.4.4-2) ...
+Selecting previously unselected package python3-inflect.
+Preparing to unpack .../105-python3-inflect_7.5.0-1build1_all.deb ...
+Unpacking python3-inflect (7.5.0-1build1) ...
+Selecting previously unselected package python3-jaraco.context.
+Preparing to unpack .../106-python3-jaraco.context_6.0.1-2_all.deb ...
+Unpacking python3-jaraco.context (6.0.1-2) ...
+Selecting previously unselected package python3-jaraco.functools.
+Preparing to unpack .../107-python3-jaraco.functools_4.1.0-1build1_all.deb ...
+Unpacking python3-jaraco.functools (4.1.0-1build1) ...
+Selecting previously unselected package python3-pkg-resources.
+Preparing to unpack .../108-python3-pkg-resources_78.1.1-0.1build1_all.deb ...
+Unpacking python3-pkg-resources (78.1.1-0.1build1) ...
+Selecting previously unselected package python3-jaraco.text.
+Preparing to unpack .../109-python3-jaraco.text_4.0.0-1build1_all.deb ...
+Unpacking python3-jaraco.text (4.0.0-1build1) ...
+Selecting previously unselected package python3-zipp.
+Preparing to unpack .../110-python3-zipp_3.23.0-1build1_all.deb ...
+Unpacking python3-zipp (3.23.0-1build1) ...
+Selecting previously unselected package python3-setuptools.
+Preparing to unpack .../111-python3-setuptools_78.1.1-0.1build1_all.deb ...
+Unpacking python3-setuptools (78.1.1-0.1build1) ...
+Selecting previously unselected package python3-flake8-import-order.
+Preparing to unpack .../112-python3-flake8-import-order_0.19.2-1_all.deb ...
+Unpacking python3-flake8-import-order (0.19.2-1) ...
+Selecting previously unselected package python3-flake8-quotes.
+Preparing to unpack .../113-python3-flake8-quotes_3.4.0-4build1_all.deb ...
+Unpacking python3-flake8-quotes (3.4.0-4build1) ...
+Selecting previously unselected package python3-lark.
+Preparing to unpack .../114-python3-lark_1.3.1-1_all.deb ...
+Unpacking python3-lark (1.3.1-1) ...
+Selecting previously unselected package ros-rolling-ament-package.
+Preparing to unpack .../115-ros-rolling-ament-package_0.19.1-1resolute.20260714.151915_amd64.deb ...
+Unpacking ros-rolling-ament-package (0.19.1-1resolute.20260714.151915) ...
+Selecting previously unselected package ros-rolling-ament-cmake-core.
+Preparing to unpack .../116-ros-rolling-ament-cmake-core_2.9.1-1resolute.20260714.152200_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-core (2.9.1-1resolute.20260714.152200) ...
+Selecting previously unselected package ros-rolling-ros-workspace.
+Preparing to unpack .../117-ros-rolling-ros-workspace_1.0.3-8resolute.20260714.165745_amd64.deb ...
+Unpacking ros-rolling-ros-workspace (1.0.3-8resolute.20260714.165745) ...
+Selecting previously unselected package ros-rolling-ament-cmake-export-definitions.
+Preparing to unpack .../118-ros-rolling-ament-cmake-export-definitions_2.9.1-1resolute.20260714.173933_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-export-definitions (2.9.1-1resolute.20260714.173933) ...
+Selecting previously unselected package ros-rolling-ament-cmake-libraries.
+Preparing to unpack .../119-ros-rolling-ament-cmake-libraries_2.9.1-1resolute.20260714.174033_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-libraries (2.9.1-1resolute.20260714.174033) ...
+Selecting previously unselected package ros-rolling-ament-cmake-export-dependencies.
+Preparing to unpack .../120-ros-rolling-ament-cmake-export-dependencies_2.9.1-1resolute.20260714.174417_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-export-dependencies (2.9.1-1resolute.20260714.174417) ...
+Selecting previously unselected package ros-rolling-ament-cmake-export-include-directories.
+Preparing to unpack .../121-ros-rolling-ament-cmake-export-include-directories_2.9.1-1resolute.20260714.174004_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-export-include-directories (2.9.1-1resolute.20260714.174004) ...
+Selecting previously unselected package ros-rolling-ament-cmake-export-libraries.
+Preparing to unpack .../122-ros-rolling-ament-cmake-export-libraries_2.9.1-1resolute.20260714.174014_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-export-libraries (2.9.1-1resolute.20260714.174014) ...
+Selecting previously unselected package ros-rolling-ament-cmake-export-link-flags.
+Preparing to unpack .../123-ros-rolling-ament-cmake-export-link-flags_2.9.1-1resolute.20260714.174012_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-export-link-flags (2.9.1-1resolute.20260714.174012) ...
+Selecting previously unselected package ros-rolling-ament-cmake-export-targets.
+Preparing to unpack .../124-ros-rolling-ament-cmake-export-targets_2.9.1-1resolute.20260714.174248_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-export-targets (2.9.1-1resolute.20260714.174248) ...
+Selecting previously unselected package ros-rolling-ament-cmake-gen-version-h.
+Preparing to unpack .../125-ros-rolling-ament-cmake-gen-version-h_2.9.1-1resolute.20260714.174014_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-gen-version-h (2.9.1-1resolute.20260714.174014) ...
+Selecting previously unselected package ros-rolling-ament-cmake-python.
+Preparing to unpack .../126-ros-rolling-ament-cmake-python_2.9.1-1resolute.20260714.174056_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-python (2.9.1-1resolute.20260714.174056) ...
+Selecting previously unselected package ros-rolling-ament-cmake-include-directories.
+Preparing to unpack .../127-ros-rolling-ament-cmake-include-directories_2.9.1-1resolute.20260714.174020_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-include-directories (2.9.1-1resolute.20260714.174020) ...
+Selecting previously unselected package ros-rolling-ament-cmake-target-dependencies.
+Preparing to unpack .../128-ros-rolling-ament-cmake-target-dependencies_2.9.1-1resolute.20260714.174421_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-target-dependencies (2.9.1-1resolute.20260714.174421) ...
+Selecting previously unselected package ros-rolling-ament-cmake-test.
+Preparing to unpack .../129-ros-rolling-ament-cmake-test_2.9.1-1resolute.20260714.181353_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-test (2.9.1-1resolute.20260714.181353) ...
+Selecting previously unselected package ros-rolling-ament-cmake-version.
+Preparing to unpack .../130-ros-rolling-ament-cmake-version_2.9.1-1resolute.20260714.174126_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-version (2.9.1-1resolute.20260714.174126) ...
+Selecting previously unselected package ros-rolling-ament-cmake.
+Preparing to unpack .../131-ros-rolling-ament-cmake_2.9.1-1resolute.20260714.182819_amd64.deb ...
+Unpacking ros-rolling-ament-cmake (2.9.1-1resolute.20260714.182819) ...
+Selecting previously unselected package ros-rolling-ament-lint.
+Preparing to unpack .../132-ros-rolling-ament-lint_0.21.1-1resolute.20260714.174215_amd64.deb ...
+Unpacking ros-rolling-ament-lint (0.21.1-1resolute.20260714.174215) ...
+Selecting previously unselected package ros-rolling-ament-copyright.
+Preparing to unpack .../133-ros-rolling-ament-copyright_0.21.1-1resolute.20260714.181354_amd64.deb ...
+Unpacking ros-rolling-ament-copyright (0.21.1-1resolute.20260714.181354) ...
+Selecting previously unselected package ros-rolling-ament-cmake-copyright.
+Preparing to unpack .../134-ros-rolling-ament-cmake-copyright_0.21.1-1resolute.20260714.182046_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-copyright (0.21.1-1resolute.20260714.182046) ...
+Selecting previously unselected package ros-rolling-ament-cppcheck.
+Preparing to unpack .../135-ros-rolling-ament-cppcheck_0.21.1-1resolute.20260714.174146_amd64.deb ...
+Unpacking ros-rolling-ament-cppcheck (0.21.1-1resolute.20260714.174146) ...
+Selecting previously unselected package ros-rolling-ament-cmake-cppcheck.
+Preparing to unpack .../136-ros-rolling-ament-cmake-cppcheck_0.21.1-1resolute.20260714.181646_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-cppcheck (0.21.1-1resolute.20260714.181646) ...
+Selecting previously unselected package ros-rolling-ament-cpplint.
+Preparing to unpack .../137-ros-rolling-ament-cpplint_0.21.1-1resolute.20260714.174156_amd64.deb ...
+Unpacking ros-rolling-ament-cpplint (0.21.1-1resolute.20260714.174156) ...
+Selecting previously unselected package ros-rolling-ament-cmake-cpplint.
+Preparing to unpack .../138-ros-rolling-ament-cmake-cpplint_0.21.1-1resolute.20260714.181728_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-cpplint (0.21.1-1resolute.20260714.181728) ...
+Selecting previously unselected package ros-rolling-ament-flake8.
+Preparing to unpack .../139-ros-rolling-ament-flake8_0.21.1-1resolute.20260714.174445_amd64.deb ...
+Unpacking ros-rolling-ament-flake8 (0.21.1-1resolute.20260714.174445) ...
+Selecting previously unselected package ros-rolling-ament-cmake-flake8.
+Preparing to unpack .../140-ros-rolling-ament-cmake-flake8_0.21.1-1resolute.20260714.181743_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-flake8 (0.21.1-1resolute.20260714.181743) ...
+Selecting previously unselected package ros-rolling-ament-cmake-gtest.
+Preparing to unpack .../141-ros-rolling-ament-cmake-gtest_2.9.1-1resolute.20260714.181807_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-gtest (2.9.1-1resolute.20260714.181807) ...
+Selecting previously unselected package ros-rolling-ament-lint-cmake.
+Preparing to unpack .../142-ros-rolling-ament-lint-cmake_0.21.1-1resolute.20260714.174221_amd64.deb ...
+Unpacking ros-rolling-ament-lint-cmake (0.21.1-1resolute.20260714.174221) ...
+Selecting previously unselected package ros-rolling-ament-cmake-lint-cmake.
+Preparing to unpack .../143-ros-rolling-ament-cmake-lint-cmake_0.21.1-1resolute.20260714.181806_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-lint-cmake (0.21.1-1resolute.20260714.181806) ...
+Selecting previously unselected package ros-rolling-ament-pep257.
+Preparing to unpack .../144-ros-rolling-ament-pep257_0.21.1-1resolute.20260714.174524_amd64.deb ...
+Unpacking ros-rolling-ament-pep257 (0.21.1-1resolute.20260714.174524) ...
+Selecting previously unselected package ros-rolling-ament-cmake-pep257.
+Preparing to unpack .../145-ros-rolling-ament-cmake-pep257_0.21.1-1resolute.20260714.181920_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-pep257 (0.21.1-1resolute.20260714.181920) ...
+Selecting previously unselected package ros-rolling-ament-cmake-ros-core.
+Preparing to unpack .../146-ros-rolling-ament-cmake-ros-core_0.16.0-1resolute.20260714.174707_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-ros-core (0.16.0-1resolute.20260714.174707) ...
+Selecting previously unselected package uncrustify.
+Preparing to unpack .../147-uncrustify_0.78.1+dfsg1-1build1_amd64.deb ...
+Unpacking uncrustify (0.78.1+dfsg1-1build1) ...
+Selecting previously unselected package ros-rolling-uncrustify-vendor.
+Preparing to unpack .../148-ros-rolling-uncrustify-vendor_3.3.0-1resolute.20260714.185441_amd64.deb ...
+Unpacking ros-rolling-uncrustify-vendor (3.3.0-1resolute.20260714.185441) ...
+Selecting previously unselected package ros-rolling-ament-uncrustify.
+Preparing to unpack .../149-ros-rolling-ament-uncrustify_0.21.1-1resolute.20260714.185840_amd64.deb ...
+Unpacking ros-rolling-ament-uncrustify (0.21.1-1resolute.20260714.185840) ...
+Selecting previously unselected package ros-rolling-ament-cmake-uncrustify.
+Preparing to unpack .../150-ros-rolling-ament-cmake-uncrustify_0.21.1-1resolute.20260714.190017_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-uncrustify (0.21.1-1resolute.20260714.190017) ...
+Selecting previously unselected package ros-rolling-ament-xmllint.
+Preparing to unpack .../151-ros-rolling-ament-xmllint_0.21.1-1resolute.20260714.174552_amd64.deb ...
+Unpacking ros-rolling-ament-xmllint (0.21.1-1resolute.20260714.174552) ...
+Selecting previously unselected package ros-rolling-ament-cmake-xmllint.
+Preparing to unpack .../152-ros-rolling-ament-cmake-xmllint_0.21.1-1resolute.20260714.181936_amd64.deb ...
+Unpacking ros-rolling-ament-cmake-xmllint (0.21.1-1resolute.20260714.181936) ...
+Selecting previously unselected package ros-rolling-ament-index-python.
+Preparing to unpack .../153-ros-rolling-ament-index-python_1.14.2-1resolute.20260717.153224_amd64.deb ...
+Unpacking ros-rolling-ament-index-python (1.14.2-1resolute.20260717.153224) ...
+Selecting previously unselected package ros-rolling-ament-lint-auto.
+Preparing to unpack .../154-ros-rolling-ament-lint-auto_0.21.1-1resolute.20260714.182025_amd64.deb ...
+Unpacking ros-rolling-ament-lint-auto (0.21.1-1resolute.20260714.182025) ...
+Selecting previously unselected package ros-rolling-ament-lint-common.
+Preparing to unpack .../155-ros-rolling-ament-lint-common_0.21.1-1resolute.20260714.190216_amd64.deb ...
+Unpacking ros-rolling-ament-lint-common (0.21.1-1resolute.20260714.190216) ...
+Selecting previously unselected package ros-rolling-rcutils.
+Preparing to unpack .../156-ros-rolling-rcutils_7.2.1-1resolute.20260714.184736_amd64.deb ...
+Unpacking ros-rolling-rcutils (7.2.1-1resolute.20260714.184736) ...
+Selecting previously unselected package ros-rolling-ros-environment.
+Preparing to unpack .../157-ros-rolling-ros-environment_5.0.0-1resolute.20260714.174124_amd64.deb ...
+Unpacking ros-rolling-ros-environment (5.0.0-1resolute.20260714.174124) ...
+Selecting previously unselected package ros-rolling-rosidl-cli.
+Preparing to unpack .../158-ros-rolling-rosidl-cli_5.3.1-2resolute.20260714.175512_amd64.deb ...
+Unpacking ros-rolling-rosidl-cli (5.3.1-2resolute.20260714.175512) ...
+Selecting previously unselected package ros-rolling-rosidl-adapter.
+Preparing to unpack .../159-ros-rolling-rosidl-adapter_5.3.1-2resolute.20260714.190704_amd64.deb ...
+Unpacking ros-rolling-rosidl-adapter (5.3.1-2resolute.20260714.190704) ...
+Selecting previously unselected package ros-rolling-rosidl-parser.
+Preparing to unpack .../160-ros-rolling-rosidl-parser_5.3.1-2resolute.20260714.190853_amd64.deb ...
+Unpacking ros-rolling-rosidl-parser (5.3.1-2resolute.20260714.190853) ...
+Selecting previously unselected package ros-rolling-rosidl-pycommon.
+Preparing to unpack .../161-ros-rolling-rosidl-pycommon_5.3.1-2resolute.20260714.191118_amd64.deb ...
+Unpacking ros-rolling-rosidl-pycommon (5.3.1-2resolute.20260714.191118) ...
+Selecting previously unselected package ros-rolling-rosidl-cmake.
+Preparing to unpack .../162-ros-rolling-rosidl-cmake_5.3.1-2resolute.20260714.192020_amd64.deb ...
+Unpacking ros-rolling-rosidl-cmake (5.3.1-2resolute.20260714.192020) ...
+Selecting previously unselected package ros-rolling-rosidl-generator-type-description.
+Preparing to unpack .../163-ros-rolling-rosidl-generator-type-description_5.3.1-2resolute.20260717.153625_amd64.deb ...
+Unpacking ros-rolling-rosidl-generator-type-description (5.3.1-2resolute.20260717.153625) ...
+Selecting previously unselected package ros-rolling-rosidl-typesupport-interface.
+Preparing to unpack .../164-ros-rolling-rosidl-typesupport-interface_5.3.1-2resolute.20260714.184856_amd64.deb ...
+Unpacking ros-rolling-rosidl-typesupport-interface (5.3.1-2resolute.20260714.184856) ...
+Selecting previously unselected package ros-rolling-rosidl-generator-c.
+Preparing to unpack .../165-ros-rolling-rosidl-generator-c_5.3.1-2resolute.20260717.154036_amd64.deb ...
+Unpacking ros-rolling-rosidl-generator-c (5.3.1-2resolute.20260717.154036) ...
+Selecting previously unselected package dumb-init.
+Preparing to unpack .../166-dumb-init_1.2.5-3build1_amd64.deb ...
+Unpacking dumb-init (1.2.5-3build1) ...
+Selecting previously unselected package sbuild-build-depends-main-dummy.
+Preparing to unpack .../167-sbuild-build-depends-main-dummy_0.invalid.0_amd64.deb ...
+Unpacking sbuild-build-depends-main-dummy (0.invalid.0) ...
+Setting up media-types (14.0.0build1) ...
+Setting up dumb-init (1.2.5-3build1) ...
+Setting up libpipeline1:amd64 (1.5.8-2) ...
+Setting up libkeyutils1:amd64 (1.6.3-6ubuntu3) ...
+Setting up bsdextrautils (2.41.3-3ubuntu2.2) ...
+Setting up ros-rolling-ros-workspace (1.0.3-8resolute.20260714.165745) ...
+Setting up libmagic-mgc (1:5.46-5build2) ...
+Setting up libarchive-zip-perl (1.68-1) ...
+Setting up libxml2-16:amd64 (2.15.2+dfsg-0.1ubuntu0.1) ...
+Setting up libtinyxml2-11:amd64 (11.0.0+dfsg-1build1) ...
+Setting up libdebhelper-perl (13.31ubuntu1) ...
+Setting up libbrotli1:amd64 (1.2.0-3build1) ...
+Setting up libsqlite3-0:amd64 (3.46.1-9ubuntu0.2) ...
+Setting up libuv1t64:amd64 (1.51.0-2ubuntu1) ...
+Setting up libmagic1t64:amd64 (1:5.46-5build2) ...
+Setting up libnghttp2-14:amd64 (1.68.0-2ubuntu0.2) ...
+Setting up gettext-base (0.23.2-1) ...
+Setting up m4 (1.4.21-1) ...
+Setting up libcom-err2:amd64 (1.47.2-3ubuntu4) ...
+Setting up ros-rolling-ament-lint (0.21.1-1resolute.20260714.174215) ...
+Setting up file (1:5.46-5build2) ...
+Setting up ros-rolling-ament-cpplint (0.21.1-1resolute.20260714.174156) ...
+Setting up libldap-common (2.6.10+dfsg-1ubuntu5) ...
+Setting up googletest (1.17.0-1build1) ...
+Setting up libfakeroot:amd64 (1.37.2-1) ...
+Setting up libelf1t64:amd64 (0.194-4) ...
+Setting up libkrb5support0:amd64 (1.22.1-2ubuntu4.1) ...
+Setting up libdw1t64:amd64 (0.194-4) ...
+Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-9ubuntu3) ...
+Setting up tzdata (2026c-0ubuntu0.26.04.1) ...
+
+Current default time zone: 'Etc/UTC'
+Local time is now:      Wed Sep  2 10:01:41 UTC 2026.
+Universal Time is now:  Wed Sep  2 10:01:41 UTC 2026.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+Setting up fakeroot (1.37.2-1) ...
+update-alternatives: using /usr/bin/fakeroot-sysv to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Setting up libnettle8t64:amd64 (3.10.2-1) ...
+Setting up autotools-dev (20240727.1build1) ...
+Setting up libexpat1-dev:amd64 (2.7.4-1) ...
+Setting up libjsoncpp26:amd64 (1.9.6-5) ...
+Setting up uncrustify (0.78.1+dfsg1-1build1) ...
+Setting up libproc2-0:amd64 (2:4.0.4-9ubuntu1) ...
+Setting up libunistring5:amd64 (1.3-2build1) ...
+Setting up autopoint (0.23.2-1) ...
+Setting up libncursesw6:amd64 (6.6+20251231-1) ...
+Setting up libk5crypto3:amd64 (1.22.1-2ubuntu4.1) ...
+Setting up libjs-sphinxdoc (8.2.3-12) ...
+Setting up libsasl2-2:amd64 (2.1.28+dfsg1-9ubuntu3) ...
+Setting up autoconf (2.72-3.1ubuntu2) ...
+Setting up zlib1g-dev:amd64 (1:1.3.dfsg+really1.3.1-1ubuntu3.1) ...
+Setting up libffi8:amd64 (3.5.2-4) ...
+Setting up dwz (0.16-4) ...
+Setting up ros-rolling-ros-environment (5.0.0-1resolute.20260714.174124) ...
+Setting up libhogweed6t64:amd64 (3.10.2-1) ...
+Setting up sensible-utils (0.0.26build1) ...
+Setting up libuchardet0:amd64 (0.0.8-2) ...
+Setting up procps (2:4.0.4-9ubuntu1) ...
+Setting up libtasn1-6:amd64 (4.21.0-2) ...
+Setting up debugedit (1:5.3-4) ...
+Setting up netbase (6.5build1) ...
+Setting up sgml-base (1.31+nmu1build1) ...
+Setting up cmake-data (4.2.3-2ubuntu2) ...
+Setting up librhash1:amd64 (1.4.6-1.1) ...
+Setting up libkrb5-3:amd64 (1.22.1-2ubuntu4.1) ...
+Setting up libssh2-1t64:amd64 (1.11.1-1ubuntu0.26.04.3) ...
+Setting up ros-rolling-ament-copyright (0.21.1-1resolute.20260714.181354) ...
+Setting up ros-rolling-rosidl-typesupport-interface (5.3.1-2resolute.20260714.184856) ...
+Setting up ros-rolling-ament-lint-cmake (0.21.1-1resolute.20260714.174221) ...
+Setting up libarchive13t64:amd64 (3.8.5-1ubuntu2.2) ...
+Setting up readline-common (8.3-4) ...
+Setting up libldap2:amd64 (2.6.10+dfsg-1ubuntu5) ...
+Setting up ros-rolling-ament-index-python (1.14.2-1resolute.20260717.153224) ...
+Setting up automake (1:1.18.1-3build1) ...
+update-alternatives: using /usr/bin/automake-1.18 to provide /usr/bin/automake (automake) in auto mode
+Setting up libfile-stripnondeterminism-perl (1.15.0-1build1) ...
+Setting up ros-rolling-uncrustify-vendor (3.3.0-1resolute.20260714.185441) ...
+Setting up gettext (0.23.2-1) ...
+Setting up libgtest-dev:amd64 (1.17.0-1build1) ...
+Setting up libtool (2.5.4-9) ...
+Setting up libidn2-0:amd64 (2.3.8-4build1) ...
+Setting up intltool-debian (0.35.0+20060710.6build1) ...
+Setting up dh-autoreconf (21+nmu1) ...
+Setting up libp11-kit0:amd64 (0.26.2-2) ...
+Setting up libgssapi-krb5-2:amd64 (1.22.1-2ubuntu4.1) ...
+Setting up libreadline8t64:amd64 (8.3-4) ...
+Setting up dh-strip-nondeterminism (1.15.0-1build1) ...
+Setting up groff-base (1.23.0-10) ...
+Setting up xml-core (0.19build1) ...
+Setting up libxml2-utils (2.15.2+dfsg-0.1ubuntu0.1) ...
+Setting up ros-rolling-ament-uncrustify (0.21.1-1resolute.20260714.185840) ...
+Setting up libgnutls30t64:amd64 (3.8.12-2ubuntu1.1) ...
+Setting up libpython3.14-stdlib:amd64 (3.14.4-1ubuntu0.1) ...
+Setting up po-debconf (1.0.22) ...
+Setting up libpsl5t64:amd64 (0.21.2-1.1build2) ...
+Setting up ros-rolling-ament-xmllint (0.21.1-1resolute.20260714.174552) ...
+Setting up man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-3) ...
+Setting up libpython3.14:amd64 (3.14.4-1ubuntu0.1) ...
+Setting up libpython3.14-dev:amd64 (3.14.4-1ubuntu0.1) ...
+Setting up python3.14 (3.14.4-1ubuntu0.1) ...
+Setting up libpython3-stdlib:amd64 (3.14.3-0ubuntu2) ...
+Setting up libpython3-dev:amd64 (3.14.3-0ubuntu2) ...
+Setting up libcurl4t64:amd64 (8.18.0-1ubuntu2.4) ...
+Setting up python3.14-dev (3.14.4-1ubuntu0.1) ...
+Setting up debhelper (13.31ubuntu1) ...
+Setting up python3 (3.14.3-0ubuntu2) ...
+Setting up python3-zipp (3.23.0-1build1) ...
+Setting up python3-autocommand (2.2.2-4) ...
+Setting up python3-empy (4.2.1-1) ...
+Setting up python3-pycodestyle (2.14.0-1) ...
+Setting up python3-pygments (2.19.2+dfsg-1) ...
+Setting up python3-packaging (26.0-1) ...
+Setting up python3-pyparsing (3.3.2-2) ...
+Setting up python3-snowballstemmer (3.0.1-1) ...
+Setting up python3-dev (3.14.3-0ubuntu2) ...
+Setting up python3-typing-extensions (4.15.0-2) ...
+Setting up cppcheck (2.19.0-3) ...
+Setting up ros-rolling-ament-cppcheck (0.21.1-1resolute.20260714.174146) ...
+Setting up cmake (4.2.3-2ubuntu2) ...
+Setting up python3-roman-numerals (4.1.0-1) ...
+Setting up python3-pydocstyle (6.3.0-3) ...
+Setting up python3-dateutil (2.9.0-4build1) ...
+Setting up python3-mccabe (0.7.0-1build1) ...
+Setting up python3-argcomplete (3.6.3-1) ...
+Setting up python3-flake8-blind-except (0.2.1-1build1) ...
+Setting up python3-more-itertools (10.8.0-1build1) ...
+Setting up python3-lark (1.3.1-1) ...
+Setting up python3-jaraco.functools (4.1.0-1build1) ...
+Setting up python3-jaraco.context (6.0.1-2) ...
+Setting up ros-rolling-rosidl-cli (5.3.1-2resolute.20260714.175512) ...
+Setting up python3-pyflakes (3.4.0-1) ...
+Setting up python3-typeguard (4.4.4-2) ...
+Setting up python3-flake8 (7.3.0-1) ...
+Setting up python3-inflect (7.5.0-1build1) ...
+Setting up python3-jaraco.text (4.0.0-1build1) ...
+Setting up python3-flake8-quotes (3.4.0-4build1) ...
+Setting up pydocstyle (6.3.0-3) ...
+Setting up ros-rolling-ament-pep257 (0.21.1-1resolute.20260714.174524) ...
+Setting up python3-pkg-resources (78.1.1-0.1build1) ...
+Setting up python3-flake8-class-newline (1.6.0-6build1) ...
+Setting up python3-setuptools (78.1.1-0.1build1) ...
+Setting up python3-flake8-deprecated (2.3.0-1) ...
+Setting up python3-flake8-comprehensions (3.17.0-1) ...
+Setting up python3-flake8-builtins (3.1.0-1) ...
+Setting up ros-rolling-ament-package (0.19.1-1resolute.20260714.151915) ...
+Setting up python3-flake8-import-order (0.19.2-1) ...
+Setting up ros-rolling-ament-flake8 (0.21.1-1resolute.20260714.174445) ...
+Processing triggers for libc-bin (2.43-2ubuntu2.3) ...
+Processing triggers for sgml-base (1.31+nmu1build1) ...
+Setting up docutils-common (0.22.4+dfsg-1) ...
+Processing triggers for sgml-base (1.31+nmu1build1) ...
+Setting up python3-docutils (0.22.4+dfsg-1) ...
+Setting up python3-catkin-pkg-modules (1.1.0-2) ...
+Setting up ros-rolling-ament-cmake-core (2.9.1-1resolute.20260714.152200) ...
+Setting up ros-rolling-ament-cmake-libraries (2.9.1-1resolute.20260714.174033) ...
+Setting up ros-rolling-ament-cmake-export-definitions (2.9.1-1resolute.20260714.173933) ...
+Setting up ros-rolling-ament-cmake-test (2.9.1-1resolute.20260714.181353) ...
+Setting up ros-rolling-ament-cmake-python (2.9.1-1resolute.20260714.174056) ...
+Setting up ros-rolling-ament-cmake-gen-version-h (2.9.1-1resolute.20260714.174014) ...
+Setting up ros-rolling-ament-cmake-export-dependencies (2.9.1-1resolute.20260714.174417) ...
+Setting up ros-rolling-ament-cmake-copyright (0.21.1-1resolute.20260714.182046) ...
+Setting up ros-rolling-ament-cmake-xmllint (0.21.1-1resolute.20260714.181936) ...
+Setting up ros-rolling-ament-cmake-lint-cmake (0.21.1-1resolute.20260714.181806) ...
+Setting up ros-rolling-ament-cmake-gtest (2.9.1-1resolute.20260714.181807) ...
+Setting up ros-rolling-ament-cmake-include-directories (2.9.1-1resolute.20260714.174020) ...
+Setting up ros-rolling-ament-cmake-version (2.9.1-1resolute.20260714.174126) ...
+Setting up ros-rolling-ament-cmake-export-libraries (2.9.1-1resolute.20260714.174014) ...
+Setting up ros-rolling-ament-cmake-cpplint (0.21.1-1resolute.20260714.181728) ...
+Setting up ros-rolling-rosidl-adapter (5.3.1-2resolute.20260714.190704) ...
+Setting up ros-rolling-ament-lint-auto (0.21.1-1resolute.20260714.182025) ...
+Setting up ros-rolling-ament-cmake-export-targets (2.9.1-1resolute.20260714.174248) ...
+Setting up ros-rolling-ament-cmake-cppcheck (0.21.1-1resolute.20260714.181646) ...
+Setting up ros-rolling-ament-cmake-ros-core (0.16.0-1resolute.20260714.174707) ...
+Setting up ros-rolling-ament-cmake-export-include-directories (2.9.1-1resolute.20260714.174004) ...
+Setting up ros-rolling-ament-cmake-flake8 (0.21.1-1resolute.20260714.181743) ...
+Setting up ros-rolling-ament-cmake-export-link-flags (2.9.1-1resolute.20260714.174012) ...
+Setting up ros-rolling-ament-cmake-pep257 (0.21.1-1resolute.20260714.181920) ...
+Setting up ros-rolling-ament-cmake-uncrustify (0.21.1-1resolute.20260714.190017) ...
+Setting up ros-rolling-ament-cmake-target-dependencies (2.9.1-1resolute.20260714.174421) ...
+Setting up ros-rolling-rosidl-parser (5.3.1-2resolute.20260714.190853) ...
+Setting up ros-rolling-ament-lint-common (0.21.1-1resolute.20260714.190216) ...
+Setting up ros-rolling-rcutils (7.2.1-1resolute.20260714.184736) ...
+Setting up ros-rolling-ament-cmake (2.9.1-1resolute.20260714.182819) ...
+Setting up ros-rolling-rosidl-pycommon (5.3.1-2resolute.20260714.191118) ...
+Setting up ros-rolling-rosidl-generator-type-description (5.3.1-2resolute.20260717.153625) ...
+Setting up ros-rolling-rosidl-cmake (5.3.1-2resolute.20260714.192020) ...
+Setting up ros-rolling-rosidl-generator-c (5.3.1-2resolute.20260717.154036) ...
+Setting up sbuild-build-depends-main-dummy (0.invalid.0) ...
+
++------------------------------------------------------------------------------+
+| Check architectures                          Wed, 02 Sep 2026 10:01:49 +0000 |
++------------------------------------------------------------------------------+
+
+Arch check ok (amd64 included in any)
+
++------------------------------------------------------------------------------+
+| Build environment                            Wed, 02 Sep 2026 10:01:49 +0000 |
++------------------------------------------------------------------------------+
+
+Kernel: Linux 6.17.0-1022-azure #22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026 amd64 (x86_64)
+Toolchain package versions: binutils_2.46-3ubuntu2 dpkg-dev_1.23.7ubuntu1 g++-15_15.2.0-16ubuntu1 gcc-15_15.2.0-16ubuntu1 libc6-dev_2.43-2ubuntu2.3 libstdc++-15-dev_15.2.0-16ubuntu1 libstdc++6_16-20260322-1ubuntu1 linux-libc-dev_7.0.0-30.30
+Package versions: apt_3.2.0 autoconf_2.72-3.1ubuntu2 automake_1:1.18.1-3build1 autopoint_0.23.2-1 autotools-dev_20240727.1build1 base-files_14ubuntu6.2 base-passwd_3.6.8 bash_5.3-2ubuntu1 binutils_2.46-3ubuntu2 binutils-common_2.46-3ubuntu2 binutils-x86-64-linux-gnu_2.46-3ubuntu2 bsdextrautils_2.41.3-3ubuntu2.2 build-essential_12.12ubuntu2.26.04.2 bzip2_1.0.8-6ubuntu0.1 ca-certificates_20260601~26.04.1 ccache_4.12.3-1 cmake_4.2.3-2ubuntu2 cmake-data_4.2.3-2ubuntu2 coreutils_9.5-1ubuntu2+0.0.0~ubuntu25 coreutils-from-uutils_0.0.0~ubuntu25 cpp_4:15.2.0-5ubuntu1 cpp-15_15.2.0-16ubuntu1 cpp-15-x86-64-linux-gnu_15.2.0-16ubuntu1 cpp-x86-64-linux-gnu_4:15.2.0-5ubuntu1 cppcheck_2.19.0-3 dash_0.5.12-12ubuntu3 debconf_1.5.92 debhelper_13.31ubuntu1 debianutils_5.23.2build1 debugedit_1:5.3-4 dh-autoreconf_21+nmu1 dh-strip-nondeterminism_1.15.0-1build1 diffutils_1:3.12-1ubuntu0.1 docutils-common_0.22.4+dfsg-1 dpkg_1.23.7ubuntu1 dpkg-dev_1.23.7ubuntu1 dumb-init_1.2.5-3build1 dwz_0.16-4 eatmydata_131-2build1 fakeroot_1.37.2-1 file_1:5.46-5build2 findutils_4.10.0-3build2 g++_4:15.2.0-5ubuntu1 g++-15_15.2.0-16ubuntu1 g++-15-x86-64-linux-gnu_15.2.0-16ubuntu1 g++-x86-64-linux-gnu_4:15.2.0-5ubuntu1 gcc_4:15.2.0-5ubuntu1 gcc-15_15.2.0-16ubuntu1 gcc-15-base_15.2.0-16ubuntu1 gcc-15-x86-64-linux-gnu_15.2.0-16ubuntu1 gcc-16-base_16-20260322-1ubuntu1 gcc-x86-64-linux-gnu_4:15.2.0-5ubuntu1 gettext_0.23.2-1 gettext-base_0.23.2-1 gnu-coreutils_9.7-3ubuntu2.1 googletest_1.17.0-1build1 gpgv_2.4.8-4ubuntu3 grep_3.12-1 groff-base_1.23.0-10 gzip_1.14-1~exp2ubuntu1.1 hostname_3.25build1 init-system-helpers_1.69 intltool-debian_0.35.0+20060710.6build1 libacl1_2.3.2-2 libapt-pkg7.0_3.2.0 libarchive-zip-perl_1.68-1 libarchive13t64_3.8.5-1ubuntu2.2 libasan8_16-20260322-1ubuntu1 libatomic1_16-20260322-1ubuntu1 libattr1_1:2.5.2-4ubuntu0.1 libaudit-common_1:4.1.2-1build1 libaudit1_1:4.1.2-1build1 libbinutils_2.46-3ubuntu2 libblkid1_2.41.3-3ubuntu2.2 libbrotli1_1.2.0-3build1 libbz2-1.0_1.0.8-6ubuntu0.1 libc-bin_2.43-2ubuntu2.3 libc-dev-bin_2.43-2ubuntu2.3 libc-gconv-modules-extra_2.43-2ubuntu2.3 libc6_2.43-2ubuntu2.3 libc6-dev_2.43-2ubuntu2.3 libcap-ng0_0.8.5-4build5 libcc1-0_16-20260322-1ubuntu1 libcom-err2_1.47.2-3ubuntu4 libcrypt-dev_1:4.5.1-1 libcrypt1_1:4.5.1-1 libctf-nobfd0_2.46-3ubuntu2 libctf0_2.46-3ubuntu2 libcurl4t64_8.18.0-1ubuntu2.4 libdb5.3t64_5.3.28+dfsg2-10ubuntu1 libdebconfclient0_0.280ubuntu1 libdebhelper-perl_13.31ubuntu1 libdpkg-perl_1.23.7ubuntu1 libdw1t64_0.194-4 libeatmydata1_131-2build1 libelf1t64_0.194-4 libexpat1_2.7.4-1 libexpat1-dev_2.7.4-1 libfakeroot_1.37.2-1 libffi8_3.5.2-4 libfile-stripnondeterminism-perl_1.15.0-1build1 libfmt10_10.1.1+ds1-4build1 libgcc-15-dev_15.2.0-16ubuntu1 libgcc-s1_16-20260322-1ubuntu1 libgcrypt20_1.12.0-2ubuntu1.1 libgdbm-compat4t64_1.26-1build1 libgdbm6t64_1.26-1build1 libgmp10_2:6.3.0+dfsg-5ubuntu2 libgnutls30t64_3.8.12-2ubuntu1.1 libgomp1_16-20260322-1ubuntu1 libgpg-error0_1.58-2 libgprofng0_2.46-3ubuntu2 libgssapi-krb5-2_1.22.1-2ubuntu4.1 libgtest-dev_1.17.0-1build1 libhiredis1.1.0_1.2.0-6ubuntu4 libhogweed6t64_3.10.2-1 libhwasan0_16-20260322-1ubuntu1 libidn2-0_2.3.8-4build1 libisl23_0.27-1build1 libitm1_16-20260322-1ubuntu1 libjansson4_2.14-2build4 libjs-sphinxdoc_8.2.3-12 libjsoncpp26_1.9.6-5 libk5crypto3_1.22.1-2ubuntu4.1 libkeyutils1_1.6.3-6ubuntu3 libkrb5-3_1.22.1-2ubuntu4.1 libkrb5support0_1.22.1-2ubuntu4.1 libldap-common_2.6.10+dfsg-1ubuntu5 libldap2_2.6.10+dfsg-1ubuntu5 liblsan0_16-20260322-1ubuntu1 liblz4-1_1.10.0-8 liblzma5_5.8.3-1 libmagic-mgc_1:5.46-5build2 libmagic1t64_1:5.46-5build2 libmd0_1.1.0-2build4 libmount1_2.41.3-3ubuntu2.2 libmpc3_1.3.1-3 libmpfr6_4.2.2-3 libncursesw6_6.6+20251231-1 libnettle8t64_3.10.2-1 libnghttp2-14_1.68.0-2ubuntu0.2 libp11-kit0_0.26.2-2 libpam-modules_1.7.0-5ubuntu3.2 libpam-modules-bin_1.7.0-5ubuntu3.2 libpam-runtime_1.7.0-5ubuntu3.2 libpam0g_1.7.0-5ubuntu3.2 libpcre2-8-0_10.46-1build1 libperl5.40_5.40.1-7ubuntu0.1 libpipeline1_1.5.8-2 libproc2-0_2:4.0.4-9ubuntu1 libpsl5t64_0.21.2-1.1build2 libpython3-dev_3.14.3-0ubuntu2 libpython3-stdlib_3.14.3-0ubuntu2 libpython3.14_3.14.4-1ubuntu0.1 libpython3.14-dev_3.14.4-1ubuntu0.1 libpython3.14-minimal_3.14.4-1ubuntu0.1 libpython3.14-stdlib_3.14.4-1ubuntu0.1 libquadmath0_16-20260322-1ubuntu1 libreadline8t64_8.3-4 librhash1_1.4.6-1.1 librtmp1_2.4+20151223.gitfa8646d.1-3 libsasl2-2_2.1.28+dfsg1-9ubuntu3 libsasl2-modules-db_2.1.28+dfsg1-9ubuntu3 libseccomp2_2.6.0-2ubuntu5 libselinux1_3.9-4build1 libsframe3_2.46-3ubuntu2 libsmartcols1_2.41.3-3ubuntu2.2 libsqlite3-0_3.46.1-9ubuntu0.2 libssh2-1t64_1.11.1-1ubuntu0.26.04.3 libssl3t64_3.5.5-1ubuntu3.5 libstdc++-15-dev_15.2.0-16ubuntu1 libstdc++6_16-20260322-1ubuntu1 libsystemd0_259.5-0ubuntu3.4 libtasn1-6_4.21.0-2 libtinfo6_6.6+20251231-1 libtinyxml2-11_11.0.0+dfsg-1build1 libtool_2.5.4-9 libtsan2_16-20260322-1ubuntu1 libubsan1_16-20260322-1ubuntu1 libuchardet0_0.0.8-2 libudev1_259.5-0ubuntu3.4 libunistring5_1.3-2build1 libuuid1_2.41.3-3ubuntu2.2 libuv1t64_1.51.0-2ubuntu1 libxml2-16_2.15.2+dfsg-0.1ubuntu0.1 libxml2-utils_2.15.2+dfsg-0.1ubuntu0.1 libxxhash0_0.8.3-2build1 libzstd1_1.5.7+dfsg-3 linux-libc-dev_7.0.0-30.30 lto-disabled-list_79 m4_1.4.21-1 make_4.4.1-3 man-db_2.13.1-1build1 mawk_1.3.4.20260129-1 media-types_14.0.0build1 ncurses-base_6.6+20251231-1 ncurses-bin_6.6+20251231-1 netbase_6.5build1 openssl_3.5.5-1ubuntu3.5 openssl-provider-legacy_3.5.5-1ubuntu3.5 patch_2.8-2build1 perl_5.40.1-7ubuntu0.1 perl-base_5.40.1-7ubuntu0.1 perl-modules-5.40_5.40.1-7ubuntu0.1 po-debconf_1.0.22 procps_2:4.0.4-9ubuntu1 pydocstyle_6.3.0-3 python3_3.14.3-0ubuntu2 python3-argcomplete_3.6.3-1 python3-autocommand_2.2.2-4 python3-catkin-pkg-modules_1.1.0-2 python3-dateutil_2.9.0-4build1 python3-dev_3.14.3-0ubuntu2 python3-docutils_0.22.4+dfsg-1 python3-empy_4.2.1-1 python3-flake8_7.3.0-1 python3-flake8-blind-except_0.2.1-1build1 python3-flake8-builtins_3.1.0-1 python3-flake8-class-newline_1.6.0-6build1 python3-flake8-comprehensions_3.17.0-1 python3-flake8-deprecated_2.3.0-1 python3-flake8-import-order_0.19.2-1 python3-flake8-quotes_3.4.0-4build1 python3-inflect_7.5.0-1build1 python3-jaraco.context_6.0.1-2 python3-jaraco.functools_4.1.0-1build1 python3-jaraco.text_4.0.0-1build1 python3-lark_1.3.1-1 python3-mccabe_0.7.0-1build1 python3-minimal_3.14.3-0ubuntu2 python3-more-itertools_10.8.0-1build1 python3-packaging_26.0-1 python3-pkg-resources_78.1.1-0.1build1 python3-pycodestyle_2.14.0-1 python3-pydocstyle_6.3.0-3 python3-pyflakes_3.4.0-1 python3-pygments_2.19.2+dfsg-1 python3-pyparsing_3.3.2-2 python3-roman-numerals_4.1.0-1 python3-setuptools_78.1.1-0.1build1 python3-snowballstemmer_3.0.1-1 python3-typeguard_4.4.4-2 python3-typing-extensions_4.15.0-2 python3-zipp_3.23.0-1build1 python3.14_3.14.4-1ubuntu0.1 python3.14-dev_3.14.4-1ubuntu0.1 python3.14-minimal_3.14.4-1ubuntu0.1 readline-common_8.3-4 ros-rolling-ament-cmake_2.9.1-1resolute.20260714.182819 ros-rolling-ament-cmake-copyright_0.21.1-1resolute.20260714.182046 ros-rolling-ament-cmake-core_2.9.1-1resolute.20260714.152200 ros-rolling-ament-cmake-cppcheck_0.21.1-1resolute.20260714.181646 ros-rolling-ament-cmake-cpplint_0.21.1-1resolute.20260714.181728 ros-rolling-ament-cmake-export-definitions_2.9.1-1resolute.20260714.173933 ros-rolling-ament-cmake-export-dependencies_2.9.1-1resolute.20260714.174417 ros-rolling-ament-cmake-export-include-directories_2.9.1-1resolute.20260714.174004 ros-rolling-ament-cmake-export-libraries_2.9.1-1resolute.20260714.174014 ros-rolling-ament-cmake-export-link-flags_2.9.1-1resolute.20260714.174012 ros-rolling-ament-cmake-export-targets_2.9.1-1resolute.20260714.174248 ros-rolling-ament-cmake-flake8_0.21.1-1resolute.20260714.181743 ros-rolling-ament-cmake-gen-version-h_2.9.1-1resolute.20260714.174014 ros-rolling-ament-cmake-gtest_2.9.1-1resolute.20260714.181807 ros-rolling-ament-cmake-include-directories_2.9.1-1resolute.20260714.174020 ros-rolling-ament-cmake-libraries_2.9.1-1resolute.20260714.174033 ros-rolling-ament-cmake-lint-cmake_0.21.1-1resolute.20260714.181806 ros-rolling-ament-cmake-pep257_0.21.1-1resolute.20260714.181920 ros-rolling-ament-cmake-python_2.9.1-1resolute.20260714.174056 ros-rolling-ament-cmake-ros-core_0.16.0-1resolute.20260714.174707 ros-rolling-ament-cmake-target-dependencies_2.9.1-1resolute.20260714.174421 ros-rolling-ament-cmake-test_2.9.1-1resolute.20260714.181353 ros-rolling-ament-cmake-uncrustify_0.21.1-1resolute.20260714.190017 ros-rolling-ament-cmake-version_2.9.1-1resolute.20260714.174126 ros-rolling-ament-cmake-xmllint_0.21.1-1resolute.20260714.181936 ros-rolling-ament-copyright_0.21.1-1resolute.20260714.181354 ros-rolling-ament-cppcheck_0.21.1-1resolute.20260714.174146 ros-rolling-ament-cpplint_0.21.1-1resolute.20260714.174156 ros-rolling-ament-flake8_0.21.1-1resolute.20260714.174445 ros-rolling-ament-index-python_1.14.2-1resolute.20260717.153224 ros-rolling-ament-lint_0.21.1-1resolute.20260714.174215 ros-rolling-ament-lint-auto_0.21.1-1resolute.20260714.182025 ros-rolling-ament-lint-cmake_0.21.1-1resolute.20260714.174221 ros-rolling-ament-lint-common_0.21.1-1resolute.20260714.190216 ros-rolling-ament-package_0.19.1-1resolute.20260714.151915 ros-rolling-ament-pep257_0.21.1-1resolute.20260714.174524 ros-rolling-ament-uncrustify_0.21.1-1resolute.20260714.185840 ros-rolling-ament-xmllint_0.21.1-1resolute.20260714.174552 ros-rolling-rcutils_7.2.1-1resolute.20260714.184736 ros-rolling-ros-environment_5.0.0-1resolute.20260714.174124 ros-rolling-ros-workspace_1.0.3-8resolute.20260714.165745 ros-rolling-rosidl-adapter_5.3.1-2resolute.20260714.190704 ros-rolling-rosidl-cli_5.3.1-2resolute.20260714.175512 ros-rolling-rosidl-cmake_5.3.1-2resolute.20260714.192020 ros-rolling-rosidl-generator-c_5.3.1-2resolute.20260717.154036 ros-rolling-rosidl-generator-type-description_5.3.1-2resolute.20260717.153625 ros-rolling-rosidl-parser_5.3.1-2resolute.20260714.190853 ros-rolling-rosidl-pycommon_5.3.1-2resolute.20260714.191118 ros-rolling-rosidl-typesupport-interface_5.3.1-2resolute.20260714.184856 ros-rolling-uncrustify-vendor_3.3.0-1resolute.20260714.185441 rpcsvc-proto_1.4.3-1build1 rust-coreutils_0.8.0-0ubuntu3 sbuild-build-depends-main-dummy_0.invalid.0 sed_4.9-2ubuntu1 sensible-utils_0.0.26build1 sgml-base_1.31+nmu1build1 sysvinit-utils_3.15-5ubuntu1 tar_1.35+dfsg-4ubuntu0.4 tzdata_2026c-0ubuntu0.26.04.1 ubuntu-keyring_2023.11.28.1build1 uncrustify_0.78.1+dfsg1-1build1 util-linux_2.41.3-3ubuntu2.2 xml-core_0.19build1 xz-utils_5.8.3-1 zlib1g_1:1.3.dfsg+really1.3.1-1ubuntu3.1 zlib1g-dev_1:1.3.dfsg+really1.3.1-1ubuntu3.1
+
++------------------------------------------------------------------------------+
+| Build                                        Wed, 02 Sep 2026 10:01:49 +0000 |
++------------------------------------------------------------------------------+
+
+
+Unpack source
+-------------
+
+Format: 1.0
+Source: ros-rolling-rosidl-generator-rs
+Binary: ros-rolling-rosidl-generator-rs
+Architecture: any
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake, ros-rolling-ament-cmake-gtest <!nocheck>, ros-rolling-ament-lint-auto <!nocheck>, ros-rolling-ament-lint-common <!nocheck>, ros-rolling-ros-environment, ros-rolling-rosidl-generator-c <!nocheck>, ros-rolling-rosidl-pycommon <!nocheck>
+Package-List:
+ ros-rolling-rosidl-generator-rs deb misc optional arch=any
+Checksums-Sha1:
+ 60a01a535656515ef114d45f61d867d726ee410b 34984 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.tar.gz
+Checksums-Sha256:
+ 440219e9382f2c3a33b72f2f95a81cc1ae7cbfa0c6077be49f21207059dfa52b 34984 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.tar.gz
+Files:
+ ef11f6750135d64f296035c3621df0a0 34984 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.tar.gz
+
+dpkg-source: warning: extracting unsigned source package (ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.dsc)
+dpkg-source: warning: native package version may not have a revision
+dpkg-source: info: extracting ros-rolling-rosidl-generator-rs in /<<BUILDDIR>>package
+dpkg-source: info: unpacking ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.tar.gz
+
+Check disk space
+----------------
+
+Sufficient free space for build
+
+User Environment
+----------------
+
+APT_CONFIG=/var/lib/sbuild/apt.conf
+CCACHE_DIR=/build/ccache
+DEB_BUILD_OPTIONS=nocheck
+HOME=/sbuild-nonexistent
+LANG=C.UTF-8
+LC_ALL=C.UTF-8
+LOGNAME=runner
+OLDPWD=/
+PATH=/usr/lib/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+PWD=/<<BUILDDIR>>package
+SHELL=/bin/sh
+USER=runner
+
+dpkg-buildpackage
+-----------------
+
+Command: /usr/bin/eatmydata dpkg-buildpackage --sanitize-env -us -uc -b -rfakeroot
+dpkg-buildpackage: info: source package ros-rolling-rosidl-generator-rs
+dpkg-buildpackage: info: source version 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+dpkg-buildpackage: info: source distribution resolute
+dpkg-buildpackage: info: source changed by Esteve Fernandez <esteve@apache.org>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture amd64
+dpkg-source: info: using options from /<<BUILDDIR>>package/debian/source/options: --auto-commit
+ debian/rules clean
+dh clean -v --buildsystem=cmake --builddirectory=.obj-x86_64-linux-gnu
+   dh_auto_clean -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_autoreconf_clean -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_clean -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	rm -f debian/debhelper-build-stamp
+	rm -rf debian/.debhelper/
+	rm -f -- debian/ros-rolling-rosidl-generator-rs.substvars debian/files
+	rm -fr -- debian/ros-rolling-rosidl-generator-rs/ debian/tmp/
+	find .  \( \( \
+		\( -path .\*/.git -o -path .\*/.svn -o -path .\*/.bzr -o -path .\*/.hg -o -path .\*/CVS -o -path .\*/.pc -o -path .\*/_darcs \) -prune -o -type f -a \
+	        \( -name '#*#' -o -name '.*~' -o -name '*~' -o -name DEADJOE \
+		 -o -name '*.orig' -o -name '*.rej' -o -name '*.bak' \
+		 -o -name '.*.orig' -o -name .*.rej -o -name '.SUMS' \
+		 -o -name TAGS -o \( -path '*/.deps/*' -a -name '*.P' \) \
+		\) -exec rm -f {} + \) -o \
+		\( -type d -a \( -name autom4te.cache -o -name __pycache__ \) -prune -exec rm -rf {} + \) \)
+ debian/rules binary
+dh binary -v --buildsystem=cmake --builddirectory=.obj-x86_64-linux-gnu
+   dh_update_autotools_config -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_autoreconf -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   debian/rules override_dh_auto_configure
+make[1]: Entering directory '/<<BUILDDIR>>package'
+# In case we're installing to a non-standard location, look for a setup.sh
+# in the install tree and source it.  It will set things like
+# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+if [ -f "/opt/ros/rolling/setup.sh" ]; then . "/opt/ros/rolling/setup.sh"; fi && \
+dh_auto_configure -- \
+	-DCMAKE_INSTALL_PREFIX="/opt/ros/rolling" \
+	-DAMENT_PREFIX_PATH="/opt/ros/rolling" \
+	-DCMAKE_PREFIX_PATH="/opt/ros/rolling" \
+	-DBUILD_TESTING=OFF
+	cd .obj-x86_64-linux-gnu && DEB_PYTHON_INSTALL_LAYOUT=deb PKG_CONFIG=/usr/bin/pkg-config cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_INSTALL_LOCALSTATEDIR=/var -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON -DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON -DFETCHCONTENT_FULLY_DISCONNECTED=ON -DCMAKE_INSTALL_RUNSTATEDIR=/run "-GUnix Makefiles" -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_INSTALL_LIBDIR=lib/x86_64-linux-gnu -DBUILD_TESTING:BOOL=OFF -DCMAKE_INSTALL_PREFIX=/opt/ros/rolling -DAMENT_PREFIX_PATH=/opt/ros/rolling -DCMAKE_PREFIX_PATH=/opt/ros/rolling -DBUILD_TESTING=OFF ..
+-- The C compiler identification is GNU 15.2.0
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/lib/ccache/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 2.9.1 (/opt/ros/rolling/share/ament_cmake/cmake)
+-- Configuring done (1.0s)
+-- Generating done (0.0s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    AMENT_PREFIX_PATH
+    CMAKE_EXPORT_NO_PACKAGE_REGISTRY
+    CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY
+    CMAKE_INSTALL_LIBDIR
+    CMAKE_INSTALL_LOCALSTATEDIR
+    CMAKE_INSTALL_RUNSTATEDIR
+    CMAKE_INSTALL_SYSCONFDIR
+    FETCHCONTENT_FULLY_DISCONNECTED
+
+
+-- Build files have been written to: /<<BUILDDIR>>package/.obj-x86_64-linux-gnu
+make[1]: Leaving directory '/<<BUILDDIR>>package'
+	rm -f debian/ros-rolling-rosidl-generator-rs.debhelper.log
+   debian/rules override_dh_auto_build
+make[1]: Entering directory '/<<BUILDDIR>>package'
+# In case we're installing to a non-standard location, look for a setup.sh
+# in the install tree and source it.  It will set things like
+# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+if [ -f "/opt/ros/rolling/setup.sh" ]; then . "/opt/ros/rolling/setup.sh"; fi && \
+dh_auto_build
+	cd .obj-x86_64-linux-gnu && make -j4 INSTALL="install --strip-program=true" VERBOSE=1
+make[2]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+/usr/bin/cmake -S/<<BUILDDIR>>package -B/<<BUILDDIR>>package/.obj-x86_64-linux-gnu --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles /<<BUILDDIR>>package/.obj-x86_64-linux-gnu//CMakeFiles/progress.marks
+make  -f CMakeFiles/Makefile2 all
+make[3]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make  -f CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/build.make CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/depend
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+cd /<<BUILDDIR>>package/.obj-x86_64-linux-gnu && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /<<BUILDDIR>>package /<<BUILDDIR>>package /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/DependInfo.cmake "--color=" ament_cmake_python_sync_rosidl_generator_rs
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make  -f CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/build.make CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/build
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+/usr/bin/cmake -E copy_directory /<<BUILDDIR>>package/rosidl_generator_rs /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/ament_cmake_python/rosidl_generator_rs/rosidl_generator_rs
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+Built target ament_cmake_python_sync_rosidl_generator_rs
+make  -f CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/build.make CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/depend
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+cd /<<BUILDDIR>>package/.obj-x86_64-linux-gnu && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /<<BUILDDIR>>package /<<BUILDDIR>>package /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/DependInfo.cmake "--color=" ament_cmake_python_build_rosidl_generator_rs_egg
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make  -f CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/build.make CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/build
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+cd /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/ament_cmake_python/rosidl_generator_rs && /usr/bin/python3 setup.py egg_info
+running egg_info
+creating rosidl_generator_rs.egg-info
+writing rosidl_generator_rs.egg-info/PKG-INFO
+writing dependency_links to rosidl_generator_rs.egg-info/dependency_links.txt
+writing top-level names to rosidl_generator_rs.egg-info/top_level.txt
+writing manifest file 'rosidl_generator_rs.egg-info/SOURCES.txt'
+reading manifest file 'rosidl_generator_rs.egg-info/SOURCES.txt'
+writing manifest file 'rosidl_generator_rs.egg-info/SOURCES.txt'
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+Built target ament_cmake_python_build_rosidl_generator_rs_egg
+make[3]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+/usr/bin/cmake -E cmake_progress_start /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles 0
+make[2]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make[1]: Leaving directory '/<<BUILDDIR>>package'
+	rm -f debian/ros-rolling-rosidl-generator-rs.debhelper.log
+   debian/rules override_dh_auto_test
+make[1]: Entering directory '/<<BUILDDIR>>package'
+# In case we're installing to a non-standard location, look for a setup.sh
+# in the install tree and source it.  It will set things like
+# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+echo -- Running tests. Even if one of them fails the build is not canceled.
+-- Running tests. Even if one of them fails the build is not canceled.
+if [ -f "/opt/ros/rolling/setup.sh" ]; then . "/opt/ros/rolling/setup.sh"; fi && \
+dh_auto_test || true
+make[1]: Leaving directory '/<<BUILDDIR>>package'
+   create-stamp debian/debhelper-build-stamp
+   dh_testroot -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_prep -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	rm -f -- debian/ros-rolling-rosidl-generator-rs.substvars
+	rm -fr -- debian/.debhelper/generated/ros-rolling-rosidl-generator-rs/ debian/ros-rolling-rosidl-generator-rs/ debian/tmp/
+   debian/rules override_dh_auto_install
+make[1]: Entering directory '/<<BUILDDIR>>package'
+# In case we're installing to a non-standard location, look for a setup.sh
+# in the install tree and source it.  It will set things like
+# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+if [ -f "/opt/ros/rolling/setup.sh" ]; then . "/opt/ros/rolling/setup.sh"; fi && \
+dh_auto_install
+	install -m0755 -d /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs
+	cd .obj-x86_64-linux-gnu && make -j4 install DESTDIR=/<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs AM_UPDATE_INFO_DIR=no INSTALL="install --strip-program=true"
+make[2]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+/usr/bin/cmake -S/<<BUILDDIR>>package -B/<<BUILDDIR>>package/.obj-x86_64-linux-gnu --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles /<<BUILDDIR>>package/.obj-x86_64-linux-gnu//CMakeFiles/progress.marks
+make  -f CMakeFiles/Makefile2 all
+make[3]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make  -f CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/build.make CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/depend
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+cd /<<BUILDDIR>>package/.obj-x86_64-linux-gnu && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /<<BUILDDIR>>package /<<BUILDDIR>>package /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/DependInfo.cmake "--color=" ament_cmake_python_sync_rosidl_generator_rs
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make  -f CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/build.make CMakeFiles/ament_cmake_python_sync_rosidl_generator_rs.dir/build
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+/usr/bin/cmake -E copy_directory /<<BUILDDIR>>package/rosidl_generator_rs /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/ament_cmake_python/rosidl_generator_rs/rosidl_generator_rs
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+Built target ament_cmake_python_sync_rosidl_generator_rs
+make  -f CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/build.make CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/depend
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+cd /<<BUILDDIR>>package/.obj-x86_64-linux-gnu && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /<<BUILDDIR>>package /<<BUILDDIR>>package /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/DependInfo.cmake "--color=" ament_cmake_python_build_rosidl_generator_rs_egg
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make  -f CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/build.make CMakeFiles/ament_cmake_python_build_rosidl_generator_rs_egg.dir/build
+make[4]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+cd /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/ament_cmake_python/rosidl_generator_rs && /usr/bin/python3 setup.py egg_info
+running egg_info
+writing rosidl_generator_rs.egg-info/PKG-INFO
+writing dependency_links to rosidl_generator_rs.egg-info/dependency_links.txt
+writing top-level names to rosidl_generator_rs.egg-info/top_level.txt
+reading manifest file 'rosidl_generator_rs.egg-info/SOURCES.txt'
+writing manifest file 'rosidl_generator_rs.egg-info/SOURCES.txt'
+make[4]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+Built target ament_cmake_python_build_rosidl_generator_rs_egg
+make[3]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+/usr/bin/cmake -E cmake_progress_start /<<BUILDDIR>>package/.obj-x86_64-linux-gnu/CMakeFiles 0
+make  -f CMakeFiles/Makefile2 preinstall
+make[3]: Entering directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make[3]: Nothing to be done for 'preinstall'.
+make[3]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+Install the project...
+/usr/bin/cmake -P cmake_install.cmake
+-- Install configuration: "None"
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/ament_index/resource_index/rosidl_generator_packages/rosidl_generator_rs
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/environment/pythonpath.sh
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/environment/pythonpath.dsv
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/ament_index/resource_index/package_run_dependencies/rosidl_generator_rs
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/ament_index/resource_index/parent_prefix_path/rosidl_generator_rs
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/environment/ament_prefix_path.sh
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/environment/ament_prefix_path.dsv
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/environment/path.sh
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/environment/path.dsv
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/local_setup.bash
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/local_setup.fish
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/local_setup.sh
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/local_setup.zsh
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/local_setup.dsv
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/package.dsv
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/ament_index/resource_index/packages/rosidl_generator_rs
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/dependency_links.txt
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/top_level.txt
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/PKG-INFO
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/SOURCES.txt
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs/__init__.py
+Listing '/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs'...
+Can't list '/opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs'
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rs-extras.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/register_rs.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rsConfig.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rsConfig-version.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/package.xml
+-- Up-to-date: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rs_generate_interfaces.cmake
+-- Up-to-date: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/register_rs.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/custom_command.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/lib/rosidl_generator_rs/rosidl_generator_rs
+-- Up-to-date: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake
+-- Up-to-date: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rs_generate_interfaces.cmake
+-- Up-to-date: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/register_rs.cmake
+-- Up-to-date: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/cmake/custom_command.cmake
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/lib.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/build.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/msg
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/msg/rmw.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/templates
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/templates/srv_idiomatic.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/templates/msg_rmw.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/templates/srv_rmw.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/templates/msg_idiomatic.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/srv.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/msg.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/Cargo.toml.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/action
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/action/rmw.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/srv
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/srv/rmw.rs.em
+-- Installing: /<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs/opt/ros/rolling/share/rosidl_generator_rs/resource/action.rs.em
+make[2]: Leaving directory '/<<BUILDDIR>>package/.obj-x86_64-linux-gnu'
+make[1]: Leaving directory '/<<BUILDDIR>>package'
+   dh_installdocs -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	install -m0755 -d debian/ros-rolling-rosidl-generator-rs/usr/share/doc/ros-rolling-rosidl-generator-rs
+	install -p -m0644 debian/copyright debian/ros-rolling-rosidl-generator-rs/usr/share/doc/ros-rolling-rosidl-generator-rs/copyright
+   dh_installchangelogs -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	install -m0755 -d debian/ros-rolling-rosidl-generator-rs/usr/share/doc/ros-rolling-rosidl-generator-rs
+	install -p -m0644 debian/.debhelper/generated/ros-rolling-rosidl-generator-rs/dh_installchangelogs.dch.trimmed debian/ros-rolling-rosidl-generator-rs/usr/share/doc/ros-rolling-rosidl-generator-rs/changelog.Debian
+   dh_installinit -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_perl -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_link -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_strip_nondeterminism -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_compress -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	cd debian/ros-rolling-rosidl-generator-rs
+	chmod a-x usr/share/doc/ros-rolling-rosidl-generator-rs/changelog.Debian
+	gzip -9nf usr/share/doc/ros-rolling-rosidl-generator-rs/changelog.Debian
+	cd '/<<BUILDDIR>>package'
+   dh_fixperms -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	find debian/ros-rolling-rosidl-generator-rs ! -type l -a -true -a -true -print0 2>/dev/null | xargs -0r chmod go=rX,u+rw,a-s
+	find debian/ros-rolling-rosidl-generator-rs/usr/share/doc -type f -a -true -a ! -regex 'debian/ros-rolling-rosidl-generator-rs/usr/share/doc/[^/]*/examples/.*' -print0 2>/dev/null | xargs -0r chmod 0644
+	find debian/ros-rolling-rosidl-generator-rs/usr/share/doc -type d -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0755
+	find debian/ros-rolling-rosidl-generator-rs -type f \( -name '*.so.*' -o -name '*.so' -o -name '*.la' -o -name '*.a' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -o -name '*.sass' -o -name '*.jpeg' -o -name '*.jpg' -o -name '*.png' -o -name '*.gif' -o -name '*.cmxs' -o -name '*.node' \) -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0644
+   dh_missing -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_strip -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+   dh_makeshlibs -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	rm -f debian/ros-rolling-rosidl-generator-rs/DEBIAN/shlibs
+	rm -f debian/ros-rolling-rosidl-generator-rs.debhelper.log
+   debian/rules override_dh_shlibdeps
+make[1]: Entering directory '/<<BUILDDIR>>package'
+# In case we're installing to a non-standard location, look for a setup.sh
+# in the install tree and source it.  It will set things like
+# CMAKE_PREFIX_PATH, PKG_CONFIG_PATH, and PYTHONPATH.
+if [ -f "/opt/ros/rolling/setup.sh" ]; then . "/opt/ros/rolling/setup.sh"; fi && \
+dh_shlibdeps -l/<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs//opt/ros/rolling/lib/:/<<BUILDDIR>>package/debian/ros-rolling-rosidl-generator-rs//opt/ros/rolling/opt/rosidl_generator_rs/lib/
+make[1]: Leaving directory '/<<BUILDDIR>>package'
+   dh_installdeb -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	install -m0755 -d debian/ros-rolling-rosidl-generator-rs/DEBIAN
+   dh_gencontrol -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	install -m0755 -d debian/ros-rolling-rosidl-generator-rs/DEBIAN
+	echo misc:Depends= >> debian/ros-rolling-rosidl-generator-rs.substvars
+	echo misc:Pre-Depends= >> debian/ros-rolling-rosidl-generator-rs.substvars
+	dpkg-gencontrol -pros-rolling-rosidl-generator-rs -ldebian/changelog -Tdebian/ros-rolling-rosidl-generator-rs.substvars -cdebian/control -Pdebian/ros-rolling-rosidl-generator-rs
+dpkg-gencontrol: warning: Depends field of package ros-rolling-rosidl-generator-rs: substitution variable ${shlibs:Depends} used, but is not defined
+	chmod 0644 -- debian/ros-rolling-rosidl-generator-rs/DEBIAN/control
+   dh_md5sums -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	install -m0755 -d debian/ros-rolling-rosidl-generator-rs/DEBIAN
+	cd debian/ros-rolling-rosidl-generator-rs >/dev/null && xargs -r0 md5sum | perl -pe 'if (s@^\\@@) { s/\\\\/\\/g; }' > DEBIAN/md5sums
+	chmod 0644 -- debian/ros-rolling-rosidl-generator-rs/DEBIAN/md5sums
+   dh_builddeb -O-v -O--buildsystem=cmake -O--builddirectory=.obj-x86_64-linux-gnu
+	dpkg-deb --root-owner-group --build debian/ros-rolling-rosidl-generator-rs ..
+dpkg-deb: building package 'ros-rolling-rosidl-generator-rs' in '../ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb'.
+ dpkg-genbuildinfo --build=binary -O../ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ dpkg-genchanges --build=binary -O../ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-source: info: using options from /<<BUILDDIR>>package/debian/source/options: --auto-commit
+dpkg-buildpackage: info: binary-only upload (no source included)
+--------------------------------------------------------------------------------
+Build finished at 2026-09-02T10:01:55Z
+
+Finished
+--------
+
+I: Built successfully
+
++------------------------------------------------------------------------------+
+| Changes                                      Wed, 02 Sep 2026 10:01:55 +0000 |
++------------------------------------------------------------------------------+
+
+
+ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.changes:
+------------------------------------------------------------------------------------------
+
+Format: 1.8
+Date: Mon, 10 Aug 2026 00:00:00 -0000
+Source: ros-rolling-rosidl-generator-rs
+Binary: ros-rolling-rosidl-generator-rs
+Built-For-Profiles: derivative.ubuntu noudeb
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Distribution: resolute
+Urgency: high
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Changed-By: Esteve Fernandez <esteve@apache.org>
+Description:
+ ros-rolling-rosidl-generator-rs - Generate the ROS interfaces in Rust.
+Changes:
+ ros-rolling-rosidl-generator-rs (0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3) resolute; urgency=high
+ .
+   * fix(generator): do not register generated crates in the rust_packages index
+   * fix(generator): make Cargo.toml dependencies deterministic (#28)
+   * fix(generator): allow IDL files outside standard folders
+   * perf(generator): use memcpy paths for primitive sequence conversion (#26)
+   * Contributors: Esteve Fernandez, Mathieu David
+Checksums-Sha1:
+ 254534d2c21d3b401fef4150f66941fd2e4f3ae2 12927 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ d1340d17f8959088a6b75408992016708f2054a6 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Checksums-Sha256:
+ 4f1f9d14fb8ee3a33b5328a774313593429016cb52f11c2050e8be0b447b542d 12927 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 96262615129db0a61d04d77320fba133d162c1b2ac718c1161af01e58a83a998 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Files:
+ af0a1d9c134d65bdcd876f53f3cd9a29 12927 misc optional ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 395e1c4ee3daae6b842d1d17ead70f0b 23252 misc optional ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+
++------------------------------------------------------------------------------+
+| Buildinfo                                    Wed, 02 Sep 2026 10:01:56 +0000 |
++------------------------------------------------------------------------------+
+
+Format: 1.0
+Source: ros-rolling-rosidl-generator-rs
+Binary: ros-rolling-rosidl-generator-rs
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Checksums-Md5:
+ 395e1c4ee3daae6b842d1d17ead70f0b 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Checksums-Sha1:
+ d1340d17f8959088a6b75408992016708f2054a6 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Checksums-Sha256:
+ 96262615129db0a61d04d77320fba133d162c1b2ac718c1161af01e58a83a998 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Build-Origin: Ubuntu
+Build-Architecture: amd64
+Build-Date: Wed, 02 Sep 2026 10:01:55 +0000
+Build-Path: /<<BUILDDIR>>package
+Installed-Build-Depends:
+ autoconf (= 2.72-3.1ubuntu2),
+ automake (= 1:1.18.1-3build1),
+ autopoint (= 0.23.2-1),
+ autotools-dev (= 20240727.1build1),
+ base-files (= 14ubuntu6.2),
+ base-passwd (= 3.6.8),
+ bash (= 5.3-2ubuntu1),
+ binutils (= 2.46-3ubuntu2),
+ binutils-common (= 2.46-3ubuntu2),
+ binutils-x86-64-linux-gnu (= 2.46-3ubuntu2),
+ bsdextrautils (= 2.41.3-3ubuntu2.2),
+ build-essential (= 12.12ubuntu2.26.04.2),
+ bzip2 (= 1.0.8-6ubuntu0.1),
+ cmake (= 4.2.3-2ubuntu2),
+ cmake-data (= 4.2.3-2ubuntu2),
+ coreutils (= 9.5-1ubuntu2+0.0.0~ubuntu25),
+ coreutils-from-uutils (= 0.0.0~ubuntu25),
+ cpp (= 4:15.2.0-5ubuntu1),
+ cpp-15 (= 15.2.0-16ubuntu1),
+ cpp-15-x86-64-linux-gnu (= 15.2.0-16ubuntu1),
+ cpp-x86-64-linux-gnu (= 4:15.2.0-5ubuntu1),
+ cppcheck (= 2.19.0-3),
+ dash (= 0.5.12-12ubuntu3),
+ debconf (= 1.5.92),
+ debhelper (= 13.31ubuntu1),
+ debianutils (= 5.23.2build1),
+ debugedit (= 1:5.3-4),
+ dh-autoreconf (= 21+nmu1),
+ dh-strip-nondeterminism (= 1.15.0-1build1),
+ diffutils (= 1:3.12-1ubuntu0.1),
+ docutils-common (= 0.22.4+dfsg-1),
+ dpkg (= 1.23.7ubuntu1),
+ dpkg-dev (= 1.23.7ubuntu1),
+ dwz (= 0.16-4),
+ file (= 1:5.46-5build2),
+ findutils (= 4.10.0-3build2),
+ g++ (= 4:15.2.0-5ubuntu1),
+ g++-15 (= 15.2.0-16ubuntu1),
+ g++-15-x86-64-linux-gnu (= 15.2.0-16ubuntu1),
+ g++-x86-64-linux-gnu (= 4:15.2.0-5ubuntu1),
+ gcc (= 4:15.2.0-5ubuntu1),
+ gcc-15 (= 15.2.0-16ubuntu1),
+ gcc-15-base (= 15.2.0-16ubuntu1),
+ gcc-15-x86-64-linux-gnu (= 15.2.0-16ubuntu1),
+ gcc-16-base (= 16-20260322-1ubuntu1),
+ gcc-x86-64-linux-gnu (= 4:15.2.0-5ubuntu1),
+ gettext (= 0.23.2-1),
+ gettext-base (= 0.23.2-1),
+ gnu-coreutils (= 9.7-3ubuntu2.1),
+ googletest (= 1.17.0-1build1),
+ grep (= 3.12-1),
+ groff-base (= 1.23.0-10),
+ gzip (= 1.14-1~exp2ubuntu1.1),
+ hostname (= 3.25build1),
+ init-system-helpers (= 1.69),
+ intltool-debian (= 0.35.0+20060710.6build1),
+ libacl1 (= 2.3.2-2),
+ libarchive-zip-perl (= 1.68-1),
+ libarchive13t64 (= 3.8.5-1ubuntu2.2),
+ libasan8 (= 16-20260322-1ubuntu1),
+ libatomic1 (= 16-20260322-1ubuntu1),
+ libattr1 (= 1:2.5.2-4ubuntu0.1),
+ libaudit-common (= 1:4.1.2-1build1),
+ libaudit1 (= 1:4.1.2-1build1),
+ libbinutils (= 2.46-3ubuntu2),
+ libblkid1 (= 2.41.3-3ubuntu2.2),
+ libbrotli1 (= 1.2.0-3build1),
+ libbz2-1.0 (= 1.0.8-6ubuntu0.1),
+ libc-bin (= 2.43-2ubuntu2.3),
+ libc-dev-bin (= 2.43-2ubuntu2.3),
+ libc-gconv-modules-extra (= 2.43-2ubuntu2.3),
+ libc6 (= 2.43-2ubuntu2.3),
+ libc6-dev (= 2.43-2ubuntu2.3),
+ libcap-ng0 (= 0.8.5-4build5),
+ libcc1-0 (= 16-20260322-1ubuntu1),
+ libcom-err2 (= 1.47.2-3ubuntu4),
+ libcrypt-dev (= 1:4.5.1-1),
+ libcrypt1 (= 1:4.5.1-1),
+ libctf-nobfd0 (= 2.46-3ubuntu2),
+ libctf0 (= 2.46-3ubuntu2),
+ libcurl4t64 (= 8.18.0-1ubuntu2.4),
+ libdb5.3t64 (= 5.3.28+dfsg2-10ubuntu1),
+ libdebconfclient0 (= 0.280ubuntu1),
+ libdebhelper-perl (= 13.31ubuntu1),
+ libdpkg-perl (= 1.23.7ubuntu1),
+ libdw1t64 (= 0.194-4),
+ libelf1t64 (= 0.194-4),
+ libexpat1 (= 2.7.4-1),
+ libexpat1-dev (= 2.7.4-1),
+ libffi8 (= 3.5.2-4),
+ libfile-stripnondeterminism-perl (= 1.15.0-1build1),
+ libgcc-15-dev (= 15.2.0-16ubuntu1),
+ libgcc-s1 (= 16-20260322-1ubuntu1),
+ libgdbm-compat4t64 (= 1.26-1build1),
+ libgdbm6t64 (= 1.26-1build1),
+ libgmp10 (= 2:6.3.0+dfsg-5ubuntu2),
+ libgnutls30t64 (= 3.8.12-2ubuntu1.1),
+ libgomp1 (= 16-20260322-1ubuntu1),
+ libgprofng0 (= 2.46-3ubuntu2),
+ libgssapi-krb5-2 (= 1.22.1-2ubuntu4.1),
+ libgtest-dev (= 1.17.0-1build1),
+ libhogweed6t64 (= 3.10.2-1),
+ libhwasan0 (= 16-20260322-1ubuntu1),
+ libidn2-0 (= 2.3.8-4build1),
+ libisl23 (= 0.27-1build1),
+ libitm1 (= 16-20260322-1ubuntu1),
+ libjansson4 (= 2.14-2build4),
+ libjs-sphinxdoc (= 8.2.3-12),
+ libjsoncpp26 (= 1.9.6-5),
+ libk5crypto3 (= 1.22.1-2ubuntu4.1),
+ libkeyutils1 (= 1.6.3-6ubuntu3),
+ libkrb5-3 (= 1.22.1-2ubuntu4.1),
+ libkrb5support0 (= 1.22.1-2ubuntu4.1),
+ libldap-common (= 2.6.10+dfsg-1ubuntu5),
+ libldap2 (= 2.6.10+dfsg-1ubuntu5),
+ liblsan0 (= 16-20260322-1ubuntu1),
+ liblz4-1 (= 1.10.0-8),
+ liblzma5 (= 5.8.3-1),
+ libmagic-mgc (= 1:5.46-5build2),
+ libmagic1t64 (= 1:5.46-5build2),
+ libmd0 (= 1.1.0-2build4),
+ libmount1 (= 2.41.3-3ubuntu2.2),
+ libmpc3 (= 1.3.1-3),
+ libmpfr6 (= 4.2.2-3),
+ libncursesw6 (= 6.6+20251231-1),
+ libnettle8t64 (= 3.10.2-1),
+ libnghttp2-14 (= 1.68.0-2ubuntu0.2),
+ libp11-kit0 (= 0.26.2-2),
+ libpam-modules (= 1.7.0-5ubuntu3.2),
+ libpam-modules-bin (= 1.7.0-5ubuntu3.2),
+ libpam-runtime (= 1.7.0-5ubuntu3.2),
+ libpam0g (= 1.7.0-5ubuntu3.2),
+ libpcre2-8-0 (= 10.46-1build1),
+ libperl5.40 (= 5.40.1-7ubuntu0.1),
+ libpipeline1 (= 1.5.8-2),
+ libproc2-0 (= 2:4.0.4-9ubuntu1),
+ libpsl5t64 (= 0.21.2-1.1build2),
+ libpython3-dev (= 3.14.3-0ubuntu2),
+ libpython3-stdlib (= 3.14.3-0ubuntu2),
+ libpython3.14 (= 3.14.4-1ubuntu0.1),
+ libpython3.14-dev (= 3.14.4-1ubuntu0.1),
+ libpython3.14-minimal (= 3.14.4-1ubuntu0.1),
+ libpython3.14-stdlib (= 3.14.4-1ubuntu0.1),
+ libquadmath0 (= 16-20260322-1ubuntu1),
+ libreadline8t64 (= 8.3-4),
+ librhash1 (= 1.4.6-1.1),
+ librtmp1 (= 2.4+20151223.gitfa8646d.1-3),
+ libsasl2-2 (= 2.1.28+dfsg1-9ubuntu3),
+ libsasl2-modules-db (= 2.1.28+dfsg1-9ubuntu3),
+ libseccomp2 (= 2.6.0-2ubuntu5),
+ libselinux1 (= 3.9-4build1),
+ libsframe3 (= 2.46-3ubuntu2),
+ libsmartcols1 (= 2.41.3-3ubuntu2.2),
+ libsqlite3-0 (= 3.46.1-9ubuntu0.2),
+ libssh2-1t64 (= 1.11.1-1ubuntu0.26.04.3),
+ libssl3t64 (= 3.5.5-1ubuntu3.5),
+ libstdc++-15-dev (= 15.2.0-16ubuntu1),
+ libstdc++6 (= 16-20260322-1ubuntu1),
+ libsystemd0 (= 259.5-0ubuntu3.4),
+ libtasn1-6 (= 4.21.0-2),
+ libtinfo6 (= 6.6+20251231-1),
+ libtinyxml2-11 (= 11.0.0+dfsg-1build1),
+ libtool (= 2.5.4-9),
+ libtsan2 (= 16-20260322-1ubuntu1),
+ libubsan1 (= 16-20260322-1ubuntu1),
+ libuchardet0 (= 0.0.8-2),
+ libudev1 (= 259.5-0ubuntu3.4),
+ libunistring5 (= 1.3-2build1),
+ libuuid1 (= 2.41.3-3ubuntu2.2),
+ libuv1t64 (= 1.51.0-2ubuntu1),
+ libxml2-16 (= 2.15.2+dfsg-0.1ubuntu0.1),
+ libxml2-utils (= 2.15.2+dfsg-0.1ubuntu0.1),
+ libxxhash0 (= 0.8.3-2build1),
+ libzstd1 (= 1.5.7+dfsg-3),
+ linux-libc-dev (= 7.0.0-30.30),
+ lto-disabled-list (= 79),
+ m4 (= 1.4.21-1),
+ make (= 4.4.1-3),
+ man-db (= 2.13.1-1build1),
+ mawk (= 1.3.4.20260129-1),
+ media-types (= 14.0.0build1),
+ ncurses-base (= 6.6+20251231-1),
+ ncurses-bin (= 6.6+20251231-1),
+ netbase (= 6.5build1),
+ openssl-provider-legacy (= 3.5.5-1ubuntu3.5),
+ patch (= 2.8-2build1),
+ perl (= 5.40.1-7ubuntu0.1),
+ perl-base (= 5.40.1-7ubuntu0.1),
+ perl-modules-5.40 (= 5.40.1-7ubuntu0.1),
+ po-debconf (= 1.0.22),
+ procps (= 2:4.0.4-9ubuntu1),
+ pydocstyle (= 6.3.0-3),
+ python3 (= 3.14.3-0ubuntu2),
+ python3-argcomplete (= 3.6.3-1),
+ python3-autocommand (= 2.2.2-4),
+ python3-catkin-pkg-modules (= 1.1.0-2),
+ python3-dateutil (= 2.9.0-4build1),
+ python3-dev (= 3.14.3-0ubuntu2),
+ python3-docutils (= 0.22.4+dfsg-1),
+ python3-empy (= 4.2.1-1),
+ python3-flake8 (= 7.3.0-1),
+ python3-flake8-blind-except (= 0.2.1-1build1),
+ python3-flake8-builtins (= 3.1.0-1),
+ python3-flake8-class-newline (= 1.6.0-6build1),
+ python3-flake8-comprehensions (= 3.17.0-1),
+ python3-flake8-deprecated (= 2.3.0-1),
+ python3-flake8-import-order (= 0.19.2-1),
+ python3-flake8-quotes (= 3.4.0-4build1),
+ python3-inflect (= 7.5.0-1build1),
+ python3-jaraco.context (= 6.0.1-2),
+ python3-jaraco.functools (= 4.1.0-1build1),
+ python3-jaraco.text (= 4.0.0-1build1),
+ python3-lark (= 1.3.1-1),
+ python3-mccabe (= 0.7.0-1build1),
+ python3-minimal (= 3.14.3-0ubuntu2),
+ python3-more-itertools (= 10.8.0-1build1),
+ python3-packaging (= 26.0-1),
+ python3-pkg-resources (= 78.1.1-0.1build1),
+ python3-pycodestyle (= 2.14.0-1),
+ python3-pydocstyle (= 6.3.0-3),
+ python3-pyflakes (= 3.4.0-1),
+ python3-pygments (= 2.19.2+dfsg-1),
+ python3-pyparsing (= 3.3.2-2),
+ python3-roman-numerals (= 4.1.0-1),
+ python3-setuptools (= 78.1.1-0.1build1),
+ python3-snowballstemmer (= 3.0.1-1),
+ python3-typeguard (= 4.4.4-2),
+ python3-typing-extensions (= 4.15.0-2),
+ python3-zipp (= 3.23.0-1build1),
+ python3.14 (= 3.14.4-1ubuntu0.1),
+ python3.14-dev (= 3.14.4-1ubuntu0.1),
+ python3.14-minimal (= 3.14.4-1ubuntu0.1),
+ readline-common (= 8.3-4),
+ ros-rolling-ament-cmake (= 2.9.1-1resolute.20260714.182819),
+ ros-rolling-ament-cmake-copyright (= 0.21.1-1resolute.20260714.182046),
+ ros-rolling-ament-cmake-core (= 2.9.1-1resolute.20260714.152200),
+ ros-rolling-ament-cmake-cppcheck (= 0.21.1-1resolute.20260714.181646),
+ ros-rolling-ament-cmake-cpplint (= 0.21.1-1resolute.20260714.181728),
+ ros-rolling-ament-cmake-export-definitions (= 2.9.1-1resolute.20260714.173933),
+ ros-rolling-ament-cmake-export-dependencies (= 2.9.1-1resolute.20260714.174417),
+ ros-rolling-ament-cmake-export-include-directories (= 2.9.1-1resolute.20260714.174004),
+ ros-rolling-ament-cmake-export-libraries (= 2.9.1-1resolute.20260714.174014),
+ ros-rolling-ament-cmake-export-link-flags (= 2.9.1-1resolute.20260714.174012),
+ ros-rolling-ament-cmake-export-targets (= 2.9.1-1resolute.20260714.174248),
+ ros-rolling-ament-cmake-flake8 (= 0.21.1-1resolute.20260714.181743),
+ ros-rolling-ament-cmake-gen-version-h (= 2.9.1-1resolute.20260714.174014),
+ ros-rolling-ament-cmake-gtest (= 2.9.1-1resolute.20260714.181807),
+ ros-rolling-ament-cmake-include-directories (= 2.9.1-1resolute.20260714.174020),
+ ros-rolling-ament-cmake-libraries (= 2.9.1-1resolute.20260714.174033),
+ ros-rolling-ament-cmake-lint-cmake (= 0.21.1-1resolute.20260714.181806),
+ ros-rolling-ament-cmake-pep257 (= 0.21.1-1resolute.20260714.181920),
+ ros-rolling-ament-cmake-python (= 2.9.1-1resolute.20260714.174056),
+ ros-rolling-ament-cmake-ros-core (= 0.16.0-1resolute.20260714.174707),
+ ros-rolling-ament-cmake-target-dependencies (= 2.9.1-1resolute.20260714.174421),
+ ros-rolling-ament-cmake-test (= 2.9.1-1resolute.20260714.181353),
+ ros-rolling-ament-cmake-uncrustify (= 0.21.1-1resolute.20260714.190017),
+ ros-rolling-ament-cmake-version (= 2.9.1-1resolute.20260714.174126),
+ ros-rolling-ament-cmake-xmllint (= 0.21.1-1resolute.20260714.181936),
+ ros-rolling-ament-copyright (= 0.21.1-1resolute.20260714.181354),
+ ros-rolling-ament-cppcheck (= 0.21.1-1resolute.20260714.174146),
+ ros-rolling-ament-cpplint (= 0.21.1-1resolute.20260714.174156),
+ ros-rolling-ament-flake8 (= 0.21.1-1resolute.20260714.174445),
+ ros-rolling-ament-index-python (= 1.14.2-1resolute.20260717.153224),
+ ros-rolling-ament-lint (= 0.21.1-1resolute.20260714.174215),
+ ros-rolling-ament-lint-auto (= 0.21.1-1resolute.20260714.182025),
+ ros-rolling-ament-lint-cmake (= 0.21.1-1resolute.20260714.174221),
+ ros-rolling-ament-lint-common (= 0.21.1-1resolute.20260714.190216),
+ ros-rolling-ament-package (= 0.19.1-1resolute.20260714.151915),
+ ros-rolling-ament-pep257 (= 0.21.1-1resolute.20260714.174524),
+ ros-rolling-ament-uncrustify (= 0.21.1-1resolute.20260714.185840),
+ ros-rolling-ament-xmllint (= 0.21.1-1resolute.20260714.174552),
+ ros-rolling-rcutils (= 7.2.1-1resolute.20260714.184736),
+ ros-rolling-ros-environment (= 5.0.0-1resolute.20260714.174124),
+ ros-rolling-ros-workspace (= 1.0.3-8resolute.20260714.165745),
+ ros-rolling-rosidl-adapter (= 5.3.1-2resolute.20260714.190704),
+ ros-rolling-rosidl-cli (= 5.3.1-2resolute.20260714.175512),
+ ros-rolling-rosidl-cmake (= 5.3.1-2resolute.20260714.192020),
+ ros-rolling-rosidl-generator-c (= 5.3.1-2resolute.20260717.154036),
+ ros-rolling-rosidl-generator-type-description (= 5.3.1-2resolute.20260717.153625),
+ ros-rolling-rosidl-parser (= 5.3.1-2resolute.20260714.190853),
+ ros-rolling-rosidl-pycommon (= 5.3.1-2resolute.20260714.191118),
+ ros-rolling-rosidl-typesupport-interface (= 5.3.1-2resolute.20260714.184856),
+ ros-rolling-uncrustify-vendor (= 3.3.0-1resolute.20260714.185441),
+ rpcsvc-proto (= 1.4.3-1build1),
+ rust-coreutils (= 0.8.0-0ubuntu3),
+ sed (= 4.9-2ubuntu1),
+ sensible-utils (= 0.0.26build1),
+ sgml-base (= 1.31+nmu1build1),
+ sysvinit-utils (= 3.15-5ubuntu1),
+ tar (= 1.35+dfsg-4ubuntu0.4),
+ tzdata (= 2026c-0ubuntu0.26.04.1),
+ uncrustify (= 0.78.1+dfsg1-1build1),
+ util-linux (= 2.41.3-3ubuntu2.2),
+ xml-core (= 0.19build1),
+ xz-utils (= 5.8.3-1),
+ zlib1g (= 1:1.3.dfsg+really1.3.1-1ubuntu3.1),
+ zlib1g-dev (= 1:1.3.dfsg+really1.3.1-1ubuntu3.1)
+Environment:
+ DEB_BUILD_OPTIONS="nocheck parallel=4"
+ DEB_BUILD_PROFILES="derivative.ubuntu noudeb"
+ LANG="C.UTF-8"
+ LC_COLLATE="C.UTF-8"
+ LC_CTYPE="C.UTF-8"
+ LD_LIBRARY_PATH="/usr/lib/libeatmydata"
+ LD_PRELOAD="libeatmydata.so"
+ SOURCE_DATE_EPOCH="1786320000"
+
+
++------------------------------------------------------------------------------+
+| Package contents                             Wed, 02 Sep 2026 10:01:56 +0000 |
++------------------------------------------------------------------------------+
+
+
+ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+-------------------------------------------------------------------------------------
+
+ new Debian package, version 2.0.
+ size 23252 bytes: control archive=1758 bytes.
+     492 bytes,     9 lines      control
+    4816 bytes,    45 lines      md5sums
+ Package: ros-rolling-rosidl-generator-rs
+ Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+ Architecture: amd64
+ Maintainer: Esteve Fernandez <esteve@apache.org>
+ Installed-Size: 141
+ Depends: ros-rolling-ament-cmake, ros-rolling-ros-environment, ros-rolling-rosidl-generator-c, ros-rolling-rosidl-parser, ros-rolling-rosidl-pycommon, ros-rolling-rosidl-typesupport-c, ros-rolling-rosidl-typesupport-interface
+ Section: misc
+ Priority: optional
+ Description: Generate the ROS interfaces in Rust.
+
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/lib/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/
+-rw-r--r-- root/root        63 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/PKG-INFO
+-rw-r--r-- root/root       212 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/SOURCES.txt
+-rw-r--r-- root/root         1 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/dependency_links.txt
+-rw-r--r-- root/root        20 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs-0.5.0-py3.14.egg-info/top_level.txt
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs/
+-rw-r--r-- root/root     17577 2026-08-10 00:00 ./opt/ros/rolling/lib/python3.14/site-packages/rosidl_generator_rs/__init__.py
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/lib/rosidl_generator_rs/
+-rwxr-xr-x root/root      1357 2026-08-10 00:00 ./opt/ros/rolling/lib/rosidl_generator_rs/rosidl_generator_rs
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/package_run_dependencies/
+-rw-r--r-- root/root       178 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/package_run_dependencies/rosidl_generator_rs
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/packages/
+-rw-r--r-- root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/packages/rosidl_generator_rs
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/parent_prefix_path/
+-rw-r--r-- root/root         8 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/parent_prefix_path/rosidl_generator_rs
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/rosidl_generator_packages/
+-rw-r--r-- root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/ament_index/resource_index/rosidl_generator_packages/rosidl_generator_rs
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/
+-rw-r--r-- root/root      4049 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/ament_cmake_export_dependencies-extras.cmake
+-rw-r--r-- root/root      1341 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/custom_command.cmake
+-rw-r--r-- root/root      1176 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/register_rs.cmake
+-rw-r--r-- root/root       427 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rs-extras.cmake
+-rw-r--r-- root/root       432 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rsConfig-version.cmake
+-rw-r--r-- root/root      1464 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rsConfig.cmake
+-rw-r--r-- root/root      4274 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/cmake/rosidl_generator_rs_generate_interfaces.cmake
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/environment/
+-rw-r--r-- root/root        41 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/environment/ament_prefix_path.dsv
+-rw-r--r-- root/root       160 2026-07-02 09:53 ./opt/ros/rolling/share/rosidl_generator_rs/environment/ament_prefix_path.sh
+-rw-r--r-- root/root        41 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/environment/path.dsv
+-rw-r--r-- root/root       185 2026-07-02 09:53 ./opt/ros/rolling/share/rosidl_generator_rs/environment/path.sh
+-rw-r--r-- root/root        62 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/environment/pythonpath.dsv
+-rw-r--r-- root/root       166 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/environment/pythonpath.sh
+-rw-r--r-- root/root      1594 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/local_setup.bash
+-rw-r--r-- root/root       359 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/local_setup.dsv
+-rw-r--r-- root/root      2134 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/local_setup.fish
+-rw-r--r-- root/root      5123 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/local_setup.sh
+-rw-r--r-- root/root      1957 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/local_setup.zsh
+-rw-r--r-- root/root       246 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/package.dsv
+-rw-r--r-- root/root      2005 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/package.xml
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/
+-rw-r--r-- root/root       575 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/Cargo.toml.em
+-rw-r--r-- root/root      6778 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/action.rs.em
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/action/
+-rw-r--r-- root/root      1419 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/action/rmw.rs.em
+-rw-r--r-- root/root       339 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/build.rs.em
+-rw-r--r-- root/root       319 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/lib.rs.em
+-rw-r--r-- root/root       357 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/msg.rs.em
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/msg/
+-rw-r--r-- root/root       355 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/msg/rmw.rs.em
+-rw-r--r-- root/root       357 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/srv.rs.em
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/srv/
+-rw-r--r-- root/root       355 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/srv/rmw.rs.em
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/templates/
+-rw-r--r-- root/root     11359 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/templates/msg_idiomatic.rs.em
+-rw-r--r-- root/root      5439 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/templates/msg_rmw.rs.em
+-rw-r--r-- root/root      1295 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/templates/srv_idiomatic.rs.em
+-rw-r--r-- root/root      1292 2026-08-10 00:00 ./opt/ros/rolling/share/rosidl_generator_rs/resource/templates/srv_rmw.rs.em
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./usr/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./usr/share/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./usr/share/doc/
+drwxr-xr-x root/root         0 2026-08-10 00:00 ./usr/share/doc/ros-rolling-rosidl-generator-rs/
+-rw-r--r-- root/root      5381 2026-08-10 00:00 ./usr/share/doc/ros-rolling-rosidl-generator-rs/changelog.Debian.gz
+-rw-r--r-- root/root       303 2026-08-10 00:00 ./usr/share/doc/ros-rolling-rosidl-generator-rs/copyright
+
+
++------------------------------------------------------------------------------+
+| Post Build                                   Wed, 02 Sep 2026 10:01:56 +0000 |
++------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------+
+| Cleanup                                      Wed, 02 Sep 2026 10:01:56 +0000 |
++------------------------------------------------------------------------------+
+
+Purging /<<BUILDDIR>>
+Not cleaning session: cloned chroot in use
+
++------------------------------------------------------------------------------+
+| Summary                                      Wed, 02 Sep 2026 10:01:58 +0000 |
++------------------------------------------------------------------------------+
+
+Build Architecture: amd64
+Build Type: binary
+Build-Space: 1740
+Build-Time: 5
+Distribution: resolute
+Host Architecture: amd64
+Install-Time: 45
+Job: /home/runner/work/rosidl_rust/rosidl_rust/src/rosidl_rust/ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3.dsc
+Machine Architecture: amd64
+Package: ros-rolling-rosidl-generator-rs
+Package-Time: 60
+Source-Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Space: 1740
+Status: successful
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+--------------------------------------------------------------------------------
+Finished at 2026-09-02T10:01:55Z
+Build needed 00:01:00, 1740k disk space

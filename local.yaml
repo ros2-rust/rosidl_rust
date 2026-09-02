@@ -1,0 +1,3 @@
+rosidl_generator_rs:
+  ubuntu:
+  - ros-rolling-rosidl-generator-rs

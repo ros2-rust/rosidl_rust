@@ -1,0 +1,30 @@
+Format: 1.8
+Date: Mon, 10 Aug 2026 00:00:00 -0000
+Source: ros-rolling-rosidl-generator-rs
+Binary: ros-rolling-rosidl-generator-rs
+Built-For-Profiles: derivative.ubuntu noudeb
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Distribution: resolute
+Urgency: high
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Changed-By: Esteve Fernandez <esteve@apache.org>
+Description:
+ ros-rolling-rosidl-generator-rs - Generate the ROS interfaces in Rust.
+Changes:
+ ros-rolling-rosidl-generator-rs (0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3) resolute; urgency=high
+ .
+   * fix(generator): do not register generated crates in the rust_packages index
+   * fix(generator): make Cargo.toml dependencies deterministic (#28)
+   * fix(generator): allow IDL files outside standard folders
+   * perf(generator): use memcpy paths for primitive sequence conversion (#26)
+   * Contributors: Esteve Fernandez, Mathieu David
+Checksums-Sha1:
+ 254534d2c21d3b401fef4150f66941fd2e4f3ae2 12927 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ d1340d17f8959088a6b75408992016708f2054a6 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Checksums-Sha256:
+ 4f1f9d14fb8ee3a33b5328a774313593429016cb52f11c2050e8be0b447b542d 12927 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 96262615129db0a61d04d77320fba133d162c1b2ac718c1161af01e58a83a998 23252 ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Files:
+ af0a1d9c134d65bdcd876f53f3cd9a29 12927 misc optional ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.buildinfo
+ 395e1c4ee3daae6b842d1d17ead70f0b 23252 misc optional ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb

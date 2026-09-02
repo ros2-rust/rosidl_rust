@@ -1,0 +1,16 @@
+Package: ros-rolling-rosidl-generator-rs
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Priority: optional
+Section: misc
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Installed-Size: 141
+Depends: ros-rolling-ament-cmake, ros-rolling-ros-environment, ros-rolling-rosidl-generator-c, ros-rolling-rosidl-parser, ros-rolling-rosidl-pycommon, ros-rolling-rosidl-typesupport-c, ros-rolling-rosidl-typesupport-interface
+Filename: ./ros-rolling-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Size: 23252
+MD5sum: 395e1c4ee3daae6b842d1d17ead70f0b
+SHA1: d1340d17f8959088a6b75408992016708f2054a6
+SHA256: 96262615129db0a61d04d77320fba133d162c1b2ac718c1161af01e58a83a998
+SHA512: f622d199541afe4e95ae6ec1b6343e736f857ad7153e9e3edd990651fabdcc8774f546ce5eaf1b78e2ca741d49a0525731649ee43a0f78b154834a12fce58979
+Description: Generate the ROS interfaces in Rust.
+
