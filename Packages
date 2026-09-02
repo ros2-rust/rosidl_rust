@@ -1,0 +1,16 @@
+Package: ros-kilted-rosidl-generator-rs
+Architecture: amd64
+Version: 0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3
+Priority: optional
+Section: misc
+Maintainer: Esteve Fernandez <esteve@apache.org>
+Installed-Size: 140
+Depends: ros-kilted-ament-cmake, ros-kilted-ros-environment, ros-kilted-rosidl-generator-c, ros-kilted-rosidl-parser, ros-kilted-rosidl-pycommon, ros-kilted-rosidl-typesupport-c, ros-kilted-rosidl-typesupport-interface
+Filename: ./ros-kilted-rosidl-generator-rs_0.5.0+git1-0~2026.09.02.09.59+g19d57818dab3_amd64.deb
+Size: 24798
+MD5sum: 9118f267a0e5dda60572ae3dbded11cf
+SHA1: 2aab219297ab62edd616886670de8544a189fd2e
+SHA256: 3572289425c57a3c7ba04d435cd9ebe25fb90d41a08925e3e104e0a93f35a471
+SHA512: 4029a991403f328419a6a8ba5a3651b964cc725cbdcf3f9c700484a62b465bb51d0720b1dab1361cb62d2822a867be60834a11dc18b057749363e8df223c0e21
+Description: Generate the ROS interfaces in Rust.
+
