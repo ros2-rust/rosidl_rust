@@ -32,6 +32,9 @@ use serde::{Deserialize, Serialize};
 TEMPLATE(
     'templates/msg_idiomatic.rs.em',
     package_name=package_name, interface_path=interface_path,
+    representation=representation,
+    get_public_rs_type=get_public_rs_type,
+    public_conversion=public_conversion,
     msg_specs=action_msg_specs,
     get_rs_name=get_rs_name,
     get_rs_type=make_get_rs_type(True),
@@ -43,6 +46,9 @@ TEMPLATE(
 TEMPLATE(
     'templates/srv_idiomatic.rs.em',
     package_name=package_name, interface_path=interface_path,
+    representation=representation,
+    get_public_rs_type=get_public_rs_type,
+    public_conversion=public_conversion,
     srv_specs=action_srv_specs,
     get_rs_name=get_rs_name,
     get_rs_type=make_get_rs_type(True),
@@ -54,6 +60,7 @@ TEMPLATE(
 
 @{
 type_name = action_spec.namespaced_type.name
+package_path = "super::super" if representation == "buffer" else "super"
 }@
 
 #[link(name = "@(package_name)__rosidl_typesupport_c")]
@@ -78,16 +85,16 @@ impl rosidl_runtime_rs::Action for @(type_name) {
 
   // --- Associated types for client library implementation ---
   /// The feedback message with generic fields which wraps the feedback message.
-  type FeedbackMessage = super::@(subfolder)::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX);
+  type FeedbackMessage = self::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX);
 
   /// The send_goal service using a wrapped version of the goal message as a request.
-  type SendGoalService = super::@(subfolder)::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX);
+  type SendGoalService = self::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX);
 
   /// The generic service to cancel a goal.
   type CancelGoalService = action_msgs::srv::rmw::CancelGoal;
 
   /// The get_result service using a wrapped version of the result message as a response.
-  type GetResultService = super::@(subfolder)::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX);
+  type GetResultService = self::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX);
 
   // --- Methods for client library implementation ---
   fn get_type_support() -> *const std::ffi::c_void {
@@ -97,19 +104,19 @@ impl rosidl_runtime_rs::Action for @(type_name) {
 
   fn create_goal_request(
     goal_id: &[u8; 16],
-    goal: super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SUFFIX),
-  ) -> super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
+    goal: @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SUFFIX),
+  ) -> @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
       goal_id: unique_identifier_msgs::msg::rmw::UUID { uuid: *goal_id },
       goal,
     }
   }
 
   fn split_goal_request(
-    request: super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX),
+    request: @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX),
   ) -> (
     [u8; 16],
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SUFFIX),
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SUFFIX),
   ) {
     (request.goal_id.uuid, request.goal)
   }
@@ -117,8 +124,8 @@ impl rosidl_runtime_rs::Action for @(type_name) {
   fn create_goal_response(
     accepted: bool,
     stamp: (i32, u32),
-  ) -> super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
+  ) -> @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
       accepted,
       stamp: builtin_interfaces::msg::rmw::Time {
         sec: stamp.0,
@@ -128,68 +135,80 @@ impl rosidl_runtime_rs::Action for @(type_name) {
   }
 
   fn get_goal_response_accepted(
-    response: &super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX),
+    response: &@(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX),
   ) -> bool {
     response.accepted
   }
 
   fn get_goal_response_stamp(
-    response: &super::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX),
+    response: &@(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_GOAL_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX),
   ) -> (i32, u32) {
     (response.stamp.sec, response.stamp.nanosec)
   }
 
   fn create_feedback_message(
     goal_id: &[u8; 16],
-    feedback: super::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_SUFFIX),
-  ) -> super::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX) {
-    let mut message = super::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX)::default();
+    feedback: @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_SUFFIX),
+  ) -> @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX) {
+    let mut message = @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX)::default();
     message.goal_id.uuid = *goal_id;
     message.feedback = feedback;
     message
   }
 
   fn split_feedback_message(
-    feedback: super::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX),
+    feedback: @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_MESSAGE_SUFFIX),
   ) -> (
     [u8; 16],
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_SUFFIX),
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_FEEDBACK_SUFFIX),
   ) {
     (feedback.goal_id.uuid, feedback.feedback)
   }
 
   fn create_result_request(
     goal_id: &[u8; 16],
-  ) -> super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
+  ) -> @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX) {
       goal_id: unique_identifier_msgs::msg::rmw::UUID { uuid: *goal_id },
     }
   }
 
   fn get_result_request_uuid(
-    request: &super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX),
+    request: &@(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_REQUEST_MESSAGE_SUFFIX),
   ) -> &[u8; 16] {
     &request.goal_id.uuid
   }
 
   fn create_result_response(
     status: i8,
-    result: super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SUFFIX),
-  ) -> super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
+    result: @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SUFFIX),
+  ) -> @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX) {
       status,
       result,
     }
   }
 
   fn split_result_response(
-    response: super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX)
+    response: @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SERVICE_SUFFIX)@(SERVICE_RESPONSE_MESSAGE_SUFFIX)
   ) -> (
     i8,
-   super::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SUFFIX),
+   @(package_path)::@(subfolder)::rmw::@(type_name)@(ACTION_RESULT_SUFFIX),
   ) {
     (response.status, response.result)
   }
 }
 
 @[end for]
+
+@[if representation == 'cpu' and buffer_enabled]@
+rosidl_runtime_rs::cfg_buffer! {
+/// Backend-neutral buffer representation of the same ROS interfaces.
+#[cfg(feature = "rosidl-buffer")]
+pub mod buffer {
+    #[allow(unused_imports)]
+    use super::*;
+    include!("@(namespace)/buffer.rs");
+}
+}
+@[end if]@

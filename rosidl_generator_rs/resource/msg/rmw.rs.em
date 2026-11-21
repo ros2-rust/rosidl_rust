@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 TEMPLATE(
     '../templates/msg_rmw.rs.em',
     package_name=package_name, interface_path=interface_path,
+    cpu_normalization=cpu_normalization,
     msg_specs=msg_specs,
     get_rs_name=get_rs_name,
     get_rs_type=make_get_rs_type(False),

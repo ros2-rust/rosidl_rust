@@ -10,6 +10,9 @@ for subfolder, service in srv_specs:
 TEMPLATE(
     'templates/msg_idiomatic.rs.em',
     package_name=package_name, interface_path=interface_path,
+    representation=representation,
+    get_public_rs_type=get_public_rs_type,
+    public_conversion=public_conversion,
     msg_specs=req_res_specs,
     get_rs_name=get_rs_name,
     get_rs_type=get_rs_type,

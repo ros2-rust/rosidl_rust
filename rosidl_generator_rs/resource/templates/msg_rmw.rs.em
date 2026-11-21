@@ -25,7 +25,6 @@ extern "C" {
     fn @(package_name)__@(subfolder)__@(type_name)__init(msg: *mut @(type_name)) -> bool;
     fn @(package_name)__@(subfolder)__@(type_name)__Sequence__init(seq: *mut rosidl_runtime_rs::Sequence<@(type_name)>, size: usize) -> bool;
     fn @(package_name)__@(subfolder)__@(type_name)__Sequence__fini(seq: *mut rosidl_runtime_rs::Sequence<@(type_name)>);
-    fn @(package_name)__@(subfolder)__@(type_name)__Sequence__copy(in_seq: &rosidl_runtime_rs::Sequence<@(type_name)>, out_seq: *mut rosidl_runtime_rs::Sequence<@(type_name)>) -> bool;
 }
 
 @# Drop is not needed, since the default drop glue does the same as fini here:
@@ -127,8 +126,13 @@ impl rosidl_runtime_rs::SequenceAlloc for @(type_name) {
     unsafe { @(package_name)__@(subfolder)__@(type_name)__Sequence__fini(seq as *mut _) }
   }
   fn sequence_copy(in_seq: &rosidl_runtime_rs::Sequence<Self>, out_seq: &mut rosidl_runtime_rs::Sequence<Self>) -> bool {
-    // SAFETY: This is safe since the pointer is guaranteed to be valid/initialized.
-    unsafe { @(package_name)__@(subfolder)__@(type_name)__Sequence__copy(in_seq, out_seq as *mut _) }
+    let mut replacement = rosidl_runtime_rs::Sequence::<Self>::default();
+    if !Self::sequence_init(&mut replacement, in_seq.len()) {
+      return false;
+    }
+    replacement.as_mut_slice().clone_from_slice(in_seq.as_slice());
+    *out_seq = replacement;
+    true
   }
 }
 
@@ -139,6 +143,21 @@ impl rosidl_runtime_rs::Message for @(type_name) {
 }
 
 impl rosidl_runtime_rs::RmwMessage for @(type_name) where Self: Sized {
+@{
+normalizations = []
+for member in msg_spec.structure.members:
+    normalizations.append(cpu_normalization(member.type, 'self.' + get_rs_name(member.name)))
+}@
+@[if any(normalizations)]@
+  rosidl_runtime_rs::cfg_buffer! {
+  fn try_into_cpu(mut self) -> Result<Self, rosidl_runtime_rs::BufferError> {
+@[for statement in normalizations]@
+    @(statement)
+@[end for]@
+    Ok(self)
+  }
+  }
+@[end if]@
   const TYPE_NAME: &'static str = "@(package_name)/@(subfolder)/@(type_name)";
   fn get_type_support() -> *const std::ffi::c_void {
     // SAFETY: No preconditions for this function.

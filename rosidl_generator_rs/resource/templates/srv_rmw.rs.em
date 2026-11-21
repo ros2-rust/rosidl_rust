@@ -10,6 +10,7 @@ for subfolder, service in srv_specs:
 TEMPLATE(
     '../templates/msg_rmw.rs.em',
     package_name=package_name, interface_path=interface_path,
+    cpu_normalization=cpu_normalization,
     msg_specs=req_res_specs,
     get_rs_name=get_rs_name,
     get_rs_type=get_rs_type,
