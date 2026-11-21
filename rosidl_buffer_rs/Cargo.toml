@@ -6,7 +6,7 @@ name = "rosidl_buffer_rs"
 version = "0.1.0"
 authors = ["Yuankun Zhu <yuankunz@nvidia.com>"]
 edition = "2021"
-rust-version = "1.88"
+rust-version = "1.85"
 license = "Apache-2.0"
 description = "Backend-neutral Rust buffers and bindings to rosidl::Buffer"
 

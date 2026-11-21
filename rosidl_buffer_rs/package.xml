@@ -12,8 +12,8 @@ SPDX-License-Identifier: Apache-2.0
   <license>Apache-2.0</license>
   <author email="yuankunz@nvidia.com">Yuankun Zhu</author>
 
-  <buildtool_depend version_gte="1.88">cargo</buildtool_depend>
-  <buildtool_depend version_gte="1.88">rustc</buildtool_depend>
+  <buildtool_depend version_gte="1.85">cargo</buildtool_depend>
+  <buildtool_depend version_gte="1.85">rustc</buildtool_depend>
   <depend>rosidl_runtime_rs</depend>
 
   <member_of_group>rosidl_runtime_packages</member_of_group>

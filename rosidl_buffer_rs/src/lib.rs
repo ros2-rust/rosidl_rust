@@ -8,13 +8,6 @@
 //! Native backends retain allocation ownership through CXX; device-specific
 //! access is provided by packages such as `cuda_buffer_rs`.
 //!
-//! ```
-//! use rosidl_buffer_rs::Buffer;
-//!
-//! let buffer = Buffer::from(vec![1u8, 2, 3]);
-//! assert_eq!(buffer.as_slice(), Some(&[1, 2, 3][..]));
-//! assert_eq!(buffer.backend_name().unwrap(), "cpu");
-//! ```
 //!
 //! Buffers wrap the runtime's `Sequence<T>` directly. Primitive sequence names
 //! remain aliases; there is no second native storage representation.
@@ -22,8 +15,9 @@
 //!
 //! # Building and testing
 //!
-//! Requires Rust 1.88+, a C++20 compiler, and a sourced ROS installation containing
-//! `rosidl_buffer` and `rosidl_runtime_c`. Cargo downloads `cxx` and `cxx-build`.
+//! Requires a C++20 compiler and a sourced ROS installation containing
+//! `rosidl_buffer` and `rosidl_runtime_c` (ROS 2 Lyrical or newer). Cargo
+//! downloads `cxx` and `cxx-build`. On older distributions the crate is empty.
 //! For colcon, install `colcon-cargo`, `colcon-ros-cargo`, and `cargo-ament-build`.
 //!
 //! ```sh
@@ -31,21 +25,24 @@
 //! colcon test --packages-select rosidl_buffer_rs
 //! ```
 
-pub use rosidl_runtime_rs::{
-    native::{ffi, CxxBuffer},
-    BufferError,
-};
+// Empty on ROS distributions without buffer support, so the package still builds there.
+rosidl_runtime_rs::cfg_buffer! {
+    pub use rosidl_runtime_rs::{
+        native::{ffi, CxxBuffer},
+        BufferError,
+    };
 
-mod buffer;
-pub use buffer::{BoundedBuffer, BoundedVec, Buffer};
+    mod buffer;
+    pub use buffer::{BoundedBuffer, BoundedVec, Buffer};
 
-pub use rosidl_runtime_rs::{
-    BoundedSequence as BoundedPrimitiveSequence, Sequence as PrimitiveSequence,
-    SequenceExceedsBoundsError,
-};
+    pub use rosidl_runtime_rs::{
+        BoundedSequence as BoundedPrimitiveSequence, Sequence as PrimitiveSequence,
+        SequenceExceedsBoundsError,
+    };
 
-mod traits;
-pub use traits::PrimitiveSequenceAlloc;
+    mod traits;
+    pub use traits::PrimitiveSequenceAlloc;
 
-#[doc(hidden)]
-pub mod native;
+    #[doc(hidden)]
+    pub mod native;
+}

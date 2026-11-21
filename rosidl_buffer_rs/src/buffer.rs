@@ -20,6 +20,7 @@ pub use rosidl_runtime_rs::BufferError;
 ///
 /// let data = Buffer::from(vec![1u8, 2, 3]);
 /// assert_eq!(data.as_slice(), Some(&[1, 2, 3][..]));
+/// assert_eq!(data.backend_name().unwrap(), "cpu");
 /// ```
 #[derive(Clone, Default, PartialEq)]
 pub struct Buffer<T: PrimitiveSequenceAlloc> {
